@@ -28,9 +28,5 @@
   ],
   "cSpell.words": [
     "Hyakkano"
-  ],
-  "emmet.includeLanguages": {
-    "javascriptreact": "html",
-    "typescriptreact": "html"
-  }
+  ]
 }
