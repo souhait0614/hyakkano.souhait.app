@@ -6,7 +6,7 @@ import LinkText from '@/components/LinkText';
 import { SITE_NAME } from '@/constants/site';
 import PageHead from '@/features/PageHead';
 
-export const metadata = {
+const metadata = {
   title: 'プライバシーポリシー',
   description: `${SITE_NAME}の個人情報の取扱いに関して掲載しています。`,
 } as const satisfies Metadata;
