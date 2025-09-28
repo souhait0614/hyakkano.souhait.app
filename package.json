@@ -1,0 +1,58 @@
+{
+  "name": "hyakkano.souhait.app",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "waku dev",
+    "build": "waku build",
+    "start": "waku start",
+    "deploy": "pnpm build --with-cloudflare && wrangler deploy",
+    "lint": "concurrently --pad-prefix node:lint:*",
+    "lint:typescript": "tsc --noEmit",
+    "lint:eslint": "eslint .",
+    "lint:stylelint": "stylelint .",
+    "format": "eslint --fix . && stylelint --fix ."
+  },
+  "dependencies": {
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "react-server-dom-webpack": "19.1.1",
+    "tailwind-merge": "3.3.1",
+    "tailwind-variants": "3.1.1",
+    "waku": "0.26.1"
+  },
+  "devDependencies": {
+    "@stylistic/stylelint-config": "3.0.1",
+    "@tailwindcss/vite": "4.1.13",
+    "@taiyme/eslint-config": "0.11.1",
+    "@taiyme/vite-plugin-jsx-prune-classname": "0.0.3",
+    "@types/node": "^24.5.2",
+    "@types/react": "19.1.14",
+    "@types/react-dom": "19.1.9",
+    "concurrently": "9.2.1",
+    "eslint": "9.36.0",
+    "eslint-config-flat-gitignore": "2.1.0",
+    "eslint-plugin-better-tailwindcss": "3.7.9",
+    "globals": "16.4.0",
+    "kiso.css": "1.2.2",
+    "stylelint": "16.24.0",
+    "stylelint-config-recess-order": "7.3.0",
+    "stylelint-config-recommended": "17.0.0",
+    "stylelint-config-tailwindcss": "1.0.0",
+    "tailwindcss": "4.1.13",
+    "type-fest": "5.0.1",
+    "typescript": "5.9.2",
+    "typescript-eslint": "8.44.1",
+    "vite": "7.1.7",
+    "vite-tsconfig-paths": "5.1.4"
+  },
+  "pnpm": {
+    "overrides": {
+      "vite": "$vite"
+    },
+    "patchedDependencies": {
+      "waku@0.26.1": "patches/waku@0.26.1.patch"
+    }
+  }
+}

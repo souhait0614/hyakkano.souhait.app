@@ -1,0 +1,11 @@
+*.*
+!**/*.css
+
+# prod
+dist/
+
+# deps
+node_modules/
+
+# misc
+LICENSE
