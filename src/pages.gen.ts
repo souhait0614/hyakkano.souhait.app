@@ -6,6 +6,8 @@ import type { PathsForPages, GetConfigResponse } from 'waku/router';
 // prettier-ignore
 import type { getConfig as File_Root_getConfig } from './pages/_root';
 // prettier-ignore
+import type { getConfig as File_BirthdayIndex_getConfig } from './pages/birthday/index';
+// prettier-ignore
 import type { getConfig as File_Index_getConfig } from './pages/index';
 // prettier-ignore
 import type { getConfig as File_PrivacyIndex_getConfig } from './pages/privacy/index';
@@ -13,6 +15,7 @@ import type { getConfig as File_PrivacyIndex_getConfig } from './pages/privacy/i
 // prettier-ignore
 type Page =
 | ({ path: '/_root' } & GetConfigResponse<typeof File_Root_getConfig>)
+| ({ path: '/birthday' } & GetConfigResponse<typeof File_BirthdayIndex_getConfig>)
 | ({ path: '/' } & GetConfigResponse<typeof File_Index_getConfig>)
 | ({ path: '/privacy' } & GetConfigResponse<typeof File_PrivacyIndex_getConfig>);
 

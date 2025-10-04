@@ -117,19 +117,44 @@
   }
 
   table {
-    border-spacing: 0;
-  }
+    @apply grid gap-x-2;
 
-  th::after {
-    margin-right: 0.25rem;
-    font-weight: var(--font-weight-bold);
-    content: ':';
+    thead,
+    tbody,
+    tfoot {
+      display: contents;
+    }
+
+    tr {
+      display: grid;
+      grid-template-rows: subgrid;
+      grid-template-columns: subgrid;
+      grid-column: 1 / -1;
+    }
+
+    tbody tr:nth-of-type(odd) {
+      @apply bg-primary/10;
+    }
+
+    th,
+    td {
+      display: block;
+    }
   }
 
   input {
     background-color: transparent;
     border: none;
     border-bottom: 1px solid var(--color-text);
+  }
+
+  @keyframes rainbow-text {
+    0% {
+      filter: hue-rotate(0deg);
+    }
+    100% {
+      filter: hue-rotate(360deg);
+    }
   }
 }
 
@@ -186,4 +211,9 @@
   align-items: center;
   justify-content: center;
   color: var(--color-primary);
+}
+
+@utility text-animate-rainbow {
+  color: #f00;
+  animation: rainbow-text 1s linear infinite;
 }
