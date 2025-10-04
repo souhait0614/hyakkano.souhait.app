@@ -3,7 +3,7 @@ import '../style.css';
 import type { ReactNode } from 'react';
 
 import LinkText from '@/components/LinkText';
-import { SITE_COPYRIGHT, SITE_REPO_URL } from '@/constants/site';
+import { SITE_COPYRIGHT, SITE_CREATOR_SITE_URL, SITE_REPO_URL } from '@/constants/site';
 import HyakkanoBackGround from '@/features/$HyakkanoBackGround';
 
 
@@ -30,7 +30,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
       `}
       >
         <nav className={`
-          flex gap-4
+          flex flex-wrap justify-center gap-x-4
           *:text-text-muted
         `}
         >
@@ -43,6 +43,9 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           </LinkText>
           <LinkText external href={SITE_REPO_URL}>
             <small>ソースコード</small>
+          </LinkText>
+          <LinkText external href={SITE_CREATOR_SITE_URL}>
+            <small>作った人のサイト</small>
           </LinkText>
         </nav>
         <small>
