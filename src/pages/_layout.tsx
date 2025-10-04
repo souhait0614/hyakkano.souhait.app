@@ -3,7 +3,7 @@ import '../style.css';
 import type { ReactNode } from 'react';
 
 import LinkText from '@/components/LinkText';
-import { SITE_COPYRIGHT } from '@/constants/site';
+import { SITE_COPYRIGHT, SITE_REPO_URL } from '@/constants/site';
 import HyakkanoBackGround from '@/features/$HyakkanoBackGround';
 
 
@@ -40,6 +40,9 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           </LinkText>
           <LinkText to='/privacy'>
             <small>プライバシーポリシー</small>
+          </LinkText>
+          <LinkText external href={SITE_REPO_URL}>
+            <small>ソースコード</small>
           </LinkText>
         </nav>
         <small>
