@@ -45,30 +45,6 @@ export default function PageHead<T extends PageProps<string>>({ metadata, pagePr
           <link rel='me' href='https://mk.shrimpia.network/@souhait' />
         </>
       )}
-      <link
-        rel='icon'
-        href='/favicon.ico'
-        type='image/x-icon'
-        sizes='32x32'
-      />
-      <link
-        rel='icon'
-        href='/icon-192.png'
-        type='image/png'
-        sizes='192x192'
-      />
-      <link
-        rel='icon'
-        href='/icon-512.png'
-        type='image/png'
-        sizes='512x512'
-      />
-      <link
-        rel='apple-touch-icon'
-        href='/apple-touch-icon.png'
-        type='image/png'
-        sizes='180x180'
-      />
     </>
   );
 }
