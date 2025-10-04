@@ -83,6 +83,14 @@
 }
 
 @layer base {
+  * {
+    @apply outline-primary;
+  }
+
+  :root {
+    @apply accent-primary;
+  }
+
   html,
   body {
     overflow: clip visible;
