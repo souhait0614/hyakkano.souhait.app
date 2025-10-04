@@ -13,19 +13,7 @@
   --color-background: hsl(348, 83%, 98%);
   --color-card: hsla(0, 0%, 100%, 0.627);
 
-  --font-sans:
-    'Noto Sans JP',
-    'Hiragino Kaku Gothic ProN',
-    'Hiragino Kaku Gothic Pro',
-    'ＭＳ ゴシック',
-    'メイリオ',
-    'Meiryo',
-    'ヒラギノ角ゴ Pro W3',
-    'Hiragino Kaku Gothic Pro',
-    'Osaka',
-    'ＭＳ Ｐゴシック',
-    'MS PGothic',
-    sans-serif;
+  --font-sans: sans-serif;
 
   --page-padding-top: calc(env(safe-area-inset-top, 0) + var(--spacing) * 2);
   --page-padding-right: calc(env(safe-area-inset-right, 0) + var(--spacing) * 4);
