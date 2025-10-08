@@ -38,7 +38,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
             <small>プライバシーポリシー</small>
           </LinkText>
           <LinkText external href={SITE_CREATOR_SITE_URL}>
-            <small>製作者のサイト</small>
+            <small>管理人のサイト</small>
           </LinkText>
         </nav>
         <small>
