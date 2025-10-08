@@ -23,12 +23,18 @@ function BirthdayCharactersCard() {
     [filteredCharacters, todayDate],
   );
 
+  const stopConfettiRef = useRef<() => void>(() => {});
   const prevBirthdayCharactersRef = useRef<Character[]>([]);
   useEffect(() => {
     if (birthdayCharacters.length && JSON.stringify(prevBirthdayCharactersRef.current) !== JSON.stringify(birthdayCharacters)) {
-      confetti();
+      confetti().then((stop) => {
+        stopConfettiRef.current = stop;
+      });
     }
     prevBirthdayCharactersRef.current = birthdayCharacters;
+    return () => {
+      stopConfettiRef.current();
+    };
   }, [birthdayCharacters]);
 
   if (birthdayCharacters.length === 0) {
