@@ -25,15 +25,11 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         {children}
       </main>
       <footer className={`
-        flex flex-col items-center gap-1 text-text-muted
+        flex flex-col items-center gap-1 text-center text-text-muted
         [grid-area:footer]
       `}
       >
-        <nav className={`
-          flex flex-wrap justify-center gap-x-4
-          *:text-text-muted
-        `}
-        >
+        <nav className='flex flex-wrap justify-center gap-x-4'>
           <h2 className='sr-only'>ナビゲーション</h2>
           <LinkText to='/'>
             <small>トップページ</small>
@@ -48,6 +44,9 @@ export default async function RootLayout({ children }: RootLayoutProps) {
             <small>作った人のサイト</small>
           </LinkText>
         </nav>
+        <small>
+          このサイトは非公式の個人制作サイトです。公式とは一切関係ありません。
+        </small>
         <small>
           {SITE_COPYRIGHT}
         </small>
