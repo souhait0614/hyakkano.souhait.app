@@ -5,7 +5,9 @@ import { useEffect, useMemo, useRef } from 'react';
 import IconHeart from '@/components/icons/IconHeart';
 import useReducedMotion from '@/hooks/useReducedMotion';
 
-const heartCount = 34;
+import { CHARACTERS } from './birthday/constants';
+
+const heartCount = CHARACTERS.filter(({ type }) => type === 'GIRLFRIEND').length;
 const baseAnimationDuration = 20;
 const skipDeltaTime = 1000;
 
