@@ -5,6 +5,10 @@ import { defineConfig } from 'waku/config';
 
 export default defineConfig({
   vite: {
+    build: {
+      emptyOutDir: true,
+      minify: 'terser',
+    },
     plugins: [
       tsconfigPaths(),
       jsxPruneClassName(),
