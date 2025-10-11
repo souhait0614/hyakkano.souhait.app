@@ -51,6 +51,6 @@ export default function Page(pageProps: PageProps<'/birthday'>) {
 
 export function getConfig() {
   return {
-    render: 'static',
+    render: 'dynamic',
   } as const;
 }
