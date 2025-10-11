@@ -1,6 +1,7 @@
 import type { PageProps } from 'waku/router';
 
 import type { Metadata } from '@/types/Metadata';
+import JstClock from '@/components/JstClock';
 import BirthdayCharactersCard from '@/features/birthday/BirthdayCharactersCard';
 import { ReleasedLevelFilterSelect, TypesFilterCheckboxes } from '@/features/birthday/Filters';
 import Provider from '@/features/birthday/Provider';
@@ -17,7 +18,14 @@ export default function Page(pageProps: PageProps<'/birthday'>) {
     <Provider>
       <PageHead metadata={metadata} pageProps={pageProps} />
       <div className='page-container'>
-        <h1 className='page-title'>{metadata.title}</h1>
+        <div className='flex flex-wrap items-center justify-between gap-x-2'>
+          <h1 className='page-title'>{metadata.title}</h1>
+          <p className='card px-3 py-2'>
+            <JstClock className='font-mono' suppressHydrationWarning />
+            {' '}
+            <span className='text-xs'>(JST)</span>
+          </p>
+        </div>
         <section className='flex flex-col gap-2 card'>
           <h2 className='text-lg'>表示設定</h2>
           <ReleasedLevelFilterSelect />
