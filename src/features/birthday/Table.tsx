@@ -63,6 +63,7 @@ function Table() {
             ? `${String(birthday[0]).padStart(2, '0')}/${String(birthday[1]).padStart(2, '0')}`
             : `${String(birthday[0]).padStart(2, '0')}/${String(birthday[1]).padStart(2, '0')} ${String(birthday[2]).padStart(2, '0')}:${String(birthday[3]).padStart(2, '0')}:${String(birthday[4]).padStart(2, '0')}`;
         },
+        meta: { tdClassName: 'font-mono' },
       },
       {
         accessorKey: 'daysUntilBirthday',
@@ -169,6 +170,7 @@ function Table() {
                     cell.column.columnDef.meta?.align === 'right' && [
                       'text-end',
                     ],
+                    cell.column.columnDef.meta?.tdClassName,
                   ) || undefined}
                 >
                   {flexRender(
