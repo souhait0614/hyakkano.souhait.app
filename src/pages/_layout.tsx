@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 
 import LinkText from '@/components/LinkText';
 import { SITE_COPYRIGHT, SITE_CREATOR_SITE_URL } from '@/constants/site';
-import HyakkanoBackGround from '@/features/$HyakkanoBackGround';
+import HyakkanoBackGround from '@/features/HyakkanoBackGround';
 
 
 type RootLayoutProps = { children: ReactNode; };
