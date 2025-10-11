@@ -1,11 +1,13 @@
 'use client';
 
 import type { ColumnDef, SortingState } from '@tanstack/react-table';
+import { TZDateMini } from '@date-fns/tz';
 import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
 import clsx from 'clsx';
 import { useContext, useMemo } from 'react';
 
 import TableSortingIcon from '@/components/TableSortingIcon';
+import { TIMEZONE } from '@/constants/timezone';
 import { useLocalStorageState } from '@/hooks/useLocalStorageState';
 import { getTableSortingTitle } from '@/utils/table';
 
@@ -50,8 +52,8 @@ function Table() {
           if (!rowB.original.birthday) return -1;
           const [monthA, dayA, hourA = 0, minuteA = 0, secondA = 0] = rowA.original.birthday;
           const [monthB, dayB, hourB = 0, minuteB = 0, secondB = 0] = rowB.original.birthday;
-          const dateA = new Date(todayYear, monthA - 1, dayA, hourA, minuteA, secondA);
-          const dateB = new Date(todayYear, monthB - 1, dayB, hourB, minuteB, secondB);
+          const dateA = new TZDateMini(todayYear, monthA - 1, dayA, hourA, minuteA, secondA, TIMEZONE);
+          const dateB = new TZDateMini(todayYear, monthB - 1, dayB, hourB, minuteB, secondB, TIMEZONE);
           return dateA.getTime() - dateB.getTime();
         },
         cell: (info) => {
