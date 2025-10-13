@@ -2,43 +2,46 @@
 
 import type { ReactNode } from 'react';
 import { TZDateMini } from '@date-fns/tz';
-import { addDays, startOfDay } from 'date-fns';
+import { isSameDay, startOfDay } from 'date-fns';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { TIMEZONE } from '@/constants/timezone';
 
-import { TodayDateContext } from './contexts';
+import { DateContext, TodayDateContext } from './contexts';
 
 interface ProviderProps {
   children: ReactNode;
 }
 function Provider({ children }: ProviderProps) {
-  const now = useMemo(() => TZDateMini.tz(TIMEZONE), []);
-  const [todayDate, setTodayDate] = useState(startOfDay(now));
+  const initialDate = useMemo(() => TZDateMini.tz(TIMEZONE), []);
+  const [date, setDate] = useState(initialDate);
+  const [todayDate, setTodayDate] = useState(startOfDay(initialDate));
 
   const timeoutIdRef = useRef<number | null>(null);
   const setTimer = useCallback((timeout: number) => {
     timeoutIdRef.current = window.setTimeout(() => {
-      setTodayDate((prev) => addDays(prev, 1));
-      setTimer(24 * 60 * 60 * 1000);
+      const now = TZDateMini.tz(TIMEZONE);
+      setDate(now);
+      setTodayDate((prev) => (isSameDay(prev, now) ? prev : startOfDay(now)));
+      setTimer(1000 - now.getMilliseconds());
     }, timeout);
   }, []);
 
   useEffect(() => {
-    const tomorrowDate = startOfDay(addDays(now, 1));
-    const timeout = tomorrowDate.getTime() - now.getTime();
-    setTimer(timeout);
+    setTimer(1000 - initialDate.getMilliseconds());
     return () => {
       if (timeoutIdRef.current) {
         window.clearTimeout(timeoutIdRef.current);
       }
     };
-  }, [now, setTimer]);
+  }, [initialDate, setTimer]);
 
   return (
-    <TodayDateContext value={todayDate}>
-      {children}
-    </TodayDateContext>
+    <DateContext value={date}>
+      <TodayDateContext value={todayDate}>
+        {children}
+      </TodayDateContext>
+    </DateContext>
   );
 }
 export default Provider;

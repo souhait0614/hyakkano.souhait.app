@@ -4,4 +4,6 @@ import { createContext } from 'react';
 
 import { TIMEZONE } from '@/constants/timezone';
 
-export const TodayDateContext = createContext<Date>(startOfDay(TZDateMini.tz(TIMEZONE)));
+const now = TZDateMini.tz(TIMEZONE);
+export const DateContext = createContext<Date>(now);
+export const TodayDateContext = createContext<Date>(startOfDay(now));
