@@ -43,6 +43,7 @@ export const CHARACTERS: Character[] = [
   { name: '端須 蓮葉', pronunciation: 'はす はすは', birthday: undefined, age: undefined, releasedLevel: 'JUMP_PLUS', releaseEpisode: 204, type: 'GIRLFRIEND', girlfriendNumber: 32 },
   { name: '守北 季鞠', pronunciation: 'もりきた きまり', birthday: undefined, age: undefined, releasedLevel: 'JUMP_PLUS', releaseEpisode: 213, type: 'GIRLFRIEND', girlfriendNumber: 33 },
   { name: '双天 彗流', pronunciation: 'ふたて える', birthday: undefined, age: undefined, releasedLevel: 'JUMP_PLUS', releaseEpisode: 222, type: 'GIRLFRIEND', girlfriendNumber: 34 },
+  { name: '慈相 千優', pronunciation: 'じあい ちゆ', birthday: undefined, age: 25, releasedLevel: 'JUMP_PLUS', releaseEpisode: 231, type: 'GIRLFRIEND', girlfriendNumber: 35 },
   { name: '中村 力斗', pronunciation: 'なかむら りきと', birthday: [5, 31], age: undefined, releasedLevel: 'ANIME', releaseSeason: 2, type: 'AUTHOR' },
   { name: '野澤 ゆき子', pronunciation: 'のざわ ゆきこ', birthday: [4, 17], age: undefined, releasedLevel: 'COMICS', releaseVolume: 9, type: 'AUTHOR' },
 ];
