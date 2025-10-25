@@ -10,8 +10,8 @@ export type CharacterBirthday = [
 ];
 
 export type Character = {
-  name: string;
-  pronunciation: string;
+  name: string[];
+  pronunciation: string[];
   releasedLevel: CharacterReleasedLevel;
   type: CharacterType;
   birthday: CharacterBirthday | undefined;

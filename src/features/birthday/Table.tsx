@@ -4,7 +4,7 @@ import type { ColumnDef, SortingState } from '@tanstack/react-table';
 import { TZDateMini } from '@date-fns/tz';
 import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
 import clsx from 'clsx';
-import { useContext, useMemo } from 'react';
+import { Fragment, useContext, useMemo } from 'react';
 
 import TableSortingIcon from '@/components/TableSortingIcon';
 import { TIMEZONE } from '@/constants/timezone';
@@ -13,11 +13,12 @@ import { getTableSortingTitle } from '@/utils/table';
 
 import type { CharacterBirthday, CharacterTableRow } from './types';
 import { TodayDateContext } from './contexts';
-import { useFilteredCharacters } from './hooks';
+import { useFilteredCharacters, useShowNameRuby } from './hooks';
 import { getDaysUntilBirthday } from './utils';
 
 function Table() {
   const todayDate = useContext(TodayDateContext);
+  const { showNameRuby } = useShowNameRuby();
 
   const columns = useMemo(() => {
     const todayYear = todayDate.getFullYear();
@@ -31,7 +32,27 @@ function Table() {
       {
         accessorKey: 'name',
         header: '名前',
-        sortingFn: (rowA, rowB) => rowA.original.pronunciation.localeCompare(rowB.original.pronunciation, 'ja'),
+        cell: (info) => {
+          const name = info.getValue<string[]>();
+          const pronunciation = info.row.original.pronunciation;
+          if (showNameRuby) return name.map((str, i) => (
+            <Fragment key={i}>
+              {i > 0 && ' '}
+              <ruby>
+                {str}
+                {pronunciation[i] && (
+                  <>
+                    <rp>(</rp>
+                    <rt>{pronunciation[i]}</rt>
+                    <rp>)</rp>
+                  </>
+                )}
+              </ruby>
+            </Fragment>
+          ));
+          return name.join(' ') || '-';
+        },
+        sortingFn: (rowA, rowB) => rowA.original.pronunciation.join(' ').localeCompare(rowB.original.pronunciation.join(' '), 'ja'),
       },
       // {
       //   accessorKey: 'age',
@@ -76,7 +97,7 @@ function Table() {
         meta: { align: 'right' },
       },
     ] as const satisfies ColumnDef<CharacterTableRow>[];
-  }, [todayDate]);
+  }, [showNameRuby, todayDate]);
 
   const filteredCharacters = useFilteredCharacters();
 
@@ -101,7 +122,7 @@ function Table() {
     state: { sorting },
     onSortingChange: setSorting,
     sortDescFirst: false,
-    getRowId: (row) => row.name,
+    getRowId: (row) => row.name.join(''),
   });
 
   return (

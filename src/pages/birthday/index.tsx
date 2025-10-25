@@ -5,6 +5,7 @@ import BirthdayCharactersCard from '@/features/birthday/BirthdayCharactersCard';
 import CurrentDateClock from '@/features/birthday/CurrentDateClock';
 import { ReleasedLevelFilterSelect, TypesFilterCheckboxes } from '@/features/birthday/Filters';
 import Provider from '@/features/birthday/Provider';
+import { ShowNameRubySetting } from '@/features/birthday/Settings';
 import Table from '@/features/birthday/Table';
 import PageHead from '@/features/PageHead';
 
@@ -31,6 +32,9 @@ export default function Page(pageProps: PageProps<'/birthday'>) {
           <ReleasedLevelFilterSelect />
           <div className='flex flex-wrap gap-2'>
             <TypesFilterCheckboxes />
+          </div>
+          <div className='flex flex-wrap gap-2'>
+            <ShowNameRubySetting />
           </div>
         </section>
         <BirthdayCharactersCard />

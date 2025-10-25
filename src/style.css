@@ -135,6 +135,7 @@
       grid-template-rows: subgrid;
       grid-template-columns: subgrid;
       grid-column: 1 / -1;
+      align-items: center;
     }
 
     tbody tr:nth-of-type(odd) {

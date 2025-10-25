@@ -35,3 +35,8 @@ export function useFilteredCharacters() {
 
   return filteredCharacters;
 }
+
+export function useShowNameRuby() {
+  const [showNameRuby, setShowNameRuby] = useLocalStorageState<boolean>('birthday_showNameRuby', false);
+  return { showNameRuby, setShowNameRuby };
+}
