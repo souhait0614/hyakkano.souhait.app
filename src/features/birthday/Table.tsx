@@ -26,7 +26,7 @@ function Table() {
       {
         accessorKey: 'girlfriendNumber',
         header: '彼女No.',
-        cell: (info) => info.getValue() ?? '-',
+        cell: (info) => <span>{info.getValue<number | undefined>() ?? '-'}</span>,
         meta: { align: 'right' },
       },
       {
@@ -50,7 +50,7 @@ function Table() {
               </ruby>
             </Fragment>
           ));
-          return name.join(' ') || '-';
+          return <span>{name.join(' ') || '-'}</span>;
         },
         sortingFn: (rowA, rowB) => rowA.original.pronunciation.join(' ').localeCompare(rowB.original.pronunciation.join(' '), 'ja'),
       },
@@ -81,8 +81,8 @@ function Table() {
           const birthday = info.getValue<CharacterBirthday | undefined>();
           if (!birthday) return '未判明';
           return birthday.length === 2
-            ? `${String(birthday[0]).padStart(2, '0')}/${String(birthday[1]).padStart(2, '0')}`
-            : `${String(birthday[0]).padStart(2, '0')}/${String(birthday[1]).padStart(2, '0')} ${String(birthday[2]).padStart(2, '0')}:${String(birthday[3]).padStart(2, '0')}:${String(birthday[4]).padStart(2, '0')}`;
+            ? <span>{`${String(birthday[0]).padStart(2, '0')}/${String(birthday[1]).padStart(2, '0')}`}</span>
+            : <span>{`${String(birthday[0]).padStart(2, '0')}/${String(birthday[1]).padStart(2, '0')} ${String(birthday[2]).padStart(2, '0')}:${String(birthday[3]).padStart(2, '0')}:${String(birthday[4]).padStart(2, '0')}`}</span>;
         },
         meta: { tdClassName: 'font-mono' },
       },
@@ -92,7 +92,7 @@ function Table() {
         cell: (info) => {
           const days = info.getValue<number | undefined>();
           if (days === undefined) return '-';
-          return days === 0 ? '本日' : `${days}日`;
+          return <span>{days === 0 ? '本日' : `${days}日`}</span>;
         },
         meta: { align: 'right' },
       },
