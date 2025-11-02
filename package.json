@@ -17,7 +17,7 @@
   "dependencies": {
     "@date-fns/tz": "1.4.1",
     "@tanstack/react-table": "8.21.3",
-    "canvas-confetti": "1.9.3",
+    "canvas-confetti": "1.9.4",
     "clsx": "2.1.1",
     "date-fns": "4.1.0",
     "react": "19.2.0",
