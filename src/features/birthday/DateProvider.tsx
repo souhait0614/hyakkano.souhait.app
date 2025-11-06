@@ -12,7 +12,7 @@ import { DateContext, TodayDateContext } from './contexts';
 interface ProviderProps {
   children: ReactNode;
 }
-function Provider({ children }: ProviderProps) {
+function DateProvider({ children }: ProviderProps) {
   const initialDate = useMemo(() => TZDateMini.tz(TIMEZONE), []);
   const [date, setDate] = useState(initialDate);
   const [todayDate, setTodayDate] = useState(startOfDay(initialDate));
@@ -44,4 +44,4 @@ function Provider({ children }: ProviderProps) {
     </DateContext>
   );
 }
-export default Provider;
+export default DateProvider;

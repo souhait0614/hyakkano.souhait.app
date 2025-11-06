@@ -1,53 +1,60 @@
 'use client';
 
-import type { CharacterReleasedLevel, CharacterType } from './types';
-import { CHARACTERS } from './constants';
+import { useContext, useMemo } from 'react';
+
+import type { BirthdayCharacterReleasedLevel, BirthdayCharacterType } from './types';
+import { CharactersContext } from './contexts';
 import { useReleasedLevelFilter, useTypesFilter } from './hooks';
 
-const [latestAnimeSeason, latestComicsVolume, latestJumpPlusEpisode, latestYoungJumpVolume] = (() => {
-  let animeSeason = 0;
-  let comicsVolume = 0;
-  let jumpPlusEpisode = 0;
-  let youngJumpVolume = 0;
-  for (const character of CHARACTERS) {
-    if (character.releasedLevel === 'ANIME') {
-      if (!animeSeason || character.releaseSeason > animeSeason) {
-        animeSeason = character.releaseSeason;
-      }
-    } else if (character.releasedLevel === 'COMICS') {
-      if (!comicsVolume || character.releaseVolume > comicsVolume) {
-        comicsVolume = character.releaseVolume;
-      }
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    } else if (character.releasedLevel === 'JUMP_PLUS' || character.releasedLevel === 'YOUNG_JUMP') {
-      if (!youngJumpVolume || character.releaseEpisode > youngJumpVolume) {
-        youngJumpVolume = character.releaseEpisode;
-      }
-      if (character.releasedLevel === 'JUMP_PLUS') {
-        if (!jumpPlusEpisode || character.releaseEpisode > jumpPlusEpisode) {
-          jumpPlusEpisode = character.releaseEpisode;
+export function ReleasedLevelFilterSelect() {
+  const characters = useContext(CharactersContext);
+  const { releasedLevelFilter, setReleasedLevelFilter } = useReleasedLevelFilter();
+
+  const [latestAnimeSeason, latestComicsVolume, latestJumpPlusEpisode, latestYoungJumpVolume] = useMemo(() => {
+    let animeSeason = 0;
+    let comicsVolume = 0;
+    let jumpPlusEpisode = 0;
+    let youngJumpVolume = 0;
+    for (const character of characters) {
+      if (character.releasedLevel === 'ANIME') {
+        if (!animeSeason || character.releaseAnimeSeason > animeSeason) {
+          animeSeason = character.releaseAnimeSeason;
+        }
+      } else if (character.releasedLevel === 'COMICS') {
+        if (!comicsVolume || character.releaseOriginalComicsVolume > comicsVolume) {
+          comicsVolume = character.releaseOriginalComicsVolume;
+        }
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+      } else if (character.releasedLevel === 'JUMP_PLUS' || character.releasedLevel === 'YOUNG_JUMP') {
+        if (!youngJumpVolume || character.releaseOriginalEpisode > youngJumpVolume) {
+          youngJumpVolume = character.releaseOriginalEpisode;
+        }
+        if (character.releasedLevel === 'JUMP_PLUS') {
+          if (!jumpPlusEpisode || character.releaseOriginalEpisode > jumpPlusEpisode) {
+            jumpPlusEpisode = character.releaseOriginalEpisode;
+          }
         }
       }
     }
-  }
-  return [animeSeason, comicsVolume, jumpPlusEpisode, youngJumpVolume] as const;
-})();
+    return [animeSeason, comicsVolume, jumpPlusEpisode, youngJumpVolume] as const;
+  }, [characters]);
 
-const releasedLevelFilterOptions = [
-  { label: `TVアニメ登場キャラ (~${latestAnimeSeason}期)`, value: 'ANIME' },
-  { label: `コミックス登場キャラ (~${latestComicsVolume}巻)`, value: 'COMICS' },
-  { label: `少年ジャンプ＋登場キャラ (~${latestJumpPlusEpisode}話)`, value: 'JUMP_PLUS' },
-  { label: `週刊ヤングジャンプ登場キャラ (~${latestYoungJumpVolume}話)`, value: 'YOUNG_JUMP' },
-] as const satisfies { label: string; value: CharacterReleasedLevel; }[];
+  const releasedLevelFilterOptions = useMemo(
+    () => [
+      { label: `TVアニメ登場キャラ (~${latestAnimeSeason}期)`, value: 'ANIME' },
+      { label: `コミックス登場キャラ (~${latestComicsVolume}巻)`, value: 'COMICS' },
+      { label: `少年ジャンプ＋登場キャラ (~${latestJumpPlusEpisode}話)`, value: 'JUMP_PLUS' },
+      { label: `週刊ヤングジャンプ登場キャラ (~${latestYoungJumpVolume}話)`, value: 'YOUNG_JUMP' },
+    ] as const satisfies { label: string; value: BirthdayCharacterReleasedLevel; }[],
+    [latestAnimeSeason, latestComicsVolume, latestJumpPlusEpisode, latestYoungJumpVolume],
+  );
 
-export function ReleasedLevelFilterSelect() {
-  const { releasedLevelFilter, setReleasedLevelFilter } = useReleasedLevelFilter();
   return (
     <div className='flex flex-col gap-0.5'>
       <select
         id='releasedLevel'
         value={releasedLevelFilter}
-        onChange={(e) => setReleasedLevelFilter(e.target.value as CharacterReleasedLevel)}
+        onChange={(e) => setReleasedLevelFilter(e.target.value as BirthdayCharacterReleasedLevel)}
         className='max-sm:text-sm'
       >
         {releasedLevelFilterOptions.map((option) => (
@@ -70,7 +77,7 @@ const typesFilterInputs = [
   { label: '彼女を表示', value: 'GIRLFRIEND' },
   { label: '恋太郎を表示', value: 'RENTARO' },
   { label: '作者を表示', value: 'AUTHOR' },
-] as const satisfies { label: string; value: CharacterType; }[];
+] as const satisfies { label: string; value: BirthdayCharacterType; }[];
 
 export function TypesFilterCheckboxes() {
   const { typesFilter, toggleTypeFilter } = useTypesFilter();

@@ -6,12 +6,13 @@ import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@
 import clsx from 'clsx';
 import { Fragment, useContext, useMemo } from 'react';
 
+import type { CharacterBirthday, Name } from '@/types/Data';
 import TableSortingIcon from '@/components/TableSortingIcon';
 import { TIMEZONE } from '@/constants/timezone';
 import { useLocalStorageState } from '@/hooks/useLocalStorageState';
 import { getTableSortingTitle } from '@/utils/table';
 
-import type { CharacterBirthday, CharacterTableRow } from './types';
+import type { BirthdayCharacterTableRow } from './types';
 import { TodayDateContext } from './contexts';
 import { useFilteredCharacters, useShowNameRuby } from './hooks';
 import { getDaysUntilBirthday } from './utils';
@@ -33,17 +34,16 @@ function Table() {
         accessorKey: 'name',
         header: '名前',
         cell: (info) => {
-          const name = info.getValue<string[]>();
-          const pronunciation = info.row.original.pronunciation;
+          const { name, hiragana } = info.getValue<Name>();
           if (showNameRuby) return name.map((str, i) => (
             <Fragment key={i}>
               {i > 0 && ' '}
               <ruby>
                 {str}
-                {pronunciation[i] && (
+                {hiragana[i] && (
                   <>
                     <rp>(</rp>
-                    <rt>{pronunciation[i]}</rt>
+                    <rt>{hiragana[i]}</rt>
                     <rp>)</rp>
                   </>
                 )}
@@ -52,19 +52,8 @@ function Table() {
           ));
           return <span>{name.join(' ') || '-'}</span>;
         },
-        sortingFn: (rowA, rowB) => rowA.original.pronunciation.join(' ').localeCompare(rowB.original.pronunciation.join(' '), 'ja'),
+        sortingFn: (rowA, rowB) => rowA.original.name.hiragana.join(' ').localeCompare(rowB.original.name.hiragana.join(' '), 'ja'),
       },
-      // {
-      //   accessorKey: 'age',
-      //   header: '年齢',
-      //   cell: (info) => info.getValue() ?? '-',
-      //   sortingFn: (rowA, rowB) => {
-      //     const ageA = rowA.original.age ?? Number.MAX_SAFE_INTEGER;
-      //     const ageB = rowB.original.age ?? Number.MAX_SAFE_INTEGER;
-      //     return ageA - ageB;
-      //   },
-      //   meta: { align: 'right' },
-      // },
       {
         accessorKey: 'birthday',
         header: '誕生日',
@@ -96,12 +85,12 @@ function Table() {
         },
         meta: { align: 'right' },
       },
-    ] as const satisfies ColumnDef<CharacterTableRow>[];
+    ] as const satisfies ColumnDef<BirthdayCharacterTableRow>[];
   }, [showNameRuby, todayDate]);
 
   const filteredCharacters = useFilteredCharacters();
 
-  const data = useMemo<CharacterTableRow[]>(
+  const data = useMemo<BirthdayCharacterTableRow[]>(
     () => filteredCharacters
       .map((char) => ({
         ...char,
@@ -122,7 +111,7 @@ function Table() {
     state: { sorting },
     onSortingChange: setSorting,
     sortDescFirst: false,
-    getRowId: (row) => row.name.join(''),
+    getRowId: (row) => row.name.name.join(''),
   });
 
   return (

@@ -4,12 +4,14 @@ import type { ReactNode } from 'react';
 
 import LinkText from '@/components/LinkText';
 import { SITE_COPYRIGHT, SITE_CREATOR_SITE_URL } from '@/constants/site';
+import { GIRLFRIEND_CHARACTERS } from '@/data/characters';
 import HyakkanoBackGround from '@/features/HyakkanoBackGround';
 
 
 type RootLayoutProps = { children: ReactNode; };
 
 export default async function RootLayout({ children }: RootLayoutProps) {
+  const heartCount = GIRLFRIEND_CHARACTERS.length;
   return (
     <>
       <div className={`
@@ -19,7 +21,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         motion-reduce:hidden
       `}
       >
-        <HyakkanoBackGround />
+        <HyakkanoBackGround heartCount={heartCount} />
       </div>
       <main className='[grid-area:content]'>
         {children}

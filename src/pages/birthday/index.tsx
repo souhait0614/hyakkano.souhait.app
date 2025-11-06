@@ -3,8 +3,8 @@ import type { PageProps } from 'waku/router';
 import type { Metadata } from '@/types/Metadata';
 import BirthdayCharactersCard from '@/features/birthday/BirthdayCharactersCard';
 import CurrentDateClock from '@/features/birthday/CurrentDateClock';
+import DateProvider from '@/features/birthday/DateProvider';
 import { ReleasedLevelFilterSelect, TypesFilterCheckboxes } from '@/features/birthday/Filters';
-import Provider from '@/features/birthday/Provider';
 import { ShowNameRubySetting } from '@/features/birthday/Settings';
 import Table from '@/features/birthday/Table';
 import PageHead from '@/features/PageHead';
@@ -16,7 +16,7 @@ export const metadata = {
 
 export default function Page(pageProps: PageProps<'/birthday'>) {
   return (
-    <Provider>
+    <DateProvider>
       <PageHead metadata={metadata} pageProps={pageProps} />
       <div className='page-container'>
         <div className='flex flex-wrap items-center justify-between gap-x-2'>
@@ -49,7 +49,7 @@ export default function Page(pageProps: PageProps<'/birthday'>) {
           <p>表示設定やテーブルの並び替えはブラウザに保存され、次回表示時にも反映されます。</p>
         </section>
       </div>
-    </Provider>
+    </DateProvider>
   );
 }
 

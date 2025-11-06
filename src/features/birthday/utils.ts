@@ -1,9 +1,10 @@
 import { TZDateMini } from '@date-fns/tz';
 import { addYears, differenceInDays } from 'date-fns';
 
+import type { CharacterBirthday } from '@/types/Data';
 import { TIMEZONE } from '@/constants/timezone';
 
-import type { CharacterBirthday, CharacterReleasedLevel } from './types';
+import type { BirthdayCharacterReleasedLevel } from './types';
 import { CHARACTER_RELEASED_LEVELS } from './constants';
 
 export function getDaysUntilBirthday(birthday: CharacterBirthday | undefined, today: Date): number | undefined {
@@ -17,7 +18,7 @@ export function getDaysUntilBirthday(birthday: CharacterBirthday | undefined, to
   return differenceInDays(nextBirthday, today);
 }
 
-export function getShowReleasedLevels(releasedLevel: CharacterReleasedLevel) {
+export function getShowReleasedLevels(releasedLevel: BirthdayCharacterReleasedLevel) {
   const levelIndex = CHARACTER_RELEASED_LEVELS.findIndex((level) => level === releasedLevel);
   return CHARACTER_RELEASED_LEVELS.slice(0, levelIndex + 1);
 }

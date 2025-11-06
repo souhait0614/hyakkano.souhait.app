@@ -48,8 +48,8 @@ function BirthdayCharactersCard() {
         `}
         >
           {birthdayCharacters.map((char) => (
-            <li key={char.name.join('')}>
-              {char.name}
+            <li key={char.name.name.join('')}>
+              {char.name.name.join(' ')}
             </li>
           ))}
         </ul>

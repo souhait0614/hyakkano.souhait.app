@@ -1,0 +1,1 @@
+export const JUMP_PLUS_RELEASED_EPISODE = 233;
