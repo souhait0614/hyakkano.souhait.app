@@ -97,10 +97,10 @@
     padding: var(--page-padding-top) var(--page-padding-right) var(--page-padding-bottom) var(--page-padding-left);
     font-family: var(--font-sans);
     color: var(--color-text);
+    line-break: strict;
     word-break: normal;
     overflow-wrap: anywhere;
     background-color: var(--color-background);
-    line-break: strict;
   }
 
   @supports (word-break: auto-phrase) {
