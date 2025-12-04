@@ -38,8 +38,8 @@ importers:
         specifier: 19.2.0
         version: 19.2.0(react@19.2.0)
       react-server-dom-webpack:
-        specifier: 19.2.0
-        version: 19.2.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(webpack@5.102.1)
+        specifier: 19.2.1
+        version: 19.2.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(webpack@5.102.1)
       tailwind-merge:
         specifier: 3.4.0
         version: 3.4.0
@@ -48,7 +48,7 @@ importers:
         version: 3.2.2(tailwind-merge@3.4.0)(tailwindcss@4.1.17)
       waku:
         specifier: 0.26.1
-        version: 0.26.1(patch_hash=b1178cfa6ff0b7963f83f90bc133ef17ed747e989b270c6e0a59e0d770ee3da6)(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(react-dom@19.2.0(react@19.2.0))(react-server-dom-webpack@19.2.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(webpack@5.102.1))(react@19.2.0)(terser@5.44.1)
+        version: 0.26.1(patch_hash=b1178cfa6ff0b7963f83f90bc133ef17ed747e989b270c6e0a59e0d770ee3da6)(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(react-dom@19.2.0(react@19.2.0))(react-server-dom-webpack@19.2.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(webpack@5.102.1))(react@19.2.0)(terser@5.44.1)
     devDependencies:
       '@stylistic/stylelint-config':
         specifier: 3.0.1
@@ -2377,12 +2377,12 @@ packages:
     resolution: {integrity: sha512-z6F7K9bV85EfseRCp2bzrpyQ0Gkw1uLoCel9XBVWPg/TjRj94SkJzUTGfOa4bs7iJvBWtQG0Wq7wnI0syw3EBQ==}
     engines: {node: '>=0.10.0'}
 
-  react-server-dom-webpack@19.2.0:
-    resolution: {integrity: sha512-ar2H1q9SvonShYYYszHx7gE3v9NF3K01AvrIvQMIRNXj+CiUDjI2C7XKexDSlOzqwSlxgDivaMdYwfEBYD6NjQ==}
+  react-server-dom-webpack@19.2.1:
+    resolution: {integrity: sha512-6z3FuEtZ7wVWyPYRhKKRo4TF7IyQ7XrQZRW1fTjzK2mLVmcv7xJtoANSixaUJ+EFjCh2ekNOaBSoI9spiMSnNA==}
     engines: {node: '>=0.10.0'}
     peerDependencies:
-      react: ^19.2.0
-      react-dom: ^19.2.0
+      react: ^19.2.1
+      react-dom: ^19.2.1
       webpack: ^5.59.0
 
   react@19.2.0:
@@ -5318,7 +5318,7 @@ snapshots:
 
   react-refresh@0.17.0: {}
 
-  react-server-dom-webpack@19.2.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(webpack@5.102.1):
+  react-server-dom-webpack@19.2.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(webpack@5.102.1):
     dependencies:
       acorn-loose: 8.5.2
       neo-async: 2.6.2
@@ -5883,7 +5883,7 @@ snapshots:
     optionalDependencies:
       vite: 7.2.4(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)
 
-  waku@0.26.1(patch_hash=b1178cfa6ff0b7963f83f90bc133ef17ed747e989b270c6e0a59e0d770ee3da6)(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(react-dom@19.2.0(react@19.2.0))(react-server-dom-webpack@19.2.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(webpack@5.102.1))(react@19.2.0)(terser@5.44.1):
+  waku@0.26.1(patch_hash=b1178cfa6ff0b7963f83f90bc133ef17ed747e989b270c6e0a59e0d770ee3da6)(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(react-dom@19.2.0(react@19.2.0))(react-server-dom-webpack@19.2.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(webpack@5.102.1))(react@19.2.0)(terser@5.44.1):
     dependencies:
       '@hono/node-server': 1.19.1(hono@4.9.6)
       '@swc/core': 1.13.5
@@ -5893,7 +5893,7 @@ snapshots:
       hono: 4.9.6
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
-      react-server-dom-webpack: 19.2.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(webpack@5.102.1)
+      react-server-dom-webpack: 19.2.1(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(webpack@5.102.1)
       rsc-html-stream: 0.0.7
       vite: 7.2.4(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)
     transitivePeerDependencies:
