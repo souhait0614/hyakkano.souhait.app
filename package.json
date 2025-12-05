@@ -60,7 +60,7 @@
       "vite": "$vite"
     },
     "patchedDependencies": {
-      "waku@0.26.1": "patches/waku@0.26.1.patch"
+      "waku": "patches/waku.patch"
     }
   }
 }
