@@ -1,0 +1,25 @@
+diff --git a/dist/minimal/client.js b/dist/minimal/client.js
+index 815b5b8ca1f08654758490518f328d647a8e88a1..a9bd008ad83037dbaa1bc4e2afc4cb2b4312ccc2 100644
+--- a/dist/minimal/client.js
++++ b/dist/minimal/client.js
+@@ -6,13 +6,13 @@ import { createCustomError } from '../lib/utils/custom-errors.js';
+ import { encodeFuncId, encodeRscPath } from '../lib/utils/rsc-path.js';
+ const { createFromFetch, encodeReply, createTemporaryReferenceSet } = RSDWClient;
+ const DEFAULT_HTML_HEAD = [
+-    /*#__PURE__*/ _jsx("meta", {
+-        charSet: "utf-8"
+-    }, "charset"),
+-    /*#__PURE__*/ _jsx("meta", {
+-        name: "viewport",
+-        content: "width=device-width, initial-scale=1"
+-    }, "viewport"),
++    // /*#__PURE__*/ _jsx("meta", {
++    //     charSet: "utf-8"
++    // }, "charset"),
++    // /*#__PURE__*/ _jsx("meta", {
++    //     name: "viewport",
++    //     content: "width=device-width, initial-scale=1"
++    // }, "viewport"),
+     /*#__PURE__*/ _jsx("meta", {
+         name: "generator",
+         content: "Waku"
