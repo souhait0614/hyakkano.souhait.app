@@ -21,7 +21,7 @@ importers:
         version: 1.4.1
       '@tanstack/react-table':
         specifier: 8.21.3
-        version: 8.21.3(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+        version: 8.21.3(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       canvas-confetti:
         specifier: 1.9.4
         version: 1.9.4
@@ -32,14 +32,14 @@ importers:
         specifier: 4.1.0
         version: 4.1.0
       react:
-        specifier: 19.2.1
-        version: 19.2.1
+        specifier: 19.2.3
+        version: 19.2.3
       react-dom:
-        specifier: 19.2.1
-        version: 19.2.1(react@19.2.1)
+        specifier: 19.2.3
+        version: 19.2.3(react@19.2.3)
       react-server-dom-webpack:
-        specifier: 19.2.2
-        version: 19.2.2(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(webpack@5.103.0)
+        specifier: 19.2.3
+        version: 19.2.3(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(webpack@5.103.0)
       tailwind-merge:
         specifier: 3.4.0
         version: 3.4.0
@@ -48,7 +48,7 @@ importers:
         version: 3.2.2(tailwind-merge@3.4.0)(tailwindcss@4.1.17)
       waku:
         specifier: 0.27.3
-        version: 0.27.3(patch_hash=1ec4ebb3a2bd888d636c07ed643ac8d9b898adde7ac093eab13a8488229fab96)(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(react-dom@19.2.1(react@19.2.1))(react-server-dom-webpack@19.2.2(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(webpack@5.103.0))(react@19.2.1)(terser@5.44.1)
+        version: 0.27.3(patch_hash=1ec4ebb3a2bd888d636c07ed643ac8d9b898adde7ac093eab13a8488229fab96)(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(react-dom@19.2.3(react@19.2.3))(react-server-dom-webpack@19.2.3(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(webpack@5.103.0))(react@19.2.3)(terser@5.44.1)
     devDependencies:
       '@stylistic/stylelint-config':
         specifier: 3.0.1
@@ -2332,10 +2332,10 @@ packages:
   randombytes@2.1.0:
     resolution: {integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==}
 
-  react-dom@19.2.1:
-    resolution: {integrity: sha512-ibrK8llX2a4eOskq1mXKu/TGZj9qzomO+sNfO98M6d9zIPOEhlBkMkBUBLd1vgS0gQsLDBzA+8jJBVXDnfHmJg==}
+  react-dom@19.2.3:
+    resolution: {integrity: sha512-yELu4WmLPw5Mr/lmeEpox5rw3RETacE++JgHqQzd2dg+YbJuat3jH4ingc+WPZhxaoFzdv9y33G+F7Nl5O0GBg==}
     peerDependencies:
-      react: ^19.2.1
+      react: ^19.2.3
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -2344,17 +2344,16 @@ packages:
     resolution: {integrity: sha512-QgT5//D3jfjJb6Gsjxv0Slpj23ip+HtOpnNgnb2S5zU3CB26G/IDPGoy4RJB42wzFE46DRsstbW6tKHoKbhAxw==}
     engines: {node: '>=0.10.0'}
 
-  react-server-dom-webpack@19.2.2:
-    resolution: {integrity: sha512-E/4xJS8dS6b6sEXio0WoNrDY2d7FjjfEwan547ew4QSeefH7OSB+I7tgBCDV//TL+UUPNR/Fa5Qy3qiywOgdTg==}
+  react-server-dom-webpack@19.2.3:
+    resolution: {integrity: sha512-ifo7aqqdNJyV6U2zuvvWX4rRQ51pbleuUFNG7ZYhIuSuWZzQPbfmYv11GNsyJm/3uGNbt8buJ9wmoISn/uOAfw==}
     engines: {node: '>=0.10.0'}
-    deprecated: High Security Vulnerability in React Server Components
     peerDependencies:
-      react: ^19.2.2
-      react-dom: ^19.2.2
+      react: ^19.2.3
+      react-dom: ^19.2.3
       webpack: ^5.59.0
 
-  react@19.2.1:
-    resolution: {integrity: sha512-DGrYcCWK7tvYMnWh79yrPHt+vdx9tY+1gPZa7nJQtO/p8bLTDaHp4dzwEhQB7pZ4Xe3ok4XKuEPrVuc+wlpkmw==}
+  react@19.2.3:
+    resolution: {integrity: sha512-Ku/hhYbVjOQnXDZFv2+RibmLFGwFdeeKHFcOTlrt7xplBnya5OGn/hIRDsqDiSUcfORsDC7MPxwork8jBwsIWA==}
     engines: {node: '>=0.10.0'}
 
   read-cache@1.0.0:
@@ -3527,11 +3526,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@tanstack/react-table@8.21.3(react-dom@19.2.1(react@19.2.1))(react@19.2.1)':
+  '@tanstack/react-table@8.21.3(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
       '@tanstack/table-core': 8.21.3
-      react: 19.2.1
-      react-dom: 19.2.1(react@19.2.1)
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
 
   '@tanstack/table-core@8.21.3': {}
 
@@ -3783,21 +3782,21 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@vitejs/plugin-rsc@0.5.7(react-dom@19.2.1(react@19.2.1))(react-server-dom-webpack@19.2.2(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(webpack@5.103.0))(react@19.2.1)(vite@7.2.6(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1))':
+  '@vitejs/plugin-rsc@0.5.7(react-dom@19.2.3(react@19.2.3))(react-server-dom-webpack@19.2.3(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(webpack@5.103.0))(react@19.2.3)(vite@7.2.6(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1))':
     dependencies:
       '@remix-run/node-fetch-server': 0.12.0
       es-module-lexer: 2.0.0
       estree-walker: 3.0.3
       magic-string: 0.30.21
       periscopic: 4.0.2
-      react: 19.2.1
-      react-dom: 19.2.1(react@19.2.1)
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
       strip-literal: 3.1.0
       turbo-stream: 3.1.0
       vite: 7.2.6(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)
       vitefu: 1.1.1(vite@7.2.6(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1))
     optionalDependencies:
-      react-server-dom-webpack: 19.2.2(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(webpack@5.103.0)
+      react-server-dom-webpack: 19.2.3(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(webpack@5.103.0)
 
   '@webassemblyjs/ast@1.14.1':
     dependencies:
@@ -5231,25 +5230,25 @@ snapshots:
     dependencies:
       safe-buffer: 5.2.1
 
-  react-dom@19.2.1(react@19.2.1):
+  react-dom@19.2.3(react@19.2.3):
     dependencies:
-      react: 19.2.1
+      react: 19.2.3
       scheduler: 0.27.0
 
   react-is@16.13.1: {}
 
   react-refresh@0.18.0: {}
 
-  react-server-dom-webpack@19.2.2(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(webpack@5.103.0):
+  react-server-dom-webpack@19.2.3(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(webpack@5.103.0):
     dependencies:
       acorn-loose: 8.5.2
       neo-async: 2.6.2
-      react: 19.2.1
-      react-dom: 19.2.1(react@19.2.1)
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
       webpack: 5.103.0
       webpack-sources: 3.3.3
 
-  react@19.2.1: {}
+  react@19.2.3: {}
 
   read-cache@1.0.0:
     dependencies:
@@ -5810,19 +5809,19 @@ snapshots:
     optionalDependencies:
       vite: 7.2.6(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)
 
-  waku@0.27.3(patch_hash=1ec4ebb3a2bd888d636c07ed643ac8d9b898adde7ac093eab13a8488229fab96)(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(react-dom@19.2.1(react@19.2.1))(react-server-dom-webpack@19.2.2(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(webpack@5.103.0))(react@19.2.1)(terser@5.44.1):
+  waku@0.27.3(patch_hash=1ec4ebb3a2bd888d636c07ed643ac8d9b898adde7ac093eab13a8488229fab96)(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(react-dom@19.2.3(react@19.2.3))(react-server-dom-webpack@19.2.3(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(webpack@5.103.0))(react@19.2.3)(terser@5.44.1):
     dependencies:
       '@hono/node-server': 1.19.6(hono@4.10.7)
       '@swc/core': 1.15.3
       '@vitejs/plugin-react': 5.1.1(vite@7.2.6(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1))
-      '@vitejs/plugin-rsc': 0.5.7(react-dom@19.2.1(react@19.2.1))(react-server-dom-webpack@19.2.2(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(webpack@5.103.0))(react@19.2.1)(vite@7.2.6(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1))
+      '@vitejs/plugin-rsc': 0.5.7(react-dom@19.2.3(react@19.2.3))(react-server-dom-webpack@19.2.3(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(webpack@5.103.0))(react@19.2.3)(vite@7.2.6(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1))
       dotenv: 17.2.3
       hono: 4.10.7
       magic-string: 0.30.21
       picocolors: 1.1.1
-      react: 19.2.1
-      react-dom: 19.2.1(react@19.2.1)
-      react-server-dom-webpack: 19.2.2(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(webpack@5.103.0)
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
+      react-server-dom-webpack: 19.2.3(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(webpack@5.103.0)
       rsc-html-stream: 0.0.7
       vite: 7.2.6(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)
     transitivePeerDependencies:
