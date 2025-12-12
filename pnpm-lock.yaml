@@ -47,8 +47,8 @@ importers:
         specifier: 3.2.2
         version: 3.2.2(tailwind-merge@3.4.0)(tailwindcss@4.1.17)
       waku:
-        specifier: 0.27.2
-        version: 0.27.2(patch_hash=1ec4ebb3a2bd888d636c07ed643ac8d9b898adde7ac093eab13a8488229fab96)(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(react-dom@19.2.1(react@19.2.1))(react-server-dom-webpack@19.2.2(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(webpack@5.103.0))(react@19.2.1)(terser@5.44.1)
+        specifier: 0.27.3
+        version: 0.27.3(patch_hash=1ec4ebb3a2bd888d636c07ed643ac8d9b898adde7ac093eab13a8488229fab96)(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(react-dom@19.2.1(react@19.2.1))(react-server-dom-webpack@19.2.2(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(webpack@5.103.0))(react@19.2.1)(terser@5.44.1)
     devDependencies:
       '@stylistic/stylelint-config':
         specifier: 3.0.1
@@ -1031,8 +1031,8 @@ packages:
     peerDependencies:
       vite: 7.2.6
 
-  '@vitejs/plugin-rsc@0.5.2':
-    resolution: {integrity: sha512-/Vv63oAKhdYOvkKmeCdr8auhWRoNVXOYgxAi3jbthFaOXKi94feRL85PwqRzV0AAzm3B2/Dz/AfdWYxViruzmg==}
+  '@vitejs/plugin-rsc@0.5.7':
+    resolution: {integrity: sha512-TJBMbpBqSVkRGyNNKW/bxX71XX3bJ/aQAvMP/U50C+zpxDyv71Fr5I6GgCJhyf3QHikRb8YFDqWoR0ghqeg5Lw==}
     peerDependencies:
       react: '*'
       react-dom: '*'
@@ -1432,6 +1432,9 @@ packages:
 
   es-module-lexer@1.7.0:
     resolution: {integrity: sha512-jEQoCwk8hyb2AZziIOLhDqpm5+2ww5uIE6lkO/6jcOCusfk6LhMHpXXfBLXTZ7Ydyt0j4VoUQv6uGNYbdW+kBA==}
+
+  es-module-lexer@2.0.0:
+    resolution: {integrity: sha512-5POEcUuZybH7IdmGsD8wlf0AI55wMecM9rVBTI/qEAy2c1kTOm3DjFYjrBdI2K3BaJjJYfYFeRtM0t9ssnRuxw==}
 
   es-object-atoms@1.1.1:
     resolution: {integrity: sha512-FGgH2h8zKNim9ljj7dankFPcICIK9Cp5bm+c2gQSYePhpaG5+esrLODihIorn+Pe6FGJzWhXQotPv73jTaldXA==}
@@ -2822,14 +2825,14 @@ packages:
       vite:
         optional: true
 
-  waku@0.27.2:
-    resolution: {integrity: sha512-CH/4G8W+biCqJq5JjgHdFLshX1X3oWtPDdUW4d3h5pKdw1Vn8bgfWDm2cOaxgRpz20C4VX8dS+HHn2vPrfhP/g==}
+  waku@0.27.3:
+    resolution: {integrity: sha512-iXq5WsvPfy7KvFUIauSXoi6adgQHBolmSBccMiKmGBn74fPXZImh4nQ2VyX50ZMcaj58KreNR1D3JmN9fIs8ZQ==}
     engines: {node: ^24.0.0 || ^22.12.0 || ^20.19.0}
     hasBin: true
     peerDependencies:
-      react: ~19.2.0
-      react-dom: ~19.2.0
-      react-server-dom-webpack: ~19.2.0
+      react: ~19.2.1
+      react-dom: ~19.2.1
+      react-server-dom-webpack: ~19.2.1
 
   watchpack@2.4.4:
     resolution: {integrity: sha512-c5EGNOiyxxV5qmTtAB7rbiXxi1ooX1pQKMLX/MIabJjRA0SJBQOjKF+KSVfHkr9U1cADPon0mRiVe/riyaiDUA==}
@@ -3780,10 +3783,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@vitejs/plugin-rsc@0.5.2(react-dom@19.2.1(react@19.2.1))(react-server-dom-webpack@19.2.2(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(webpack@5.103.0))(react@19.2.1)(vite@7.2.6(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1))':
+  '@vitejs/plugin-rsc@0.5.7(react-dom@19.2.1(react@19.2.1))(react-server-dom-webpack@19.2.2(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(webpack@5.103.0))(react@19.2.1)(vite@7.2.6(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1))':
     dependencies:
       '@remix-run/node-fetch-server': 0.12.0
-      es-module-lexer: 1.7.0
+      es-module-lexer: 2.0.0
       estree-walker: 3.0.3
       magic-string: 0.30.21
       periscopic: 4.0.2
@@ -4290,6 +4293,8 @@ snapshots:
       safe-array-concat: 1.1.3
 
   es-module-lexer@1.7.0: {}
+
+  es-module-lexer@2.0.0: {}
 
   es-object-atoms@1.1.1:
     dependencies:
@@ -5805,12 +5810,12 @@ snapshots:
     optionalDependencies:
       vite: 7.2.6(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)
 
-  waku@0.27.2(patch_hash=1ec4ebb3a2bd888d636c07ed643ac8d9b898adde7ac093eab13a8488229fab96)(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(react-dom@19.2.1(react@19.2.1))(react-server-dom-webpack@19.2.2(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(webpack@5.103.0))(react@19.2.1)(terser@5.44.1):
+  waku@0.27.3(patch_hash=1ec4ebb3a2bd888d636c07ed643ac8d9b898adde7ac093eab13a8488229fab96)(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(react-dom@19.2.1(react@19.2.1))(react-server-dom-webpack@19.2.2(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(webpack@5.103.0))(react@19.2.1)(terser@5.44.1):
     dependencies:
       '@hono/node-server': 1.19.6(hono@4.10.7)
       '@swc/core': 1.15.3
       '@vitejs/plugin-react': 5.1.1(vite@7.2.6(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1))
-      '@vitejs/plugin-rsc': 0.5.2(react-dom@19.2.1(react@19.2.1))(react-server-dom-webpack@19.2.2(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(webpack@5.103.0))(react@19.2.1)(vite@7.2.6(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1))
+      '@vitejs/plugin-rsc': 0.5.7(react-dom@19.2.1(react@19.2.1))(react-server-dom-webpack@19.2.2(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(webpack@5.103.0))(react@19.2.1)(vite@7.2.6(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1))
       dotenv: 17.2.3
       hono: 4.10.7
       magic-string: 0.30.21
