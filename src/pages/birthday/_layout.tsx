@@ -20,16 +20,16 @@ function getReleasedLevel(character: Character) {
       releaseOriginalComicsVolume: character.releaseOriginalComicsVolume,
     };
   }
-  if ('releaseOriginalEpisode' in character && character.releaseOriginalEpisode !== undefined) {
-    if (character.releaseOriginalEpisode <= JUMP_PLUS_RELEASED_EPISODE) {
+  if ('releaseOriginalEpisode' in character && character.releaseOriginalChapter !== undefined) {
+    if (character.releaseOriginalChapter <= JUMP_PLUS_RELEASED_EPISODE) {
       return {
         releasedLevel: 'JUMP_PLUS' as const,
-        releaseOriginalEpisode: character.releaseOriginalEpisode,
+        releaseOriginalEpisode: character.releaseOriginalChapter,
       };
     }
     return {
       releasedLevel: 'YOUNG_JUMP' as const,
-      releaseOriginalEpisode: character.releaseOriginalEpisode,
+      releaseOriginalEpisode: character.releaseOriginalChapter,
     };
   }
   throw new Error('Invalid character released level');

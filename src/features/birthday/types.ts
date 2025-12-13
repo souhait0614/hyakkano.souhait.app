@@ -1,10 +1,10 @@
-import type { CharacterBirthday, Name } from '@/types/Data';
+import type { CharacterBirthday, PersonName } from '@/types/Data';
 
 export type BirthdayCharacterReleasedLevel = 'ANIME' | 'COMICS' | 'JUMP_PLUS' | 'YOUNG_JUMP';
 export type BirthdayCharacterType = 'RENTARO' | 'GIRLFRIEND' | 'AUTHOR';
 
 export type BirthdayCharacter = {
-  name: Name;
+  name: PersonName;
   birthday: CharacterBirthday | undefined;
   type: BirthdayCharacterType;
   releasedLevel: BirthdayCharacterReleasedLevel;
