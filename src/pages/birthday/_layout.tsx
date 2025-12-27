@@ -9,31 +9,31 @@ import { ReleasedLevel } from '@/types/ReleasedLevel';
 
 
 function getReleasedLevel(character: Character) {
-  if ('releaseAnimeSeason' in character && character.releaseAnimeSeason !== undefined) {
+  if (character.releaseAnimeSeason !== undefined) {
     return {
       releasedLevel: ReleasedLevel.anime,
       releaseAnimeSeason: character.releaseAnimeSeason,
     };
   }
-  if ('releaseOriginalComicsVolume' in character && character.releaseOriginalComicsVolume !== undefined) {
+  if (character.releaseOriginalComicsVolume !== undefined) {
     return {
       releasedLevel: ReleasedLevel.comics,
       releaseOriginalComicsVolume: character.releaseOriginalComicsVolume,
     };
   }
-  if ('releaseOriginalEpisode' in character && character.releaseOriginalChapter !== undefined) {
+  if (character.releaseOriginalChapter !== undefined) {
     if (character.releaseOriginalChapter <= JUMP_PLUS_RELEASED_EPISODE) {
       return {
         releasedLevel: ReleasedLevel.jumpPlus,
-        releaseOriginalEpisode: character.releaseOriginalChapter,
+        releaseOriginalChapter: character.releaseOriginalChapter,
       };
     }
     return {
       releasedLevel: ReleasedLevel.youngJump,
-      releaseOriginalEpisode: character.releaseOriginalChapter,
+      releaseOriginalChapter: character.releaseOriginalChapter,
     };
   }
-  throw new Error('Invalid character released level');
+  throw new Error(`Invalid character released level: ${character.name.kanji.join('')}`);
 }
 
 function makeCharacter(type: BirthdayCharacterType, character: Character | GirlfriendCharacter): BirthdayCharacter {

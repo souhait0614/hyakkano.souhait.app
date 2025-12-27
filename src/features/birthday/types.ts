@@ -11,7 +11,7 @@ export type BirthdayCharacter = {
 } & (
   | { releasedLevel: typeof ReleasedLevel.anime; releaseAnimeSeason: number; }
   | { releasedLevel: typeof ReleasedLevel.comics; releaseOriginalComicsVolume: number; }
-  | { releasedLevel: typeof ReleasedLevel.jumpPlus | typeof ReleasedLevel.youngJump; releaseOriginalEpisode: number; }
+  | { releasedLevel: typeof ReleasedLevel.jumpPlus | typeof ReleasedLevel.youngJump; releaseOriginalChapter: number; }
 ) & (
   | { type: 'RENTARO'; }
   | { type: 'GIRLFRIEND'; girlfriendNumber: number; }

@@ -29,12 +29,12 @@ export function ReleasedLevelFilterSelect() {
 
       // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       } else if (character.releasedLevel === ReleasedLevel.jumpPlus || character.releasedLevel === ReleasedLevel.youngJump) {
-        if (!youngJumpVolume || character.releaseOriginalEpisode > youngJumpVolume) {
-          youngJumpVolume = character.releaseOriginalEpisode;
+        if (!youngJumpVolume || character.releaseOriginalChapter > youngJumpVolume) {
+          youngJumpVolume = character.releaseOriginalChapter;
         }
         if (character.releasedLevel === ReleasedLevel.jumpPlus) {
-          if (!jumpPlusEpisode || character.releaseOriginalEpisode > jumpPlusEpisode) {
-            jumpPlusEpisode = character.releaseOriginalEpisode;
+          if (!jumpPlusEpisode || character.releaseOriginalChapter > jumpPlusEpisode) {
+            jumpPlusEpisode = character.releaseOriginalChapter;
           }
         }
       }
