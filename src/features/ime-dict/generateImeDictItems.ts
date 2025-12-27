@@ -1,8 +1,9 @@
 import { createTranslator } from 'schummar-translate';
 
-import type { Character, PersonName } from '@/types/Data';
+import type { Character, CommonName, Location, PersonName } from '@/types/Data';
 import type { ImeDictItem } from '@/types/ImeDict';
 import { AUTHOR_CHARACTERS, CIRCLET_LOVE_STORY_CHARACTERS, GIRLFRIEND_CHARACTERS, GORIRA_ALLIANCE_CHARACTERS, JURASSIC_HIGH_SCHOOL_BASEBALL_TEAM_CHARACTERS, OTHER_CHARACTERS, PEPEPE_PENTAROU_CHARACTERS, RENTARO_CHARACTER } from '@/data/characters';
+import { SCHOOLS, TOWNS } from '@/data/locations';
 import { TITLE, TITLE_HIRAGANA, TITLE_SHORT, TITLE_SHORT_HIRAGANA1, TITLE_SHORT_HIRAGANA2 } from '@/data/meta';
 import { joinName, validateShortName } from '@/utils/data';
 
@@ -19,15 +20,11 @@ const { getTranslator } = createTranslator({
       characterNickname: `「${TITLE}」に登場する{description}、{fullName}の愛称`,
       animeVoiceActor: `アニメ「${TITLE}」で{fullName}を担当した声優`,
       variantAnimeVoiceActor: `アニメ「${TITLE}」で{fullName}({variantName})を担当した声優`,
-      schoolFullName: `「${TITLE}」に登場する学校`,
-      schoolShortName: `「${TITLE}」に登場する学校、{fullName}`,
-      townFullName: `「${TITLE}」に登場する地名`,
-      townShortName: `「${TITLE}」に登場する地名、{fullName}`,
     },
   },
 } as const);
 
-export async function generateImeDictItems() {
+export async function generateImeDictItems(): Promise<ImeDictItem[]> {
   const t = await getTranslator('ja');
 
   const items: ImeDictItem[] = [];
@@ -161,6 +158,39 @@ export async function generateImeDictItems() {
     }
   }
 
+  function pushLocationNameItems(
+    target: ImeDictItem[],
+    location: Location,
+    comments: {
+      name: (props: { name: CommonName; }) => string;
+      anotherName?: (props: { name: CommonName; }) => string;
+    },
+  ) {
+    const { kanji: name, hiragana } = location.name;
+    target.push({
+      word: name,
+      reading: hiragana,
+      category: 'LOCATION_NAME',
+      comment: comments.name({ name: location.name }),
+    });
+    if (location.anotherNames) {
+      if (comments.anotherName === undefined) {
+        const errorMsg = 'anotherNamesが存在する場合、comments.anotherNameは必須です';
+        console.error(errorMsg, location);
+        throw new Error(errorMsg);
+      }
+      for (const anotherName of location.anotherNames) {
+        const { kanji: anotherNameName, hiragana: anotherNameHiragana } = anotherName;
+        target.push({
+          word: anotherNameName,
+          reading: anotherNameHiragana,
+          category: 'LOCATION_NAME_ANOTHER',
+          comment: comments.anotherName({ name: location.name }),
+        });
+      }
+    }
+  }
+
   // タイトル
   items.push({ word: TITLE, reading: TITLE_HIRAGANA, category: 'TITLE', comment: undefined });
   items.push({ word: TITLE_SHORT, reading: TITLE_SHORT_HIRAGANA1, category: 'TITLE', comment: `「${TITLE}」の略称` });
@@ -257,6 +287,26 @@ export async function generateImeDictItems() {
       pushCharacterNameItems(items, otherCharacter, {
         fullName: () => t('comment.characterFullName', { description }),
         animeVoiceActor: ({ name }) => t('comment.animeVoiceActor', { fullName: joinName(name.kanji) }),
+      });
+    }
+  }
+
+  // 場所名: 学校
+  {
+    for (const school of SCHOOLS) {
+      pushLocationNameItems(items, school, {
+        name: () => `「${TITLE}」に登場する学校`,
+        anotherName: ({ name }) => `「${TITLE}」に登場する学校、${name.kanji}`,
+      });
+    }
+  }
+
+  // 場所名: 町
+  {
+    for (const town of TOWNS) {
+      pushLocationNameItems(items, town, {
+        name: () => `「${TITLE}」に登場する地名`,
+        anotherName: ({ name }) => `「${TITLE}」に登場する地名、${name.kanji}`,
       });
     }
   }

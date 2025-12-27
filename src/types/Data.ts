@@ -52,7 +52,7 @@ export interface GirlfriendCharacter extends Character {
 
 export interface Location {
   name: CommonName;
-  shortNames: CommonName[] | undefined;
+  anotherNames: CommonName[] | undefined;
   releaseOriginalChapter: number | undefined;
   releaseOriginalComicsVolume: number | undefined;
   releaseAnimeSeason: number | undefined;

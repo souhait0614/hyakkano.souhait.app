@@ -3,7 +3,7 @@ import type { Location } from '@/types/Data';
 export const SCHOOLS: Location[] = [
   {
     name: { kanji: 'お花の蜜大学附属高等学校', hiragana: 'おはなのみつだいがくふぞくこうとうがっこう' },
-    shortNames: [
+    anotherNames: [
       { kanji: 'お花の蜜高校', hiragana: 'おはなのみつこうこう' },
       { kanji: 'お花高', hiragana: 'おはなこう' },
       { kanji: 'お花の蜜学園高等部', hiragana: 'おはなのみつがくえんこうとうぶ' },
@@ -15,7 +15,7 @@ export const SCHOOLS: Location[] = [
   },
   {
     name: { kanji: 'お花の蜜大学附属中学校', hiragana: 'おはなのみつだいがくふぞくちゅうがっこう' },
-    shortNames: [
+    anotherNames: [
       { kanji: 'お花の蜜中学校', hiragana: 'おはなのみつちゅうがっこう' },
       { kanji: 'お花中', hiragana: 'おはなちゅう' },
       // NOTE: https://twitter.com/hyakkano/status/1658125167808196608
@@ -28,7 +28,7 @@ export const SCHOOLS: Location[] = [
   },
   {
     name: { kanji: '美玲中学校', hiragana: 'みれいちゅうがっこう' },
-    shortNames: undefined,
+    anotherNames: undefined,
     releaseOriginalChapter: 40,
     releaseOriginalComicsVolume: 5,
     releaseAnimeSeason: 2,
@@ -36,7 +36,7 @@ export const SCHOOLS: Location[] = [
   },
   {
     name: { kanji: 'お花の蜜大学', hiragana: 'おはなのみつだいがく' },
-    shortNames: [
+    anotherNames: [
       { kanji: 'お花大', hiragana: 'おはなだい' },
       { kanji: 'お花の蜜学園大学部', hiragana: 'おはなのみつがくえんだいがくぶ' },
     ],
@@ -50,7 +50,7 @@ export const SCHOOLS: Location[] = [
 export const TOWNS: Location[] = [
   {
     name: { kanji: '梳杉町', hiragana: 'すきすぎちょう' },
-    shortNames: undefined,
+    anotherNames: undefined,
     releaseOriginalChapter: 1,
     releaseOriginalComicsVolume: 1,
     releaseAnimeSeason: 1,
@@ -58,7 +58,7 @@ export const TOWNS: Location[] = [
   },
   {
     name: { kanji: '木雷杉町', hiragana: 'きらいすぎちょう' },
-    shortNames: undefined,
+    anotherNames: undefined,
     releaseOriginalChapter: 97,
     releaseOriginalComicsVolume: 12,
     releaseAnimeSeason: undefined,
@@ -66,7 +66,7 @@ export const TOWNS: Location[] = [
   },
   {
     name: { kanji: '不津宇町', hiragana: 'ふつうちょう' },
-    shortNames: undefined,
+    anotherNames: undefined,
     releaseOriginalChapter: 97,
     releaseOriginalComicsVolume: 12,
     releaseAnimeSeason: undefined,
@@ -74,7 +74,7 @@ export const TOWNS: Location[] = [
   },
   {
     name: { kanji: '度血裸加戸家場酢木町', hiragana: 'どちらかといえばすきちょう' },
-    shortNames: undefined,
+    anotherNames: undefined,
     releaseOriginalChapter: 97,
     releaseOriginalComicsVolume: 12,
     releaseAnimeSeason: undefined,

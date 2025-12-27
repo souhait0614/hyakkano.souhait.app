@@ -33,6 +33,10 @@ export async function GET(): Promise<Response> {
       case 'CHARACTER_ANOTHERNAME_SHORT':
         type = '名';
         break;
+      case 'LOCATION_NAME':
+      case 'LOCATION_NAME_ANOTHER':
+        type = '地名';
+        break;
       default:
         category satisfies never;
         throw new Error(`Unknown category: ${category}`);
