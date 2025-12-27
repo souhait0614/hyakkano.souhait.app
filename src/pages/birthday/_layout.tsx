@@ -2,7 +2,9 @@ import type { ReactNode } from 'react';
 
 import type { BirthdayCharacter, BirthdayCharacterType } from '@/features/birthday/types';
 import type { Character, GirlfriendCharacter } from '@/types/Data';
-import { AUTHOR_CHARACTERS, GIRLFRIEND_CHARACTERS, RENTARO_CHARACTER } from '@/data/characters';
+import { AUTHOR_CHARACTERS } from '@/data/characters/authors';
+import { GIRLFRIEND_CHARACTERS } from '@/data/characters/girlfriends';
+import { RENTARO_CHARACTER } from '@/data/characters/rentaro';
 import { JUMP_PLUS_RELEASED_EPISODE } from '@/data/meta';
 import CharactersProvider from '@/features/birthday/CharactersProvider';
 import { ReleasedLevel } from '@/types/ReleasedLevel';
