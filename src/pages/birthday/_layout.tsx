@@ -5,30 +5,31 @@ import type { Character, GirlfriendCharacter } from '@/types/Data';
 import { AUTHOR_CHARACTERS, GIRLFRIEND_CHARACTERS, RENTARO_CHARACTER } from '@/data/characters';
 import { JUMP_PLUS_RELEASED_EPISODE } from '@/data/meta';
 import CharactersProvider from '@/features/birthday/CharactersProvider';
+import { ReleasedLevel } from '@/types/ReleasedLevel';
 
 
 function getReleasedLevel(character: Character) {
   if ('releaseAnimeSeason' in character && character.releaseAnimeSeason !== undefined) {
     return {
-      releasedLevel: 'ANIME' as const,
+      releasedLevel: ReleasedLevel.anime,
       releaseAnimeSeason: character.releaseAnimeSeason,
     };
   }
   if ('releaseOriginalComicsVolume' in character && character.releaseOriginalComicsVolume !== undefined) {
     return {
-      releasedLevel: 'COMICS' as const,
+      releasedLevel: ReleasedLevel.comics,
       releaseOriginalComicsVolume: character.releaseOriginalComicsVolume,
     };
   }
   if ('releaseOriginalEpisode' in character && character.releaseOriginalChapter !== undefined) {
     if (character.releaseOriginalChapter <= JUMP_PLUS_RELEASED_EPISODE) {
       return {
-        releasedLevel: 'JUMP_PLUS' as const,
+        releasedLevel: ReleasedLevel.jumpPlus,
         releaseOriginalEpisode: character.releaseOriginalChapter,
       };
     }
     return {
-      releasedLevel: 'YOUNG_JUMP' as const,
+      releasedLevel: ReleasedLevel.youngJump,
       releaseOriginalEpisode: character.releaseOriginalChapter,
     };
   }

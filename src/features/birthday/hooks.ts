@@ -1,13 +1,14 @@
 import { useContext, useMemo } from 'react';
 
 import { useLocalStorageState } from '@/hooks/useLocalStorageState';
+import { ReleasedLevel } from '@/types/ReleasedLevel';
 
-import type { BirthdayCharacterReleasedLevel, BirthdayCharacterType } from './types';
+import type { BirthdayCharacterType } from './types';
 import { CharactersContext } from './contexts';
 import { getShowReleasedLevels } from './utils';
 
 export function useReleasedLevelFilter() {
-  const [releasedLevelFilter, setReleasedLevelFilter] = useLocalStorageState<BirthdayCharacterReleasedLevel>('birthday_releasedLevelFilter', 'ANIME');
+  const [releasedLevelFilter, setReleasedLevelFilter] = useLocalStorageState<ReleasedLevel>('birthday_releasedLevelFilter', ReleasedLevel.anime);
   return { releasedLevelFilter, setReleasedLevelFilter };
 }
 

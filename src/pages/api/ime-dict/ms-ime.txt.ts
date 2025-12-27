@@ -2,6 +2,7 @@ import { Buffer } from 'node:buffer';
 
 import { SITE_BASE_URL, SITE_COPYRIGHT, SITE_NAME } from '@/constants/site';
 import { generateImeDictItems } from '@/features/ime-dict/generateImeDictItems';
+import { ImeDictItemCategory } from '@/types/ImeDict';
 
 const headerTexts = [
   '!Microsoft IME Dictionary Tool',
@@ -20,21 +21,21 @@ export async function GET(): Promise<Response> {
   const body: [reading: string, word: string, type: string, comment?: string][] = items.map(({ reading, word, category, comment }) => {
     let type: string;
     switch (category) {
-      case 'TITLE':
+      case ImeDictItemCategory.title:
         type = '固有名詞';
         break;
-      case 'CHARACTER_NAME_FULL':
-      case 'CHARACTER_ANOTHERNAME_FULL':
-      case 'CHARACTER_NICKNAME':
-      case 'CHARACTER_ANIME_VOICE_ACTOR':
+      case ImeDictItemCategory.characterNameFull:
+      case ImeDictItemCategory.characterAnotherNameFull:
+      case ImeDictItemCategory.characterNickname:
+      case ImeDictItemCategory.characterAnimeVoiceActor:
         type = '人名';
         break;
-      case 'CHARACTER_NAME_SHORT':
-      case 'CHARACTER_ANOTHERNAME_SHORT':
+      case ImeDictItemCategory.characterNameShort:
+      case ImeDictItemCategory.characterAnotherNameShort:
         type = '名';
         break;
-      case 'LOCATION_NAME':
-      case 'LOCATION_NAME_ANOTHER':
+      case ImeDictItemCategory.locationName:
+      case ImeDictItemCategory.locationNameAnother:
         type = '地名';
         break;
       default:

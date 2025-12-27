@@ -5,6 +5,7 @@ import type { ImeDictItem } from '@/types/ImeDict';
 import { AUTHOR_CHARACTERS, CIRCLET_LOVE_STORY_CHARACTERS, GIRLFRIEND_CHARACTERS, GORIRA_ALLIANCE_CHARACTERS, JURASSIC_HIGH_SCHOOL_BASEBALL_TEAM_CHARACTERS, OTHER_CHARACTERS, PEPEPE_PENTAROU_CHARACTERS, RENTARO_CHARACTER } from '@/data/characters';
 import { SCHOOLS, TOWNS } from '@/data/locations';
 import { TITLE, TITLE_HIRAGANA, TITLE_SHORT, TITLE_SHORT_HIRAGANA1, TITLE_SHORT_HIRAGANA2 } from '@/data/meta';
+import { ImeDictItemCategory } from '@/types/ImeDict';
 import { joinName, validateShortName } from '@/utils/data';
 
 const RENTARO_NAME = RENTARO_CHARACTER.name.kanji.join('');
@@ -48,7 +49,7 @@ export async function generateImeDictItems(): Promise<ImeDictItem[]> {
     target.push({
       word: nameStr,
       reading: hiraganaStr,
-      category: 'CHARACTER_NAME_FULL',
+      category: ImeDictItemCategory.characterNameFull,
       comment: comments.fullName({ name: character.name }),
     });
 
@@ -62,7 +63,7 @@ export async function generateImeDictItems(): Promise<ImeDictItem[]> {
       target.push({
         word: shortName,
         reading: shortNameHiragana,
-        category: 'CHARACTER_NAME_SHORT',
+        category: ImeDictItemCategory.characterNameShort,
         comment: comments.shortName({ name: character.name }),
       });
     }
@@ -80,7 +81,7 @@ export async function generateImeDictItems(): Promise<ImeDictItem[]> {
         target.push({
           word: anotherNameStr,
           reading: anotherNameHiraganaStr,
-          category: 'CHARACTER_ANOTHERNAME_FULL',
+          category: ImeDictItemCategory.characterAnotherNameFull,
           comment: comments.anotherFullName({ name: character.name, anotherName }),
         });
 
@@ -89,7 +90,7 @@ export async function generateImeDictItems(): Promise<ImeDictItem[]> {
           target.push({
             word: shortName,
             reading: shortNameHiragana,
-            category: 'CHARACTER_ANOTHERNAME_SHORT',
+            category: ImeDictItemCategory.characterAnotherNameShort,
             comment: comments.anotherShortName({ name: character.name, anotherName }),
           });
         }
@@ -109,7 +110,7 @@ export async function generateImeDictItems(): Promise<ImeDictItem[]> {
         target.push({
           word: nicknameStr,
           reading: nicknameHiraganaStr,
-          category: 'CHARACTER_NICKNAME',
+          category: ImeDictItemCategory.characterNickname,
           comment: comments.nickname({ name: character.name, nickname }),
         });
       }
@@ -128,7 +129,7 @@ export async function generateImeDictItems(): Promise<ImeDictItem[]> {
         target.push({
           word: animeVoiceActorNameStr,
           reading: animeVoiceActorHiraganaStr,
-          category: 'CHARACTER_ANIME_VOICE_ACTOR',
+          category: ImeDictItemCategory.characterAnimeVoiceActor,
           comment: comments.animeVoiceActor({ name: character.name, animeVoiceActor }),
         });
       }
@@ -149,7 +150,7 @@ export async function generateImeDictItems(): Promise<ImeDictItem[]> {
             target.push({
               word: animeVoiceActorNameStr,
               reading: animeVoiceActorHiraganaStr,
-              category: 'CHARACTER_ANIME_VOICE_ACTOR',
+              category: ImeDictItemCategory.characterAnimeVoiceActor,
               comment: comments.variantAnimeVoiceActor({ name: character.name, variantName: variant.variantName, animeVoiceActor }),
             });
           }
@@ -170,7 +171,7 @@ export async function generateImeDictItems(): Promise<ImeDictItem[]> {
     target.push({
       word: name,
       reading: hiragana,
-      category: 'LOCATION_NAME',
+      category: 'locationName',
       comment: comments.name({ name: location.name }),
     });
     if (location.anotherNames) {
@@ -184,7 +185,7 @@ export async function generateImeDictItems(): Promise<ImeDictItem[]> {
         target.push({
           word: anotherNameName,
           reading: anotherNameHiragana,
-          category: 'LOCATION_NAME_ANOTHER',
+          category: 'locationNameAnother',
           comment: comments.anotherName({ name: location.name }),
         });
       }
@@ -192,9 +193,9 @@ export async function generateImeDictItems(): Promise<ImeDictItem[]> {
   }
 
   // タイトル
-  items.push({ word: TITLE, reading: TITLE_HIRAGANA, category: 'TITLE', comment: undefined });
-  items.push({ word: TITLE_SHORT, reading: TITLE_SHORT_HIRAGANA1, category: 'TITLE', comment: `「${TITLE}」の略称` });
-  items.push({ word: TITLE_SHORT, reading: TITLE_SHORT_HIRAGANA2, category: 'TITLE', comment: `「${TITLE}」の略称` });
+  items.push({ word: TITLE, reading: TITLE_HIRAGANA, category: ImeDictItemCategory.title, comment: undefined });
+  items.push({ word: TITLE_SHORT, reading: TITLE_SHORT_HIRAGANA1, category: ImeDictItemCategory.title, comment: `「${TITLE}」の略称` });
+  items.push({ word: TITLE_SHORT, reading: TITLE_SHORT_HIRAGANA2, category: ImeDictItemCategory.title, comment: `「${TITLE}」の略称` });
 
   // 人名: 恋太郎
   pushCharacterNameItems(items, RENTARO_CHARACTER, {

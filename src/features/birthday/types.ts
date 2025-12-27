@@ -1,17 +1,17 @@
 import type { CharacterBirthday, PersonName } from '@/types/Data';
+import type { ReleasedLevel } from '@/types/ReleasedLevel';
 
-export type BirthdayCharacterReleasedLevel = 'ANIME' | 'COMICS' | 'JUMP_PLUS' | 'YOUNG_JUMP';
 export type BirthdayCharacterType = 'RENTARO' | 'GIRLFRIEND' | 'AUTHOR';
 
 export type BirthdayCharacter = {
   name: PersonName;
   birthday: CharacterBirthday | undefined;
   type: BirthdayCharacterType;
-  releasedLevel: BirthdayCharacterReleasedLevel;
+  releasedLevel: ReleasedLevel;
 } & (
-  | { releasedLevel: 'ANIME'; releaseAnimeSeason: number; }
-  | { releasedLevel: 'COMICS'; releaseOriginalComicsVolume: number; }
-  | { releasedLevel: 'JUMP_PLUS' | 'YOUNG_JUMP'; releaseOriginalEpisode: number; }
+  | { releasedLevel: typeof ReleasedLevel.anime; releaseAnimeSeason: number; }
+  | { releasedLevel: typeof ReleasedLevel.comics; releaseOriginalComicsVolume: number; }
+  | { releasedLevel: typeof ReleasedLevel.jumpPlus | typeof ReleasedLevel.youngJump; releaseOriginalEpisode: number; }
 ) & (
   | { type: 'RENTARO'; }
   | { type: 'GIRLFRIEND'; girlfriendNumber: number; }

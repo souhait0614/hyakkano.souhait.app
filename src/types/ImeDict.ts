@@ -1,16 +1,16 @@
-export const IME_DICT_ITEM_CATEGORY = {
-  TITLE: 'TITLE',
-  CHARACTER_NAME_FULL: 'CHARACTER_NAME_FULL',
-  CHARACTER_NAME_SHORT: 'CHARACTER_NAME_SHORT',
-  CHARACTER_ANOTHERNAME_FULL: 'CHARACTER_ANOTHERNAME_FULL',
-  CHARACTER_ANOTHERNAME_SHORT: 'CHARACTER_ANOTHERNAME_SHORT',
-  CHARACTER_NICKNAME: 'CHARACTER_NICKNAME',
-  CHARACTER_ANIME_VOICE_ACTOR: 'CHARACTER_ANIME_VOICE_ACTOR',
-  LOCATION_NAME: 'LOCATION_NAME',
-  LOCATION_NAME_ANOTHER: 'LOCATION_NAME_ANOTHER',
+export const ImeDictItemCategory = {
+  title: 'title',
+  characterNameFull: 'characterNameFull',
+  characterNameShort: 'characterNameShort',
+  characterAnotherNameFull: 'characterAnotherNameFull',
+  characterAnotherNameShort: 'characterAnotherNameShort',
+  characterNickname: 'characterNickname',
+  characterAnimeVoiceActor: 'characterAnimeVoiceActor',
+  locationName: 'locationName',
+  locationNameAnother: 'locationNameAnother',
 } as const;
 
-export type ImeDictItemCategory = keyof typeof IME_DICT_ITEM_CATEGORY;
+export type ImeDictItemCategory = keyof typeof ImeDictItemCategory;
 
 export interface ImeDictItem {
   reading: string;

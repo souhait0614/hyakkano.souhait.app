@@ -2,7 +2,9 @@
 
 import { useContext, useMemo } from 'react';
 
-import type { BirthdayCharacterReleasedLevel, BirthdayCharacterType } from './types';
+import { ReleasedLevel } from '@/types/ReleasedLevel';
+
+import type { BirthdayCharacterType } from './types';
 import { CharactersContext } from './contexts';
 import { useReleasedLevelFilter, useTypesFilter } from './hooks';
 
@@ -16,20 +18,21 @@ export function ReleasedLevelFilterSelect() {
     let jumpPlusEpisode = 0;
     let youngJumpVolume = 0;
     for (const character of characters) {
-      if (character.releasedLevel === 'ANIME') {
+      if (character.releasedLevel === ReleasedLevel.anime) {
         if (!animeSeason || character.releaseAnimeSeason > animeSeason) {
           animeSeason = character.releaseAnimeSeason;
         }
-      } else if (character.releasedLevel === 'COMICS') {
+      } else if (character.releasedLevel === ReleasedLevel.comics) {
         if (!comicsVolume || character.releaseOriginalComicsVolume > comicsVolume) {
           comicsVolume = character.releaseOriginalComicsVolume;
         }
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-      } else if (character.releasedLevel === 'JUMP_PLUS' || character.releasedLevel === 'YOUNG_JUMP') {
+
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+      } else if (character.releasedLevel === ReleasedLevel.jumpPlus || character.releasedLevel === ReleasedLevel.youngJump) {
         if (!youngJumpVolume || character.releaseOriginalEpisode > youngJumpVolume) {
           youngJumpVolume = character.releaseOriginalEpisode;
         }
-        if (character.releasedLevel === 'JUMP_PLUS') {
+        if (character.releasedLevel === ReleasedLevel.jumpPlus) {
           if (!jumpPlusEpisode || character.releaseOriginalEpisode > jumpPlusEpisode) {
             jumpPlusEpisode = character.releaseOriginalEpisode;
           }
@@ -41,11 +44,11 @@ export function ReleasedLevelFilterSelect() {
 
   const releasedLevelFilterOptions = useMemo(
     () => [
-      { label: `TVアニメ登場キャラ (~${latestAnimeSeason}期)`, value: 'ANIME' },
-      { label: `コミックス登場キャラ (~${latestComicsVolume}巻)`, value: 'COMICS' },
-      { label: `少年ジャンプ＋登場キャラ (~${latestJumpPlusEpisode}話)`, value: 'JUMP_PLUS' },
-      { label: `週刊ヤングジャンプ登場キャラ (~${latestYoungJumpVolume}話)`, value: 'YOUNG_JUMP' },
-    ] as const satisfies { label: string; value: BirthdayCharacterReleasedLevel; }[],
+      { label: `TVアニメ登場キャラ (~${latestAnimeSeason}期)`, value: ReleasedLevel.anime },
+      { label: `コミックス登場キャラ (~${latestComicsVolume}巻)`, value: ReleasedLevel.comics },
+      { label: `少年ジャンプ＋登場キャラ (~${latestJumpPlusEpisode}話)`, value: ReleasedLevel.jumpPlus },
+      { label: `週刊ヤングジャンプ登場キャラ (~${latestYoungJumpVolume}話)`, value: ReleasedLevel.youngJump },
+    ] as const satisfies { label: string; value: ReleasedLevel; }[],
     [latestAnimeSeason, latestComicsVolume, latestJumpPlusEpisode, latestYoungJumpVolume],
   );
 
@@ -54,7 +57,7 @@ export function ReleasedLevelFilterSelect() {
       <select
         id='releasedLevel'
         value={releasedLevelFilter}
-        onChange={(e) => setReleasedLevelFilter(e.target.value as BirthdayCharacterReleasedLevel)}
+        onChange={(e) => setReleasedLevelFilter(e.target.value as ReleasedLevel)}
         className='max-sm:text-sm'
       >
         {releasedLevelFilterOptions.map((option) => (
@@ -66,7 +69,7 @@ export function ReleasedLevelFilterSelect() {
           </option>
         ))}
       </select>
-      {(releasedLevelFilter === 'JUMP_PLUS' || releasedLevelFilter === 'YOUNG_JUMP') && (
+      {(releasedLevelFilter === ReleasedLevel.jumpPlus || releasedLevelFilter === ReleasedLevel.youngJump) && (
         <p className='text-sm'>※コミックス未登場のキャラクターは基本的に誕生日が未判明です。</p>
       )}
     </div>
