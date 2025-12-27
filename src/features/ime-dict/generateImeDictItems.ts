@@ -286,7 +286,12 @@ export async function generateImeDictItems(): Promise<ImeDictItem[]> {
     for (const otherCharacter of OTHER_CHARACTERS) {
       pushCharacterNameItems(items, otherCharacter, {
         fullName: () => t('comment.characterFullName', { description }),
+        shortName: ({ name }) => t('comment.characterShortName', { description, fullName: joinName(name.kanji) }),
+        anotherFullName: ({ name }) => t('comment.characterAnotherFullName', { description, fullName: joinName(name.kanji) }),
+        anotherShortName: ({ name, anotherName }) => t('comment.characterAnotherShortName', { description, fullName: joinName(name.kanji), anotherFullName: joinName(anotherName.kanji) }),
+        nickname: ({ name }) => t('comment.characterNickname', { description, fullName: joinName(name.kanji) }),
         animeVoiceActor: ({ name }) => t('comment.animeVoiceActor', { fullName: joinName(name.kanji) }),
+        variantAnimeVoiceActor: ({ name, variantName }) => t('comment.variantAnimeVoiceActor', { fullName: joinName(name.kanji), variantName: joinName(variantName.kanji) }),
       });
     }
   }
