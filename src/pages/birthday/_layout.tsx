@@ -7,7 +7,7 @@ import { JUMP_PLUS_RELEASED_EPISODE } from '@/data/meta';
 import CharactersProvider from '@/features/birthday/CharactersProvider';
 import { ReleasedLevel } from '@/types/ReleasedLevel';
 
-
+// TODO: そのうちcheckReleasedDataとかfilterReleasedDataを使って処理を共通化する
 function getReleasedLevel(character: Character) {
   if (character.releaseAnimeSeason !== undefined) {
     return {

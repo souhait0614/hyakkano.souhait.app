@@ -2,10 +2,10 @@ import { useContext, useMemo } from 'react';
 
 import { useLocalStorageState } from '@/hooks/useLocalStorageState';
 import { ReleasedLevel } from '@/types/ReleasedLevel';
+import { getTargetReleasedLevels } from '@/utils/data';
 
 import type { BirthdayCharacterType } from './types';
 import { CharactersContext } from './contexts';
-import { getShowReleasedLevels } from './utils';
 
 export function useReleasedLevelFilter() {
   const [releasedLevelFilter, setReleasedLevelFilter] = useLocalStorageState<ReleasedLevel>('birthday_releasedLevelFilter', ReleasedLevel.anime);
@@ -26,7 +26,7 @@ export function useFilteredCharacters() {
   const characters = useContext(CharactersContext);
   const { releasedLevelFilter } = useReleasedLevelFilter();
   const { typesFilter } = useTypesFilter();
-  const showReleasedLevels = useMemo(() => getShowReleasedLevels(releasedLevelFilter), [releasedLevelFilter]);
+  const showReleasedLevels = useMemo(() => getTargetReleasedLevels(releasedLevelFilter), [releasedLevelFilter]);
 
   const filteredCharacters = useMemo(
     () => characters
