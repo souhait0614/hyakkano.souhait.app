@@ -44,3 +44,30 @@ export function checkReleasedData(data: ReleasedInfo, releasedLevel: ReleasedLev
 export function filterReleasedData<T extends ReleasedInfo>(dataList: T[], releasedLevel: ReleasedLevel): T[] {
   return dataList.filter((data) => checkReleasedData(data, releasedLevel));
 }
+
+export function getLatestReleasedData(dataList: ReleasedInfo[]): { animeSeason: number; animeEpisode: number; comicsVolume: number; jumpPlusChapter: number; youngJumpChapter: number; } {
+  let animeSeason = 0;
+  let animeEpisode = 0;
+  let comicsVolume = 0;
+  let jumpPlusChapter = 0;
+  let youngJumpChapter = 0;
+
+  for (const data of dataList) {
+    if (data.releaseAnimeSeason !== undefined && data.releaseAnimeEpisode !== undefined && data.releaseAnimeEpisode > animeEpisode) {
+      animeSeason = data.releaseAnimeSeason;
+      animeEpisode = data.releaseAnimeEpisode;
+    }
+    if (data.releaseOriginalComicsVolume !== undefined && data.releaseOriginalComicsVolume > comicsVolume) {
+      comicsVolume = data.releaseOriginalComicsVolume;
+    }
+    if (data.releaseOriginalChapter !== undefined && data.releaseOriginalChapter > youngJumpChapter) {
+      youngJumpChapter = data.releaseOriginalChapter;
+
+      if (data.releaseOriginalChapter <= JUMP_PLUS_RELEASED_EPISODE && data.releaseOriginalChapter > jumpPlusChapter) {
+        jumpPlusChapter = data.releaseOriginalChapter;
+      }
+    }
+  }
+
+  return { animeSeason, animeEpisode, comicsVolume, jumpPlusChapter, youngJumpChapter } as const;
+}

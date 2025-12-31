@@ -1,7 +1,10 @@
 import { Buffer } from 'node:buffer';
 
+import { parse } from 'valibot';
+
 import { SITE_BASE_URL, SITE_COPYRIGHT, SITE_NAME } from '@/constants/site';
 import { generateImeDictItems } from '@/features/ime-dict/generateImeDictItems';
+import { imeDictGenerateOptionsSchema } from '@/features/ime-dict/schemas';
 import { ImeDictItemCategory } from '@/types/ImeDict';
 
 const headerTexts = [
@@ -16,8 +19,11 @@ const headerTexts = [
   '! ----------------------------------------------------------------------------------------------------',
 ];
 
-export async function GET(): Promise<Response> {
-  const items = await generateImeDictItems();
+export async function GET(req: Request): Promise<Response> {
+  const url = new URL(req.url);
+  const generateImeDictItemsOptions = parse(imeDictGenerateOptionsSchema, Object.fromEntries(url.searchParams));
+
+  const items = await generateImeDictItems(generateImeDictItemsOptions);
   const body: [reading: string, word: string, type: string, comment?: string][] = items.map(({ reading, word, category, comment }) => {
     let type: string;
     switch (category) {
@@ -61,10 +67,4 @@ export async function GET(): Promise<Response> {
       'Content-Disposition': 'attachment; filename=ms-ime.txt',
     },
   });
-}
-
-export function getConfig() {
-  return {
-    render: 'static',
-  } as const;
 }

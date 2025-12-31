@@ -2,12 +2,12 @@
 // SPDX-License-Identifier: MIT
 
 import type { PropsWithChildren } from 'react';
-import type { RouteConfig } from 'waku/router';
+import type { LinkProps } from 'waku/router/client';
 
 type Case_InternalLink = Readonly<{
   external?: false;
   download?: false;
-  to: RouteConfig['paths'];
+  to: LinkProps['to'];
   href?: never;
 }>;
 

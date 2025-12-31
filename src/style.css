@@ -12,6 +12,7 @@
   --color-text-muted: hsl(8, 11%, 18%);
   --color-background: hsl(348, 83%, 98%);
   --color-card: hsla(0, 0%, 100%, 0.627);
+  --color-border: hsl(8, 81%, 18%);
 
   --font-sans: sans-serif;
 
@@ -194,6 +195,13 @@
   overflow: hidden;
   background-color: var(--color-card);
   border-radius: var(--radius-md);
+}
+
+@utility card-outlined {
+  @apply px-4 py-3;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
 }
 
 @utility page-container {

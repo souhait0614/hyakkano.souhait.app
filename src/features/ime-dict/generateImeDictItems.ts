@@ -4,8 +4,10 @@ import type { Character, CommonName, Location, PersonName } from '@/types/Data';
 import type { ImeDictItem } from '@/types/ImeDict';
 import { TITLE, TITLE_HIRAGANA, TITLE_SHORT, TITLE_SHORT_HIRAGANA1, TITLE_SHORT_HIRAGANA2 } from '@/data/meta';
 import { ImeDictItemCategory } from '@/types/ImeDict';
-import { ReleasedLevel } from '@/types/ReleasedLevel';
 import { checkReleasedData, filterReleasedData, joinName, validateShortName } from '@/utils/data';
+
+import type { ImeDictGenerateOptions } from './schemas';
+import { IME_DICT_DEFAULT_GENERATE_OPTIONS } from './constants';
 
 const { getTranslator } = createTranslator({
   sourceLocale: 'ja',
@@ -22,39 +24,9 @@ const { getTranslator } = createTranslator({
   },
 } as const);
 
-export interface ImeDictGenerateOptions {
-  releasedLevel?: ReleasedLevel;
-  title?: boolean;
-  rentaro?: boolean;
-  girlfriends?: boolean;
-  authors?: boolean;
-  circletLoveStory?: boolean;
-  goriraAlliance?: boolean;
-  jurassicHighSchoolBaseballTeam?: boolean;
-  peppePentaro?: boolean;
-  others?: boolean;
-  schools?: boolean;
-  towns?: boolean;
-}
-
-const DEFAULT_OPTIONS: Required<ImeDictGenerateOptions> = {
-  releasedLevel: ReleasedLevel.anime,
-  title: true,
-  rentaro: true,
-  girlfriends: true,
-  authors: false,
-  circletLoveStory: false,
-  goriraAlliance: false,
-  jurassicHighSchoolBaseballTeam: false,
-  peppePentaro: false,
-  others: false,
-  schools: false,
-  towns: false,
-};
-
-export async function generateImeDictItems(options: ImeDictGenerateOptions = DEFAULT_OPTIONS): Promise<ImeDictItem[]> {
+export async function generateImeDictItems(options?: ImeDictGenerateOptions): Promise<ImeDictItem[]> {
   const t = await getTranslator('ja');
-  const opts = { ...DEFAULT_OPTIONS, ...options };
+  const opts = { ...IME_DICT_DEFAULT_GENERATE_OPTIONS, ...options };
 
   const items: ImeDictItem[] = [];
 
@@ -144,7 +116,7 @@ export async function generateImeDictItems(options: ImeDictGenerateOptions = DEF
       }
     }
 
-    if (character.animeVoiceActors) {
+    if (options?.voiceActors && character.animeVoiceActors) {
       if (comments.animeVoiceActor === undefined) {
         const errorMsg = 'animeVoiceActorsが存在する場合、comments.animeVoiceActorは必須です';
         console.error(errorMsg, character);
@@ -165,7 +137,7 @@ export async function generateImeDictItems(options: ImeDictGenerateOptions = DEF
 
     if (character.variants) {
       for (const variant of character.variants) {
-        if (variant.animeVoiceActors) {
+        if (options?.voiceActors && variant.animeVoiceActors) {
           if (comments.variantAnimeVoiceActor === undefined) {
             const errorMsg = 'variants[number].animeVoiceActorsが存在する場合、comments.variantAnimeVoiceActorは必須です';
             console.error(errorMsg, character);
@@ -228,7 +200,7 @@ export async function generateImeDictItems(options: ImeDictGenerateOptions = DEF
   }
 
   // 人名: 恋太郎
-  if (opts.rentaro) {
+  if (opts.characterRentaro) {
     const { RENTARO_CHARACTER } = await import('@/data/characters/rentaro');
     if (checkReleasedData(RENTARO_CHARACTER, opts.releasedLevel)) {
       pushCharacterNameItems(items, RENTARO_CHARACTER, {
@@ -241,7 +213,7 @@ export async function generateImeDictItems(options: ImeDictGenerateOptions = DEF
   }
 
   // 人名: 彼女
-  if (opts.girlfriends) {
+  if (opts.characterGirlfriends) {
     const { RENTARO_CHARACTER } = await import('@/data/characters/rentaro');
     const { GIRLFRIEND_CHARACTERS } = await import('@/data/characters/girlfriends');
     const description = `${joinName(RENTARO_CHARACTER.name.kanji)}の彼女`;
@@ -259,7 +231,7 @@ export async function generateImeDictItems(options: ImeDictGenerateOptions = DEF
   }
 
   // 人名: 作者
-  if (opts.authors) {
+  if (opts.characterAuthors) {
     const { AUTHOR_CHARACTERS } = await import('@/data/characters/authors');
     const [AUTHOR_CHARACTER_NAKAMURA, AUTHOR_CHARACTER_NOZAWA, ...AUTHOR_CHARACTER_OTHERS] = AUTHOR_CHARACTERS;
     if (checkReleasedData(AUTHOR_CHARACTER_NAKAMURA, opts.releasedLevel)) {
@@ -279,7 +251,7 @@ export async function generateImeDictItems(options: ImeDictGenerateOptions = DEF
   }
 
   // 人名: 王冠恋物語登場人物
-  if (opts.circletLoveStory) {
+  if (opts.characterCircletLoveStory) {
     const { CIRCLET_LOVE_STORY_CHARACTERS } = await import('@/data/characters/circlet-love-story');
     const description = '小説「王冠恋物語」のキャラクター';
     for (const circletLoveStoryCharacter of filterReleasedData(CIRCLET_LOVE_STORY_CHARACTERS, opts.releasedLevel)) {
@@ -291,7 +263,7 @@ export async function generateImeDictItems(options: ImeDictGenerateOptions = DEF
   }
 
   // 人名: ゴリラ連合所属者
-  if (opts.goriraAlliance) {
+  if (opts.characterGoriraAlliance) {
     const { GORIRA_ALLIANCE_CHARACTERS } = await import('@/data/characters/gorira-alliance');
     const description = '暴走族「ゴリラ連合」に所属するキャラクター';
     for (const goriraAllianceCharacter of filterReleasedData(GORIRA_ALLIANCE_CHARACTERS, opts.releasedLevel)) {
@@ -304,7 +276,7 @@ export async function generateImeDictItems(options: ImeDictGenerateOptions = DEF
   }
 
   // 人名: 寿裸漆区高校女子野球部
-  if (opts.jurassicHighSchoolBaseballTeam) {
+  if (opts.characterJurassicHighSchoolBaseballTeam) {
     const { JURASSIC_HIGH_SCHOOL_BASEBALL_TEAM_CHARACTERS } = await import('@/data/characters/jurassic-high-school-baseball-team');
     const description = 'チーム「寿裸漆区高校女子野球部」のキャラクター';
     for (const jurassicHighSchoolBaseballTeamCharacter of filterReleasedData(JURASSIC_HIGH_SCHOOL_BASEBALL_TEAM_CHARACTERS, opts.releasedLevel)) {
@@ -317,7 +289,7 @@ export async function generateImeDictItems(options: ImeDictGenerateOptions = DEF
   }
 
   // 人名: ペペペのペン太郎
-  if (opts.peppePentaro) {
+  if (opts.characterPeppePentaro) {
     const { PEPEPE_PENTAROU_CHARACTERS } = await import('@/data/characters/pepepe-pentarou');
     const description = 'アニメ「ペペペのペン太郎」のキャラクター';
     for (const peppePentaroCharacter of filterReleasedData(PEPEPE_PENTAROU_CHARACTERS, opts.releasedLevel)) {
@@ -328,7 +300,7 @@ export async function generateImeDictItems(options: ImeDictGenerateOptions = DEF
   }
 
   // 人名: その他
-  if (opts.others) {
+  if (opts.characterOthers) {
     const { OTHER_CHARACTERS } = await import('@/data/characters/others');
     const description = 'キャラクター';
     for (const otherCharacter of filterReleasedData(OTHER_CHARACTERS, opts.releasedLevel)) {

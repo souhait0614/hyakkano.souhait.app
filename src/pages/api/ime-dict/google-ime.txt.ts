@@ -1,8 +1,15 @@
+import { parse } from 'valibot';
+
 import { generateImeDictItems } from '@/features/ime-dict/generateImeDictItems';
+import { imeDictGenerateOptionsSchema } from '@/features/ime-dict/schemas';
 import { ImeDictItemCategory } from '@/types/ImeDict';
 
-export async function GET(): Promise<Response> {
-  const items = await generateImeDictItems();
+export async function GET(req: Request): Promise<Response> {
+  const url = new URL(req.url);
+  const generateImeDictItemsOptions = parse(imeDictGenerateOptionsSchema, Object.fromEntries(url.searchParams));
+  console.log(generateImeDictItemsOptions);
+
+  const items = await generateImeDictItems(generateImeDictItemsOptions);
   const body: [reading: string, word: string, type: string, comment?: string][] = items.map(({ reading, word, category, comment }) => {
     let type: string;
     switch (category) {
@@ -43,10 +50,4 @@ export async function GET(): Promise<Response> {
       'Content-Disposition': 'attachment; filename=google-ime.txt',
     },
   });
-}
-
-export function getConfig() {
-  return {
-    render: 'static',
-  } as const;
 }
