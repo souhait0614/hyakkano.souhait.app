@@ -116,7 +116,7 @@ function Table() {
 
   return (
     <table className={`
-      w-full grid-cols-[5.5em_1fr_minmax(4.5em,auto)_3.5em]
+      common-table w-full grid-cols-[5.5em_1fr_minmax(4.5em,auto)_3.5em]
       max-sm:text-sm
     `}
     >

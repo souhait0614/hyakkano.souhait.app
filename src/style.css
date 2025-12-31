@@ -122,33 +122,6 @@
     }
   }
 
-  table {
-    @apply grid gap-x-2;
-
-    thead,
-    tbody,
-    tfoot {
-      display: contents;
-    }
-
-    tr {
-      display: grid;
-      grid-template-rows: subgrid;
-      grid-template-columns: subgrid;
-      grid-column: 1 / -1;
-      align-items: center;
-    }
-
-    tbody tr:nth-of-type(odd) {
-      @apply bg-primary/10;
-    }
-
-    th,
-    td {
-      display: block;
-    }
-  }
-
   input {
     background-color: transparent;
     border: none;
@@ -230,4 +203,31 @@
 @utility text-animate-rainbow {
   color: #f00;
   animation: rainbow-text 1s linear infinite;
+}
+
+@utility common-table {
+  @apply grid gap-x-2;
+
+  thead,
+  tbody,
+  tfoot {
+    display: contents;
+  }
+
+  tr {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+    align-items: center;
+  }
+
+  tbody tr:nth-of-type(odd) {
+    @apply bg-primary/10;
+  }
+
+  th,
+  td {
+    display: block;
+  }
 }

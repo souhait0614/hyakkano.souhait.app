@@ -5,7 +5,7 @@ interface ImeDictItemTableProps {
 }
 function ImeDictItemTable({ items }: ImeDictItemTableProps) {
   return (
-    <table className='grid-cols-[1fr_1fr_2fr] text-sm'>
+    <table className='common-table grid-cols-[1fr_1fr_2fr] text-sm'>
       <thead>
         <tr>
           <th>読み</th>
