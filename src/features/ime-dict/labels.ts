@@ -1,4 +1,13 @@
+import type { ReleasedLevel } from '@/types/ReleasedLevel';
+
 import type { ImeDictGenerateOptionsInput } from './schemas';
+
+export const releasedLevelLabels = {
+  anime: 'TVアニメ',
+  comics: 'コミックス',
+  jumpPlus: '少年ジャンプ＋',
+  youngJump: '週刊ヤングジャンプ',
+} as const satisfies Record<ReleasedLevel, string>;
 
 export const generateOptionsKeyLabels = {
   title: '作品タイトル',

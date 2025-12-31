@@ -5,8 +5,8 @@ import clsx from 'clsx';
 import type { ImeDictGenerateOptions } from '@/features/ime-dict/schemas';
 import type { Metadata } from '@/types/Metadata';
 import IconDownload from '@/components/icons/IconDownload';
+import IconList from '@/components/icons/IconList';
 import LinkButton from '@/components/LinkButton';
-import LinkText from '@/components/LinkText';
 import { AUTHOR_CHARACTERS } from '@/data/characters/authors';
 import { CIRCLET_LOVE_STORY_CHARACTERS } from '@/data/characters/circlet-love-story';
 import { GIRLFRIEND_CHARACTERS } from '@/data/characters/girlfriends';
@@ -19,8 +19,7 @@ import { SCHOOLS } from '@/data/locations/schools';
 import { TOWNS } from '@/data/locations/towns';
 import DownloadLinks from '@/features/ime-dict/DownloadLinks';
 import { GenerateOptionsAllSetButtons, GenerateOptionsCharacterTypeCheckBoxes, GenerateOptionsOtherTypeCheckBoxes, GenerateOptionsReleasedLevelSelector } from '@/features/ime-dict/GenerateOptionsForms';
-import { generateOptionsKeyLabels } from '@/features/ime-dict/labels';
-import ShowGenerateDictContentLink from '@/features/ime-dict/ShowGenerateDictContentLink';
+import GenerateOptionsTable from '@/features/ime-dict/GenerateOptionsTable';
 import PageHead from '@/features/PageHead';
 import { ReleasedLevel } from '@/types/ReleasedLevel';
 import { getLatestReleasedData } from '@/utils/data';
@@ -81,22 +80,22 @@ function AppleImeDownloadLinkButton(generateOptions: ImeDictGenerateOptions) {
   );
 }
 
-function GenerateOptionsLabels({ releasedLevel, ...generateOptions }: ImeDictGenerateOptions) {
-  const labels: string[] = Object.entries(generateOptions).flatMap(([key, value]) => {
-    if (value === true) {
-      return [generateOptionsKeyLabels[key as keyof Omit<ImeDictGenerateOptions, 'releasedLevel'>]];
-    } else {
-      return [];
-    }
-  });
-  const searchParamsStr = objectToSearchParams({ releasedLevel, ...generateOptions }).toString();
-
-  return <p><small>内容: {labels.join(', ')} <LinkText to={`/ime-dict/preview?${searchParamsStr}`}>(内容を表示)</LinkText></small></p>;
+function PreviewPageLinkButton(generateOptions: ImeDictGenerateOptions) {
+  const searchParamsStr = objectToSearchParams(generateOptions).toString();
+  return (
+    <LinkButton
+      align='center'
+      icon={IconList}
+      to={`/ime-dict/preview?${searchParamsStr}`}
+    >
+      内容を表示
+    </LinkButton>
+  );
 }
 
 export const metadata = {
   title: 'IMEユーザー辞書',
-  description: 'キャラクターの名前や一部の用語をユーザー辞書として取り込める形式でダウンロードできます',
+  description: 'キャラクターの名前や一部の用語をユーザー辞書としてインポートできる形式でダウンロードできます',
 } as const satisfies Metadata;
 
 export default function Page(pageProps: PageProps<'/ime-dict'>) {
@@ -113,7 +112,7 @@ export default function Page(pageProps: PageProps<'/ime-dict'>) {
     ...TOWNS,
   ]);
 
-  const searchParamsComicsCommons = {
+  const generateOptionsComicsCommons = {
     releasedLevel: ReleasedLevel.comics,
     title: true,
     characterRentaro: true,
@@ -129,7 +128,7 @@ export default function Page(pageProps: PageProps<'/ime-dict'>) {
     towns: true,
   } satisfies Required<ImeDictGenerateOptions>;
 
-  const searchParamsYoungJumpAll = {
+  const generateOptionsYoungJumpAll = {
     releasedLevel: ReleasedLevel.youngJump,
     title: true,
     characterRentaro: true,
@@ -150,28 +149,33 @@ export default function Page(pageProps: PageProps<'/ime-dict'>) {
       <PageHead metadata={metadata} pageProps={pageProps} />
       <div className='page-container'>
         <h1 className='page-title'>{metadata.title}</h1>
-        <p>キャラクターの名前や一部の用語をユーザー辞書としてインポートできる形式でダウンロードできます。</p>
-        <p>Microsoft IME、Google IME(Mozc/Google 日本語入力/Gboard)、Apple IME(macOS)に対応しています。</p>
-        <p>ユーザー辞書のインポートが行えない環境(iOSなど)でも辞書の内容を表示することで手動で登録を行うことができます。</p>
+        <section className='flex flex-col gap-2 card'>
+          <h2>このページについて</h2>
+          <p>キャラクターの名前や一部の用語をユーザー辞書としてインポートできる形式でダウンロードできます。</p>
+          <p>Microsoft IME、Google IME(Mozc/Google 日本語入力/Gboard)、Apple IME(macOS)に対応しています。</p>
+          <p>ユーザー辞書のインポートが行えない環境(iOSなど)でも辞書の内容を表示することで手動で登録を行うことができます。</p>
+        </section>
         <section className='flex flex-col gap-2 card'>
           <h2>ダウンロード</h2>
           <p>含まれる用語の範囲や種類が異なるいくつかのバリエーションを用意しています。</p>
           <section className='flex flex-col gap-2 card-outlined'>
             <h3>コミックス{latestReleasedData.comicsVolume}巻までの主要な用語</h3>
-            <GenerateOptionsLabels {...searchParamsComicsCommons} />
+            <GenerateOptionsTable generateOptions={generateOptionsComicsCommons} />
             <DownloadLinkButtonContainer>
-              <MsImeDownloadLinkButton {...searchParamsComicsCommons} />
-              <GoogleImeDownloadLinkButton {...searchParamsComicsCommons} />
-              <AppleImeDownloadLinkButton {...searchParamsComicsCommons} />
+              <MsImeDownloadLinkButton {...generateOptionsComicsCommons} />
+              <GoogleImeDownloadLinkButton {...generateOptionsComicsCommons} />
+              <AppleImeDownloadLinkButton {...generateOptionsComicsCommons} />
+              <PreviewPageLinkButton {...generateOptionsComicsCommons} />
             </DownloadLinkButtonContainer>
           </section>
           <section className='flex flex-col gap-2 card-outlined'>
             <h3>週刊ヤングジャンプ{latestReleasedData.youngJumpChapter}話までのすべての用語</h3>
-            <GenerateOptionsLabels {...searchParamsYoungJumpAll} />
+            <GenerateOptionsTable generateOptions={generateOptionsYoungJumpAll} />
             <DownloadLinkButtonContainer>
-              <MsImeDownloadLinkButton {...searchParamsYoungJumpAll} />
-              <GoogleImeDownloadLinkButton {...searchParamsYoungJumpAll} />
-              <AppleImeDownloadLinkButton {...searchParamsYoungJumpAll} />
+              <MsImeDownloadLinkButton {...generateOptionsYoungJumpAll} />
+              <GoogleImeDownloadLinkButton {...generateOptionsYoungJumpAll} />
+              <AppleImeDownloadLinkButton {...generateOptionsYoungJumpAll} />
+              <PreviewPageLinkButton {...generateOptionsYoungJumpAll} />
             </DownloadLinkButtonContainer>
           </section>
         </section>
@@ -203,7 +207,6 @@ export default function Page(pageProps: PageProps<'/ime-dict'>) {
             </div>
           </section>
           <div className='flex flex-row justify-end gap-2'>
-            <ShowGenerateDictContentLink />
             <GenerateOptionsAllSetButtons />
           </div>
           <DownloadLinkButtonContainer>

@@ -7,7 +7,7 @@ import { ReleasedLevel } from '@/types/ReleasedLevel';
 
 import type { ImeDictGenerateOptionsInput } from './schemas';
 import { useGenerateOptions } from './hooks';
-import { generateOptionsKeyLabels } from './labels';
+import { generateOptionsKeyLabels, releasedLevelLabels } from './labels';
 
 interface GenerateOptionsReleasedLevelSelectorProps extends Omit<SelectHTMLAttributes<HTMLSelectElement>, 'onChange' | 'value'> {
   latestAnimeSeason: number;
@@ -21,10 +21,10 @@ export function GenerateOptionsReleasedLevelSelector({ latestAnimeSeason, latest
 
   const releasedLevelFilterOptions = useMemo(
     () => [
-      { label: `TVアニメ (~${latestAnimeSeason}期${latestAnimeEpisode}話)`, value: ReleasedLevel.anime },
-      { label: `コミックス (~${latestComicsVolume}巻)`, value: ReleasedLevel.comics },
-      { label: `少年ジャンプ＋ (~${latestJumpPlusChapter}話)`, value: ReleasedLevel.jumpPlus },
-      { label: `週刊ヤングジャンプ (~${latestYoungJumpChapter}話)`, value: ReleasedLevel.youngJump },
+      { label: `${releasedLevelLabels.anime} (~${latestAnimeSeason}期${latestAnimeEpisode}話)`, value: ReleasedLevel.anime },
+      { label: `${releasedLevelLabels.comics} (~${latestComicsVolume}巻)`, value: ReleasedLevel.comics },
+      { label: `${releasedLevelLabels.jumpPlus} (~${latestJumpPlusChapter}話)`, value: ReleasedLevel.jumpPlus },
+      { label: `${releasedLevelLabels.youngJump} (~${latestYoungJumpChapter}話)`, value: ReleasedLevel.youngJump },
     ] as const satisfies { label: string; value: ReleasedLevel; }[],
     [latestAnimeEpisode, latestAnimeSeason, latestComicsVolume, latestJumpPlusChapter, latestYoungJumpChapter],
   );
