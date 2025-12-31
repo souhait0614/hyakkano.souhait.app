@@ -1,4 +1,6 @@
+import type { ComponentPropsWithRef } from 'react';
 import type { PageProps } from 'waku/router';
+import clsx from 'clsx';
 
 import type { ImeDictGenerateOptions } from '@/features/ime-dict/schemas';
 import type { Metadata } from '@/types/Metadata';
@@ -24,6 +26,19 @@ import { ReleasedLevel } from '@/types/ReleasedLevel';
 import { getLatestReleasedData } from '@/utils/data';
 import { objectToSearchParams } from '@/utils/url';
 
+function DownloadLinkButtonContainer({ className, ...props }: ComponentPropsWithRef<'div'>) {
+  return (
+    <div
+      {...props}
+      className={clsx(`
+        flex flex-row flex-wrap justify-center
+        *:w-1/2
+        max-sm:*:w-full
+      `, className)}
+    />
+  );
+}
+
 function MsImeDownloadLinkButton(generateOptions: ImeDictGenerateOptions) {
   const searchParamsStr = objectToSearchParams(generateOptions).toString();
   return (
@@ -32,7 +47,6 @@ function MsImeDownloadLinkButton(generateOptions: ImeDictGenerateOptions) {
       align='center'
       icon={IconDownload}
       href={`/api/ime-dict/ms-ime.txt?${searchParamsStr}`}
-      className='grow'
     >
       Microsoft IME用
     </LinkButton>
@@ -47,9 +61,22 @@ function GoogleImeDownloadLinkButton(generateOptions: ImeDictGenerateOptions) {
       align='center'
       icon={IconDownload}
       href={`/api/ime-dict/google-ime.txt?${searchParamsStr}`}
-      className='grow'
     >
       Google IME用
+    </LinkButton>
+  );
+}
+
+function AppleImeDownloadLinkButton(generateOptions: ImeDictGenerateOptions) {
+  const searchParamsStr = objectToSearchParams(generateOptions).toString();
+  return (
+    <LinkButton
+      download
+      align='center'
+      icon={IconDownload}
+      href={`/api/ime-dict/apple-ime.plist?${searchParamsStr}`}
+    >
+      Apple IME用
     </LinkButton>
   );
 }
@@ -124,7 +151,7 @@ export default function Page(pageProps: PageProps<'/ime-dict'>) {
       <div className='page-container'>
         <h1 className='page-title'>{metadata.title}</h1>
         <p>キャラクターの名前や一部の用語をユーザー辞書としてインポートできる形式でダウンロードできます。</p>
-        <p>Microsoft IMEとGoogle IME(Mozc/Google 日本語入力/Gboard)に対応しています。</p>
+        <p>Microsoft IME、Google IME(Mozc/Google 日本語入力/Gboard)、Apple IME(macOS)に対応しています。</p>
         <p>ユーザー辞書のインポートが行えない環境(iOSなど)でも辞書の内容を表示することで手動で登録を行うことができます。</p>
         <section className='flex flex-col gap-2 card'>
           <h2>ダウンロード</h2>
@@ -132,18 +159,20 @@ export default function Page(pageProps: PageProps<'/ime-dict'>) {
           <section className='flex flex-col gap-2 card-outlined'>
             <h3>コミックス{latestReleasedData.comicsVolume}巻までの主要な用語</h3>
             <GenerateOptionsLabels {...searchParamsComicsCommons} />
-            <div className='flex'>
+            <DownloadLinkButtonContainer>
               <MsImeDownloadLinkButton {...searchParamsComicsCommons} />
               <GoogleImeDownloadLinkButton {...searchParamsComicsCommons} />
-            </div>
+              <AppleImeDownloadLinkButton {...searchParamsComicsCommons} />
+            </DownloadLinkButtonContainer>
           </section>
           <section className='flex flex-col gap-2 card-outlined'>
             <h3>週刊ヤングジャンプ{latestReleasedData.youngJumpChapter}話までのすべての用語</h3>
             <GenerateOptionsLabels {...searchParamsYoungJumpAll} />
-            <div className='flex'>
+            <DownloadLinkButtonContainer>
               <MsImeDownloadLinkButton {...searchParamsYoungJumpAll} />
               <GoogleImeDownloadLinkButton {...searchParamsYoungJumpAll} />
-            </div>
+              <AppleImeDownloadLinkButton {...searchParamsYoungJumpAll} />
+            </DownloadLinkButtonContainer>
           </section>
         </section>
         <section className='flex flex-col gap-2 card'>
@@ -177,13 +206,9 @@ export default function Page(pageProps: PageProps<'/ime-dict'>) {
             <ShowGenerateDictContentLink />
             <GenerateOptionsAllSetButtons />
           </div>
-          <div className={`
-            flex
-            *:grow
-          `}
-          >
+          <DownloadLinkButtonContainer>
             <DownloadLinks />
-          </div>
+          </DownloadLinkButtonContainer>
         </section>
       </div>
     </>

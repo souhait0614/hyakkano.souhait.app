@@ -33,6 +33,14 @@ function DownloadLinks() {
       >
         Google IME 用
       </LinkButton>
+      <LinkButton
+        download
+        align='center'
+        icon={IconDownload}
+        href={`/api/ime-dict/apple-ime.plist?${searchParamsStr}`}
+      >
+        Apple IME 用
+      </LinkButton>
     </>
   );
 }
