@@ -519,7 +519,7 @@ export const OTHER_CHARACTERS: Character[] = [
     animeVoiceActors: undefined,
   },
   {
-    name: { kanji: ['怪盗', 'ハット'], hiragana: ['かいとう', 'はっと'], shortNameIndex: 0 },
+    name: { kanji: ['怪盗', 'ハット'], hiragana: ['かいとう', 'はっと'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
     birthday: undefined,
