@@ -14,6 +14,7 @@ export function generateLinkAttributes<T extends Link>(
     to: internalHref,
     href: externalHref,
     external = false,
+    download = false,
     author = false,
     me = false,
     ...rest
@@ -28,6 +29,19 @@ export function generateLinkAttributes<T extends Link>(
     me,
   }).flatMap(([k, v]) => (v ? [k] : [])).join(' ') || undefined;
 
+  if (download && externalHref) {
+    return {
+      linkAttrs: {
+        ...rest,
+        ...omitUndefined({ rel, target }),
+        href: externalHref,
+        download: true,
+      },
+      isExternalLink: external,
+      isDownloadLink: true,
+    } as const;
+  }
+
   if (external && externalHref) {
     return {
       linkAttrs: {
@@ -36,6 +50,7 @@ export function generateLinkAttributes<T extends Link>(
         href: externalHref,
       },
       isExternalLink: true,
+      isDownloadLink: false,
     } as const;
   }
 
@@ -47,6 +62,7 @@ export function generateLinkAttributes<T extends Link>(
         to: internalHref,
       },
       isExternalLink: false,
+      isDownloadLink: false,
     } as const;
   }
 

@@ -23,8 +23,10 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-server-dom-webpack": "19.2.3",
+    "schummar-translate": "1.25.2",
     "tailwind-merge": "3.4.0",
     "tailwind-variants": "3.2.2",
+    "valibot": "1.2.0",
     "waku": "0.27.5"
   },
   "devDependencies": {

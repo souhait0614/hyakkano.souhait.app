@@ -6,7 +6,7 @@ import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@
 import clsx from 'clsx';
 import { Fragment, useContext, useMemo } from 'react';
 
-import type { CharacterBirthday, Name } from '@/types/Data';
+import type { CharacterBirthday, PersonName } from '@/types/Data';
 import TableSortingIcon from '@/components/TableSortingIcon';
 import { TIMEZONE } from '@/constants/timezone';
 import { useLocalStorageState } from '@/hooks/useLocalStorageState';
@@ -34,7 +34,7 @@ function Table() {
         accessorKey: 'name',
         header: '名前',
         cell: (info) => {
-          const { name, hiragana } = info.getValue<Name>();
+          const { kanji: name, hiragana } = info.getValue<PersonName>();
           if (showNameRuby) return name.map((str, i) => (
             <Fragment key={i}>
               {i > 0 && ' '}
@@ -111,12 +111,12 @@ function Table() {
     state: { sorting },
     onSortingChange: setSorting,
     sortDescFirst: false,
-    getRowId: (row) => row.name.name.join(''),
+    getRowId: (row) => row.name.kanji.join(''),
   });
 
   return (
     <table className={`
-      w-full grid-cols-[5.5em_1fr_minmax(4.5em,auto)_3.5em]
+      common-table w-full grid-cols-[5.5em_1fr_minmax(4.5em,auto)_3.5em]
       max-sm:text-sm
     `}
     >

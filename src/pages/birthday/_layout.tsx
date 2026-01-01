@@ -2,37 +2,40 @@ import type { ReactNode } from 'react';
 
 import type { BirthdayCharacter, BirthdayCharacterType } from '@/features/birthday/types';
 import type { Character, GirlfriendCharacter } from '@/types/Data';
-import { AUTHOR_CHARACTERS, GIRLFRIEND_CHARACTERS, RENTARO_CHARACTER } from '@/data/characters';
+import { AUTHOR_CHARACTERS } from '@/data/characters/authors';
+import { GIRLFRIEND_CHARACTERS } from '@/data/characters/girlfriends';
+import { RENTARO_CHARACTER } from '@/data/characters/rentaro';
 import { JUMP_PLUS_RELEASED_EPISODE } from '@/data/meta';
 import CharactersProvider from '@/features/birthday/CharactersProvider';
+import { ReleasedLevel } from '@/types/ReleasedLevel';
 
-
+// TODO: そのうちcheckReleasedDataとかfilterReleasedDataを使って処理を共通化する
 function getReleasedLevel(character: Character) {
-  if ('releaseAnimeSeason' in character && character.releaseAnimeSeason !== undefined) {
+  if (character.releaseAnimeSeason !== undefined) {
     return {
-      releasedLevel: 'ANIME' as const,
+      releasedLevel: ReleasedLevel.anime,
       releaseAnimeSeason: character.releaseAnimeSeason,
     };
   }
-  if ('releaseOriginalComicsVolume' in character && character.releaseOriginalComicsVolume !== undefined) {
+  if (character.releaseOriginalComicsVolume !== undefined) {
     return {
-      releasedLevel: 'COMICS' as const,
+      releasedLevel: ReleasedLevel.comics,
       releaseOriginalComicsVolume: character.releaseOriginalComicsVolume,
     };
   }
-  if ('releaseOriginalEpisode' in character && character.releaseOriginalEpisode !== undefined) {
-    if (character.releaseOriginalEpisode <= JUMP_PLUS_RELEASED_EPISODE) {
+  if (character.releaseOriginalChapter !== undefined) {
+    if (character.releaseOriginalChapter <= JUMP_PLUS_RELEASED_EPISODE) {
       return {
-        releasedLevel: 'JUMP_PLUS' as const,
-        releaseOriginalEpisode: character.releaseOriginalEpisode,
+        releasedLevel: ReleasedLevel.jumpPlus,
+        releaseOriginalChapter: character.releaseOriginalChapter,
       };
     }
     return {
-      releasedLevel: 'YOUNG_JUMP' as const,
-      releaseOriginalEpisode: character.releaseOriginalEpisode,
+      releasedLevel: ReleasedLevel.youngJump,
+      releaseOriginalChapter: character.releaseOriginalChapter,
     };
   }
-  throw new Error('Invalid character released level');
+  throw new Error(`Invalid character released level: ${character.name.kanji.join('')}`);
 }
 
 function makeCharacter(type: BirthdayCharacterType, character: Character | GirlfriendCharacter): BirthdayCharacter {

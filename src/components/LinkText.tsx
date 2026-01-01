@@ -44,14 +44,14 @@ type LinkTextProps = Readonly<
 };
 
 export default function LinkText({ children, variant, className, ...linkProps }: LinkTextProps) {
-  const { linkAttrs, isExternalLink } = generateLinkAttributes(linkProps);
+  const { linkAttrs, isExternalLink, isDownloadLink } = generateLinkAttributes(linkProps);
 
   const { anchor, text, icon } = slots({
     variant,
     external: isExternalLink,
   });
 
-  const LinkComponent = isExternalLink
+  const LinkComponent = isExternalLink || isDownloadLink
     ? ({ children }: { children: ReactNode; }) => <a className={anchor({ class: className })} {...linkAttrs}>{children}</a>
     : ({ children }: { children: ReactNode; }) => <Link className={anchor({ class: className })} {...linkAttrs}>{children}</Link>;
 

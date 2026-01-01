@@ -1,6 +1,15 @@
-export interface Name {
-  name: string[];
+export interface CommonName {
+  kanji: string;
+  hiragana: string;
+}
+
+export interface PersonName {
+  kanji: string[];
   hiragana: string[];
+}
+
+export interface PersonNameWithShortNameIndex extends PersonName {
+  shortNameIndex: number | undefined;
 }
 
 export type CharacterBirthday = [
@@ -11,18 +20,36 @@ export type CharacterBirthday = [
   second?: number,
 ];
 
-export interface Character {
-  name: Name;
-  anotherNames: Array<Name> | undefined;
-  nicknames: Array<Name> | undefined;
-  birthday: CharacterBirthday | undefined;
-  age: number | undefined;
-  releaseOriginalEpisode: number | undefined;
+export interface ReleasedInfo {
+  releaseOriginalChapter: number | undefined;
   releaseOriginalComicsVolume: number | undefined;
   releaseAnimeSeason: number | undefined;
-  animeVoiceActors: Array<Name> | undefined;
+  releaseAnimeEpisode: number | undefined;
+}
+
+export interface VariantCharacter extends ReleasedInfo {
+  variantName: PersonName;
+  anotherNames: Array<PersonNameWithShortNameIndex> | undefined;
+  nicknames: Array<PersonName> | undefined;
+  age: number | undefined;
+  animeVoiceActors: Array<PersonName> | undefined;
+}
+
+export interface Character extends ReleasedInfo {
+  name: PersonNameWithShortNameIndex;
+  anotherNames: Array<PersonNameWithShortNameIndex> | undefined;
+  nicknames: Array<PersonName> | undefined;
+  birthday: CharacterBirthday | undefined;
+  age: number | undefined;
+  animeVoiceActors: Array<PersonName> | undefined;
+  variants?: Array<VariantCharacter> | undefined;
 }
 
 export interface GirlfriendCharacter extends Character {
   girlfriendNumber: number;
+}
+
+export interface Location extends ReleasedInfo {
+  name: CommonName;
+  anotherNames: CommonName[] | undefined;
 }
