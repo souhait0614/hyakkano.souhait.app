@@ -110,7 +110,7 @@ export const OTHER_CHARACTERS: Character[] = [
     animeVoiceActors: [{ kanji: ['伊駒', 'ゆりえ'], hiragana: ['いごま', 'ゆりえ'] }],
   },
   {
-    name: { kanji: ['タケコ', '・', 'スーパーデラックス'], hiragana: ['たけこ', '・', 'すーぱーでらっくす'], shortNameIndex: undefined },
+    name: { kanji: ['タケコ', '・', 'スーパーデラックス'], hiragana: ['たけこ', '', 'すーぱーでらっくす'], shortNameIndex: undefined },
     anotherNames: [{ kanji: ['チャンコ', '爆錦'], hiragana: ['ちゃんこ', 'ばくにしき'], shortNameIndex: undefined }],
     nicknames: undefined,
     birthday: undefined,
@@ -122,7 +122,7 @@ export const OTHER_CHARACTERS: Character[] = [
     animeVoiceActors: [{ kanji: ['小西', '克幸'], hiragana: ['こにし', 'かつゆき'] }],
   },
   {
-    name: { kanji: ['ピエール', '・', 'ジェラオ'], hiragana: ['ぴえーる', '・', 'じぇらお'], shortNameIndex: undefined },
+    name: { kanji: ['ピエール', '・', 'ジェラオ'], hiragana: ['ぴえーる', '', 'じぇらお'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
     birthday: undefined,
@@ -495,7 +495,7 @@ export const OTHER_CHARACTERS: Character[] = [
     animeVoiceActors: undefined,
   },
   {
-    name: { kanji: ['ウタウーマ', '・', 'ウマーマ'], hiragana: ['うたうーま', '・', 'うまーま'], shortNameIndex: 2 },
+    name: { kanji: ['ウタウーマ', '・', 'ウマーマ'], hiragana: ['うたうーま', '', 'うまーま'], shortNameIndex: 2 },
     anotherNames: undefined,
     nicknames: undefined,
     birthday: undefined,

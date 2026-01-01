@@ -23,7 +23,7 @@ export const JURASSIC_HIGH_SCHOOL_BASEBALL_TEAM_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 5,
     releaseAnimeSeason: 2,
     releaseAnimeEpisode: 18,
-    animeVoiceActors: [{ kanji: ['ニケライ', '・', 'ファラナーゼ'], hiragana: ['にけらい', '・', 'ふぁらなーぜ'] }],
+    animeVoiceActors: [{ kanji: ['ニケライ', '・', 'ファラナーゼ'], hiragana: ['にけらい', '', 'ふぁらなーぜ'] }],
   },
   {
     name: { kanji: ['辺路木', 'ラプ子'], hiragana: ['べろき', 'らぷこ'], shortNameIndex: undefined },
