@@ -98,7 +98,7 @@ function PreviewPageLinkButton(generateOptions: ImeDictGenerateOptions) {
 
 export const metadata = {
   title: 'IMEユーザー辞書',
-  description: 'キャラクターの名前や一部の用語をユーザー辞書としてインポートできる形式でダウンロードできます',
+  description: '大量に存在する入力が大変なキャラクターの名前や一部の用語をユーザー辞書としてインポート',
 } as const satisfies Metadata;
 
 export default function Page(pageProps: PageProps<'/ime-dict'>) {

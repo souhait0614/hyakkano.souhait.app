@@ -11,7 +11,7 @@ import PageHead from '@/features/PageHead';
 
 export const metadata = {
   title: 'キャラクター誕生日一覧',
-  description: '恋太郎ファミリーや主要キャラクターの誕生日一覧',
+  description: '残り日数のリアルタイムカウントダウンに対応した恋太郎ファミリーや主要キャラクターの誕生日一覧',
 } as const satisfies Metadata;
 
 export default function Page(pageProps: PageProps<'/birthday'>) {
