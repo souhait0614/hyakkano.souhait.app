@@ -218,13 +218,13 @@ export default function Page(pageProps: PageProps<'/ime-dict'>) {
         </section>
         <section className='flex flex-col gap-2 card'>
           <h2>注意事項</h2>
-          <section>
+          <section className='contents'>
             <h3>辞書に含まれる用語について</h3>
             <p>キャラクター名は各種媒体で姿と名前の両方が描写されているもののみを収録しています。</p>
             <p>公式の情報をもとに作成していますが、誤りが含まれる可能性があります。</p>
             <p>辞書内容に関するお問い合わせは、メール（<LinkEmail user='me' domain='souhait.me' />）または<LinkText external href={SITE_CREATOR_SITE_URL}>管理人の各種SNSアカウント</LinkText>までお願いします。</p>
           </section>
-          <section>
+          <section className='contents'>
             <h3>辞書ファイルの利用について</h3>
             <p>辞書ファイルのインポート方法については各IMEの公式ドキュメントなどを参照してください。</p>
             <p>辞書ファイルを利用したことによって生じた問題については責任を負いかねますのでご了承ください。</p>
