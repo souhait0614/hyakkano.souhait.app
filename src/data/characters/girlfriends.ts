@@ -456,4 +456,17 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     animeVoiceActors: undefined,
     girlfriendNumber: 35,
   },
+  {
+    name: { kanji: ['三白', '小々枝'], hiragana: ['みしろ', 'こごえ'], shortNameIndex: 1 },
+    anotherNames: undefined,
+    nicknames: undefined,
+    birthday: undefined,
+    age: undefined,
+    releaseOriginalChapter: 240,
+    releaseOriginalComicsVolume: undefined,
+    releaseAnimeSeason: undefined,
+    releaseAnimeEpisode: undefined,
+    animeVoiceActors: undefined,
+    girlfriendNumber: 36,
+  },
 ] as const;
