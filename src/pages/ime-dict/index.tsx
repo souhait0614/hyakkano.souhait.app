@@ -101,6 +101,15 @@ export const metadata = {
   description: '大量に存在する入力が大変なキャラクターの名前や一部の用語をユーザー辞書としてインポート',
 } as const satisfies Metadata;
 
+interface UpdateLog {
+  date: [year: number, month: number, day: number];
+  description: string;
+}
+
+const updateLogs: UpdateLog[] = [
+  { date: [2026, 1, 8], description: '36人目の彼女に対応' },
+];
+
 export default function Page(pageProps: PageProps<'/ime-dict'>) {
   const latestReleasedData = getLatestReleasedData([
     RENTARO_CHARACTER,
@@ -157,6 +166,20 @@ export default function Page(pageProps: PageProps<'/ime-dict'>) {
           <p>キャラクターの名前や一部の用語をユーザー辞書としてインポートできる形式でダウンロードできます。</p>
           <p>Microsoft IME、Google IME(Mozc/Google 日本語入力/Gboard)、Apple IME(macOS)に対応しています。</p>
           <p>ユーザー辞書のインポートが行えない環境(iOSなど)でも辞書の内容を表示することで手動で登録を行うことができます。</p>
+        </section>
+        <section className='flex flex-col gap-2 card'>
+          <h2>更新履歴</h2>
+          <ul className='list-inside list-disc'>
+            {updateLogs.map((log) => {
+              const [year, month, day] = log.date;
+              return (
+                <li key={log.date.join('-')}>
+                  <strong>{String(year).padStart(4, '0')}/{String(month).padStart(2, '0')}/{String(day).padStart(2, '0')}</strong> - {log.description}
+                </li>
+              );
+            })}
+          </ul>
+          <p className='text-sm'>更新されたファイルを再度インポートすることで更新分のみを取り込むことができます。</p>
         </section>
         <section className='flex flex-col gap-2 card'>
           <h2>ダウンロード</h2>
