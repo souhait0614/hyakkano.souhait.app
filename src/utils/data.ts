@@ -60,12 +60,11 @@ export function getLatestReleasedData(dataList: ReleasedInfo[]): { animeSeason: 
     if (data.releaseOriginalComicsVolume !== undefined && data.releaseOriginalComicsVolume > comicsVolume) {
       comicsVolume = data.releaseOriginalComicsVolume;
     }
+    if (data.releaseOriginalChapter !== undefined && data.releaseOriginalChapter > jumpPlusChapter && data.releaseOriginalChapter <= JUMP_PLUS_RELEASED_EPISODE) {
+      jumpPlusChapter = data.releaseOriginalChapter;
+    }
     if (data.releaseOriginalChapter !== undefined && data.releaseOriginalChapter > youngJumpChapter) {
       youngJumpChapter = data.releaseOriginalChapter;
-
-      if (data.releaseOriginalChapter <= JUMP_PLUS_RELEASED_EPISODE && data.releaseOriginalChapter > jumpPlusChapter) {
-        jumpPlusChapter = data.releaseOriginalChapter;
-      }
     }
   }
 
