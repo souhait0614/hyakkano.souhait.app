@@ -40,7 +40,8 @@ function GenerateOptionsTable({ generateOptions: { releasedLevel, ...generateOpt
           <td className='block'>
             <ul className={`
               flex flex-row flex-wrap gap-x-0.5
-              *:block *:not-last:after:content-[","]
+              *:block
+              *:not-last:after:content-[","]
             `}
             >
               {labels.map((label) => (
