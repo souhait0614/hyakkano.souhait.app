@@ -3,7 +3,7 @@
 import type { ReactNode } from 'react';
 import { TZDateMini } from '@date-fns/tz';
 import { isSameDay, startOfDay } from 'date-fns';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { TIMEZONE } from '@/constants/timezone';
 
@@ -18,23 +18,21 @@ function DateProvider({ children }: ProviderProps) {
   const [todayDate, setTodayDate] = useState(startOfDay(initialDate));
 
   const timeoutIdRef = useRef<number | null>(null);
-  const setTimer = useCallback((timeout: number) => {
-    timeoutIdRef.current = window.setTimeout(() => {
+
+  useEffect(() => {
+    const tick = () => {
       const now = TZDateMini.tz(TIMEZONE);
       setDate(now);
       setTodayDate((prev) => (isSameDay(prev, now) ? prev : startOfDay(now)));
-      setTimer(1000 - now.getMilliseconds());
-    }, timeout);
-  }, []);
-
-  useEffect(() => {
-    setTimer(1000 - initialDate.getMilliseconds());
+      timeoutIdRef.current = window.setTimeout(tick, 1000 - now.getMilliseconds());
+    };
+    timeoutIdRef.current = window.setTimeout(tick, 1000 - initialDate.getMilliseconds());
     return () => {
       if (timeoutIdRef.current) {
         window.clearTimeout(timeoutIdRef.current);
       }
     };
-  }, [initialDate, setTimer]);
+  }, [initialDate]);
 
   return (
     <DateContext value={date}>
