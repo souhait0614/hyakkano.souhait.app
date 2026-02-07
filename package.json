@@ -47,7 +47,7 @@
     "kiso.css": "1.2.4",
     "stylelint": "16.26.1",
     "stylelint-config-recess-order": "7.6.0",
-    "stylelint-config-recommended": "17.0.0",
+    "stylelint-config-recommended": "18.0.0",
     "stylelint-config-tailwindcss": "1.0.1",
     "tailwindcss": "4.1.18",
     "terser": "5.46.0",
