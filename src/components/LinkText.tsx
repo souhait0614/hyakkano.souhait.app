@@ -1,7 +1,6 @@
 // SPDX-FileCopyrightText: 2024 taiy https://github.com/taiyme
 // SPDX-License-Identifier: MIT
 
-import type { ReactNode } from 'react';
 import type { VariantProps } from 'tailwind-variants';
 import { tv } from 'tailwind-variants';
 import { Link } from 'waku';
@@ -51,12 +50,8 @@ export default function LinkText({ children, variant, className, ...linkProps }:
     external: isExternalLink,
   });
 
-  const LinkComponent = isExternalLink || isDownloadLink
-    ? ({ children }: { children: ReactNode; }) => <a className={anchor({ class: className })} {...linkAttrs}>{children}</a>
-    : ({ children }: { children: ReactNode; }) => <Link className={anchor({ class: className })} {...linkAttrs}>{children}</Link>;
-
-  return (
-    <LinkComponent>
+  const textElement = (
+    <>
       <span className={text()}>
         {children}
       </span>
@@ -65,6 +60,20 @@ export default function LinkText({ children, variant, className, ...linkProps }:
           className={icon()}
         />
       )}
-    </LinkComponent>
+    </>
+  );
+
+  if (isExternalLink || isDownloadLink) {
+    return (
+      <a className={anchor({ class: className })} {...linkAttrs}>
+        {textElement}
+      </a>
+    );
+  }
+
+  return (
+    <Link className={anchor({ class: className })} {...linkAttrs}>
+      {textElement}
+    </Link>
   );
 }

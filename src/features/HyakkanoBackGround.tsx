@@ -17,7 +17,9 @@ interface AnimationHeartProps {
   isReducedMotion?: boolean;
 }
 function AnimationHeart({ isReducedMotion }: AnimationHeartProps) {
+  // eslint-disable-next-line react-hooks/purity
   const defaultLeft = useMemo(() => `${Math.random() * 100}%`, []);
+  // eslint-disable-next-line react-hooks/purity
   const defaultTop = useMemo(() => `${Math.random() * 100}%`, []);
   const defaultDuration = useMemo(() => getRandomDuration(), []);
 

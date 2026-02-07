@@ -1,4 +1,4 @@
-import type { ComponentPropsWithRef, FC, ReactNode } from 'react';
+import type { ComponentPropsWithRef, FC } from 'react';
 import type { VariantProps } from 'tailwind-variants';
 import { tv } from 'tailwind-variants';
 import { Link } from 'waku';
@@ -74,21 +74,29 @@ export default function LinkButton({ size, variant, align, children, icon: IconC
   const { linkAttrs, isExternalLink, isDownloadLink } = generateLinkAttributes(linkProps);
   const { anchor, text, textContainer } = slots({ variant, align, size });
 
-  const LinkComponent = isExternalLink || isDownloadLink
-    ? ({ children }: { children: ReactNode; }) => <a className={anchor({ class: className })} {...linkAttrs}>{children}</a>
-    : ({ children }: { children: ReactNode; }) => <Link className={anchor({ class: className })} {...linkAttrs}>{children}</Link>;
+  const textElement = (
+    <div className={textContainer()}>
+      {IconComponent && (
+        <IconComponent className='size-6' />
+      )}
+      <span
+        className={text()}
+      >{children}
+      </span>
+    </div>
+  );
+
+  if (isExternalLink || isDownloadLink) {
+    return (
+      <a className={anchor({ class: className })} {...linkAttrs}>
+        {textElement}
+      </a>
+    );
+  }
 
   return (
-    <LinkComponent>
-      <div className={textContainer()}>
-        {IconComponent && (
-          <IconComponent className='size-6' />
-        )}
-        <span
-          className={text()}
-        >{children}
-        </span>
-      </div>
-    </LinkComponent>
+    <Link className={anchor({ class: className })} {...linkAttrs}>
+      {textElement}
+    </Link>
   );
 }
