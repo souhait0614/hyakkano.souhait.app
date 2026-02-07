@@ -1,12 +1,13 @@
 // @ts-check
 
 import taiymeConfig from '@taiyme/eslint-config';
+import tsEslintParser from '@typescript-eslint/parser';
 import gitignore from 'eslint-config-flat-gitignore';
 import betterTailwindcss from 'eslint-plugin-better-tailwindcss';
 import { getDefaultCallees } from 'eslint-plugin-better-tailwindcss/api/defaults';
 import { MatcherType } from 'eslint-plugin-better-tailwindcss/api/types';
+import { defineConfig } from 'eslint/config';
 import globals from 'globals';
-import tsEslint from 'typescript-eslint';
 
 /** @typedef {import('eslint-plugin-better-tailwindcss/api/types').CalleeMatchers} CalleeMatchers */
 
@@ -36,8 +37,7 @@ const TV_SLOT_VALUES = [
   ],
 ];
 
-// TODO: eslint/configのdefineConfigに移行したいがextendsで謎の型エラーが出るため保留
-export default tsEslint.config(
+export default defineConfig(
   gitignore(),
   {
     ignores: [
@@ -50,6 +50,7 @@ export default tsEslint.config(
     extends: [
       taiymeConfig.configs.typescript,
       taiymeConfig.configs.react,
+      taiymeConfig.configs.stylistic,
     ],
     languageOptions: {
       globals: {
@@ -57,13 +58,10 @@ export default tsEslint.config(
         ...globals.browser,
         React: 'readonly',
       },
-      parser: tsEslint.parser,
+      parser: tsEslintParser,
       parserOptions: {
-        project: './tsconfig.json',
+        projectService: true,
         tsconfigRootDir: import.meta.dirname,
-        ecmaFeatures: {
-          jsx: true,
-        },
       },
     },
     settings: {
