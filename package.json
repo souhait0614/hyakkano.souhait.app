@@ -36,7 +36,7 @@
     "@taiyme/vite-plugin-jsx-prune-classname": "0.0.3",
     "@types/canvas-confetti": "1.9.0",
     "@types/node": "24.10.11",
-    "@types/react": "19.2.10",
+    "@types/react": "19.2.13",
     "@types/react-dom": "19.2.3",
     "@typescript-eslint/parser": "8.54.0",
     "concurrently": "9.2.1",
@@ -51,7 +51,7 @@
     "stylelint-config-tailwindcss": "1.0.1",
     "tailwindcss": "4.1.18",
     "terser": "5.46.0",
-    "type-fest": "5.4.2",
+    "type-fest": "5.4.3",
     "typescript": "5.9.3",
     "vite": "7.3.1",
     "vite-tsconfig-paths": "6.0.5"
