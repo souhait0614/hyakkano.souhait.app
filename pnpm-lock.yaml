@@ -41,8 +41,8 @@ importers:
         specifier: 19.2.4
         version: 19.2.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(webpack@5.103.0)
       schummar-translate:
-        specifier: 1.25.2
-        version: 1.25.2(@formatjs/intl-durationformat@0.7.6)(@types/react@19.2.14)(react@19.2.4)
+        specifier: 1.26.1
+        version: 1.26.1(@formatjs/intl-durationformat@0.7.6)(@types/react@19.2.14)(react@19.2.4)
       tailwind-merge:
         specifier: 3.4.0
         version: 3.4.0
@@ -2453,8 +2453,8 @@ packages:
     resolution: {integrity: sha512-eflK8wEtyOE6+hsaRVPxvUKYCpRgzLqDTb8krvAsRIwOGlHoSgYLgBXoubGgLd2fT41/OUYdb48v4k4WWHQurA==}
     engines: {node: '>= 10.13.0'}
 
-  schummar-translate@1.25.2:
-    resolution: {integrity: sha512-7KX85e0qKlYp6nS6jYxl0UwO02/5iIZZEaLViMqNFUiwns3R/BosUUp2esPedyRAMnGkPbUJK3e91U9S1HYnxw==}
+  schummar-translate@1.26.1:
+    resolution: {integrity: sha512-rUqEShxQBFq5Asbq8blSJDkB7/RV6ZRnJZFsal5rFWqTBZ7QMtIWkrm66hIsC3NODRM/BrlbC2RkcJBpxL4d1Q==}
     peerDependencies:
       '@formatjs/intl-durationformat': '>=0.2.2'
       '@types/react': '>=16.8.0'
@@ -5469,7 +5469,7 @@ snapshots:
       ajv-formats: 2.1.1(ajv@8.17.1)
       ajv-keywords: 5.1.0(ajv@8.17.1)
 
-  schummar-translate@1.25.2(@formatjs/intl-durationformat@0.7.6)(@types/react@19.2.14)(react@19.2.4):
+  schummar-translate@1.26.1(@formatjs/intl-durationformat@0.7.6)(@types/react@19.2.14)(react@19.2.4):
     dependencies:
       '@formatjs/icu-messageformat-parser': 2.11.4
       '@formatjs/intl-durationformat': 0.7.6
