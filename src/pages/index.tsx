@@ -20,7 +20,7 @@ export default function Page(pageProps: PageProps<'/'>) {
       <PageHead metadata={metadata} pageProps={pageProps} />
       <div className='page-container h-full'>
         <h1 className='page-title'>{metadata.title}</h1>
-        <div className='flex grow flex-col justify-center gap-4'>
+        <div className='page-container grow justify-center'>
           <article className='card'>
             <h2><LinkText to='/birthday'>{pageBirthdayMetadata.title}</LinkText></h2>
             <p>{pageBirthdayMetadata.description}</p>
