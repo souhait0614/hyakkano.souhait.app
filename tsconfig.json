@@ -16,7 +16,6 @@
     "jsxImportSource": "react",
 
     /* Type Checking */
-    "allowJs": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
