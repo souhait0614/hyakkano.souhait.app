@@ -108,7 +108,7 @@ interface UpdateLog {
 
 const updateLogs: UpdateLog[] = [
   { date: [2026, 1, 8], description: '36人目の彼女に対応' },
-  { date: [2026, 3, 24], description: 'キャラクター担当声優の読みに存在した誤字を修正(たかおかなね→たかおかのん)' },
+  { date: [2026, 3, 24], description: 'キャラクター担当声優の読みに存在した誤字を修正\n(たかおかなね→たかおかのん)' },
 ];
 
 export default function Page(pageProps: PageProps<'/ime-dict'>) {
@@ -171,16 +171,31 @@ export default function Page(pageProps: PageProps<'/ime-dict'>) {
         <section className='flex flex-col gap-2 card'>
           <h2>更新履歴</h2>
           <ul className='list-inside list-disc'>
-            {updateLogs.map((log) => {
-              const [year, month, day] = log.date;
-              return (
-                <li key={log.date.join('-')}>
-                  <strong>{String(year).padStart(4, '0')}/{String(month).padStart(2, '0')}/{String(day).padStart(2, '0')}</strong> - {log.description}
-                </li>
-              );
-            })}
+            {updateLogs
+              .sort((a, b) => {
+                const dateA = new Date(a.date[0], a.date[1] - 1, a.date[2]);
+                const dateB = new Date(b.date[0], b.date[1] - 1, b.date[2]);
+                return dateB.getTime() - dateA.getTime();
+              })
+              .map((log) => {
+                const [year, month, day] = log.date;
+                const dateTimeStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                const formattedDateStr = `${String(year).padStart(4, '0')}/${String(month).padStart(2, '0')}/${String(day).padStart(2, '0')}`;
+                return (
+                  <li
+                    key={log.date.join('-')}
+                    className='grid grid-cols-[auto_1fr] items-baseline gap-2'
+                  >
+                    <time dateTime={dateTimeStr} className='text-sm font-bold'>
+                      {formattedDateStr}
+                    </time>
+                    <p className='whitespace-pre-wrap'>{log.description}</p>
+                  </li>
+                );
+              })}
           </ul>
           <p className='text-sm'>更新されたファイルを再度インポートすることで更新分のみを取り込むことができます。</p>
+          <p className='text-sm'>語句や読みが修正された場合、お手数ですが該当する修正前の登録内容を削除の上、再度インポートしてください。</p>
         </section>
         <section className='flex flex-col gap-2 card'>
           <h2>ダウンロード</h2>
