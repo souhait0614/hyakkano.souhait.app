@@ -141,7 +141,7 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 6,
     releaseAnimeSeason: 2,
     releaseAnimeEpisode: 22,
-    animeVoiceActors: [{ kanji: ['高尾', '奏音'], hiragana: ['たかお', 'かなね'] }],
+    animeVoiceActors: [{ kanji: ['高尾', '奏音'], hiragana: ['たかお', 'かのん'] }],
     girlfriendNumber: 11,
   },
   {

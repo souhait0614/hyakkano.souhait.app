@@ -108,6 +108,7 @@ interface UpdateLog {
 
 const updateLogs: UpdateLog[] = [
   { date: [2026, 1, 8], description: '36人目の彼女に対応' },
+  { date: [2026, 3, 24], description: 'キャラクター担当声優の読みに存在した誤字を修正(たかおかなね→たかおかのん)' },
 ];
 
 export default function Page(pageProps: PageProps<'/ime-dict'>) {
