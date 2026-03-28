@@ -154,7 +154,7 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 7,
     releaseAnimeSeason: 3,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
+    animeVoiceActors: [{ kanji: ['石原', '夏織'], hiragana: ['いしはら', 'かおり'] }],
     girlfriendNumber: 12,
   },
   {
@@ -167,7 +167,7 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 7,
     releaseAnimeSeason: 3,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
+    animeVoiceActors: [{ kanji: ['竹達', '彩奈'], hiragana: ['たけたつ', 'あやな'] }],
     girlfriendNumber: 13,
   },
   {
