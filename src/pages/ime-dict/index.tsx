@@ -110,6 +110,7 @@ const updateLogs: UpdateLog[] = [
   { date: [2026, 1, 8], description: '36人目の彼女に対応' },
   { date: [2026, 3, 24], description: 'キャラクター担当声優の読みに存在した誤字を修正\n(たかおかなね→たかおかのん)' },
   { date: [2026, 3, 28], description: '2026/03/28までに発表されたアニメ第3期に登場するキャラクターの担当声優を反映' },
+  { date: [2026, 4, 2], description: '恋太郎ファミリーの日常 第1話に登場したキャラクターに対応\n(番外編に現状未対応のため、暫定的に本編245.5話として登録しています)' },
 ];
 
 export default function Page(pageProps: PageProps<'/ime-dict'>) {
