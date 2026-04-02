@@ -26,7 +26,7 @@
     "schummar-translate": "1.26.1",
     "tailwind-merge": "3.5.0",
     "tailwind-variants": "3.2.2",
-    "valibot": "1.2.0",
+    "valibot": "1.3.1",
     "waku": "0.27.5"
   },
   "devDependencies": {
