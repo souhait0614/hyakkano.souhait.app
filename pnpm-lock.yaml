@@ -57,8 +57,8 @@ importers:
         version: 0.27.5(patch_hash=1ec4ebb3a2bd888d636c07ed643ac8d9b898adde7ac093eab13a8488229fab96)(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.32.0)(react-dom@19.2.4(react@19.2.4))(react-server-dom-webpack@19.2.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(webpack@5.103.0))(react@19.2.4)(terser@5.46.1)
     devDependencies:
       '@stylistic/stylelint-config':
-        specifier: 4.0.0
-        version: 4.0.0(stylelint@17.6.0(typescript@6.0.2))
+        specifier: 5.0.0
+        version: 5.0.0(stylelint@17.6.0(typescript@6.0.2))
       '@tailwindcss/vite':
         specifier: 4.2.2
         version: 4.2.2(vite@7.3.2(@types/node@24.12.0)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.46.1))
@@ -728,17 +728,17 @@ packages:
     peerDependencies:
       eslint: ^9.0.0 || ^10.0.0
 
-  '@stylistic/stylelint-config@4.0.0':
-    resolution: {integrity: sha512-04H8xfsIR/pWpAPQI5aGxwgjeikb8vy4OSNvzRdRcAITYSfX1UUTgGL5jm8iZxN8MSWfN77hMlV1LknE0Ho6tg==}
+  '@stylistic/stylelint-config@5.0.0':
+    resolution: {integrity: sha512-AW6S27wEm4DzB+uOZMvRkONIu0ba50VRbFte7qYJgGP4dacS8kAuj8HZJ+s+8kE4GK3XXBcSKLb75a+NfJlbiQ==}
     engines: {node: '>=20.19.0'}
     peerDependencies:
-      stylelint: ^17.0.0
+      stylelint: ^17.6.0
 
-  '@stylistic/stylelint-plugin@5.0.1':
-    resolution: {integrity: sha512-NaVwCNVZ2LyPA3TnUwvjO9c6P6VUjgRB8UP8SOW+cAOJBVqPPuOIDawsvvtql/LhkuR3JuTdGvr/RM3dUl8l2Q==}
+  '@stylistic/stylelint-plugin@5.1.0':
+    resolution: {integrity: sha512-TFvKCbJUEWUYCD+rDv45qhnStO6nRtbBngaCblS2JGh8c95S3jJi3fIotfF6EDo4IVM15UPa65WP+kp6GNvXRA==}
     engines: {node: '>=20.19.0'}
     peerDependencies:
-      stylelint: ^17.0.0
+      stylelint: ^17.6.0
 
   '@tailwindcss/node@4.2.2':
     resolution: {integrity: sha512-pXS+wJ2gZpVXqFaUEjojq7jzMpTGf8rU6ipJz5ovJV6PUGmlJ+jvIwGrzdHdQ80Sg+wmQxUFuoW1UAAwHNEdFA==}
@@ -3570,12 +3570,12 @@ snapshots:
       estraverse: 5.3.0
       picomatch: 4.0.3
 
-  '@stylistic/stylelint-config@4.0.0(stylelint@17.6.0(typescript@6.0.2))':
+  '@stylistic/stylelint-config@5.0.0(stylelint@17.6.0(typescript@6.0.2))':
     dependencies:
-      '@stylistic/stylelint-plugin': 5.0.1(stylelint@17.6.0(typescript@6.0.2))
+      '@stylistic/stylelint-plugin': 5.1.0(stylelint@17.6.0(typescript@6.0.2))
       stylelint: 17.6.0(typescript@6.0.2)
 
-  '@stylistic/stylelint-plugin@5.0.1(stylelint@17.6.0(typescript@6.0.2))':
+  '@stylistic/stylelint-plugin@5.1.0(stylelint@17.6.0(typescript@6.0.2))':
     dependencies:
       '@csstools/css-parser-algorithms': 4.0.0(@csstools/css-tokenizer@4.0.0)
       '@csstools/css-tokenizer': 4.0.0
