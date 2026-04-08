@@ -46,6 +46,7 @@
     "globals": "17.4.0",
     "jiti": "2.6.1",
     "kiso.css": "1.2.4",
+    "lefthook": "2.1.4",
     "stylelint": "17.6.0",
     "stylelint-config-recess-order": "7.7.0",
     "stylelint-config-recommended": "18.0.0",
@@ -64,6 +65,12 @@
     },
     "patchedDependencies": {
       "waku": "patches/waku.patch"
-    }
+    },
+    "onlyBuiltDependencies": [
+      "@swc/core",
+      "@tailwindcss/oxide",
+      "esbuild",
+      "lefthook"
+    ]
   }
 }

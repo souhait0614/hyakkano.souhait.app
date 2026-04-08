@@ -1,0 +1,9 @@
+pre-commit:
+  parallel: true
+  jobs:
+    - run: pnpm exec eslint {staged_files}
+      glob: "*.{js,mjs,ts,tsx}"
+    - run: pnpm exec stylelint {staged_files}
+      glob: "*.{css,scss}"
+    - run: pnpm exec tsc --noEmit
+      glob: "*.{ts,tsx}"
