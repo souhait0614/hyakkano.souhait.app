@@ -1,1 +1,4 @@
 minimumReleaseAge: 7
+minimumReleaseAgeExclude:
+  # Renovate security update: react-server-dom-webpack@19.2.5
+  - react-server-dom-webpack@19.2.5
