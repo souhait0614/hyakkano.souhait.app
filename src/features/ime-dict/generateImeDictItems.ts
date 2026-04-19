@@ -211,8 +211,8 @@ export async function generateImeDictItems(options?: ImeDictGenerateOptions): Pr
   // タイトル
   if (opts.title) {
     items.push({ word: TITLE, reading: TITLE_HIRAGANA, category: ImeDictItemCategory.title, comment: undefined });
-    items.push({ word: TITLE_SHORT, reading: TITLE_SHORT_HIRAGANA1, category: ImeDictItemCategory.title, comment: `「${TITLE}」の略称` });
-    items.push({ word: TITLE_SHORT, reading: TITLE_SHORT_HIRAGANA2, category: ImeDictItemCategory.title, comment: `「${TITLE}」の略称` });
+    items.push({ word: TITLE_SHORT, reading: TITLE_SHORT_HIRAGANA1, category: ImeDictItemCategory.title, comment: `「${TITLE}」の通称` });
+    items.push({ word: TITLE_SHORT, reading: TITLE_SHORT_HIRAGANA2, category: ImeDictItemCategory.title, comment: `「${TITLE}」の通称` });
   }
 
   // キャラ名: 恋太郎
