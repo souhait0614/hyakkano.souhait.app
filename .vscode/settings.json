@@ -1,35 +1,36 @@
 {
-  "editor.formatOnSave": false,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
-    "source.fixAll.stylelint": "explicit",
-    "source.organizeImports": "never",
-    "source.removeUnusedImports": "never",
-    "source.sortImports": "never",
-  },
-  "eslint.useFlatConfig": true,
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-  ],
-  "typescript.tsdk": "./node_modules/typescript/lib",
-  "files.associations": {
-    "*.css": "tailwindcss"
-  },
-  "stylelint.validate": [
-    "css",
-    "tailwindcss"
-  ],
-  "tailwindCSS.validate": true,
-  "tailwindCSS.classFunctions": [
-    "tv"
-  ],
   "cSpell.words": [
     "Hyakkano",
     "RENTARO",
     "Seiyuu",
     "SEIYUUS"
-  ]
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit",
+    "source.organizeImports": "never",
+    "source.removeUnusedImports": "never",
+    "source.sortImports": "never"
+  },
+  "editor.formatOnSave": false,
+  "eslint.useFlatConfig": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "git.branchProtectionPrompt": "alwaysCommit",
+  "js/ts.tsdk.path": "./node_modules/typescript/lib",
+  "stylelint.validate": [
+    "css",
+    "tailwindcss"
+  ],
+  "tailwindCSS.classFunctions": [
+    "tv"
+  ],
+  "tailwindCSS.validate": true
 }
