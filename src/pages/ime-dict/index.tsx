@@ -261,7 +261,9 @@ export default function Page(pageProps: PageProps<'/ime-dict'>) {
           <h2>注意事項</h2>
           <section className='contents'>
             <h3>辞書に含まれる用語について</h3>
+            <p>漫画版およびTVアニメ版に登場するキャラクター名および一部の用語を収録しています。</p>
             <p>キャラクター名は各種媒体で姿と名前の両方が描写されているもののみを収録しています。</p>
+            <p>先行で姿のみが描写され、後に名前が描写されたキャラクターについては、姿が描写された話数を登場話数として登録しています。</p>
             <p>公式の情報をもとに作成していますが、誤りが含まれる可能性があります。</p>
             <p>辞書内容に関するお問い合わせは、メール（<LinkEmail user='me' domain='souhait.me' />）または<LinkText external href={SITE_CREATOR_SITE_URL}>管理人の各種SNSアカウント</LinkText>までお願いします。</p>
           </section>
