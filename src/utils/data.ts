@@ -1,6 +1,6 @@
 import type { ReleasedInfo } from '@/types/Data';
 import { RELEASED_LEVELS } from '@/constants/released-level';
-import { JUMP_PLUS_RELEASED_EPISODE } from '@/data/meta';
+import { JUMP_PLUS_RELEASE_MAIN_CHAPTER, JUMP_PLUS_RELEASE_SPINOFF_CHAPTER } from '@/data/meta';
 import { ReleasedLevel } from '@/types/ReleasedLevel';
 
 export function validateShortName(name: string[], hiragana: string[], shortNameIndex: number) {
@@ -26,17 +26,26 @@ export function checkReleasedData(data: ReleasedInfo, releasedLevel: ReleasedLev
   const targetLevels = getTargetReleasedLevels(releasedLevel);
   return targetLevels.some((level) => {
     switch (level) {
-      case ReleasedLevel.anime:
+      case ReleasedLevel.anime: {
         return data.releaseAnimeSeason !== undefined && data.releaseAnimeEpisode !== undefined;
-      case ReleasedLevel.comics:
-        return data.releaseOriginalComicsVolume !== undefined;
-      case ReleasedLevel.jumpPlus:
-        return data.releaseOriginalChapter !== undefined && data.releaseOriginalChapter <= JUMP_PLUS_RELEASED_EPISODE;
-      case ReleasedLevel.youngJump:
-        return data.releaseOriginalChapter !== undefined;
-      default:
+      }
+      case ReleasedLevel.comics: {
+        return data.releaseOriginalMainComicsVolume !== undefined;
+      }
+      case ReleasedLevel.jumpPlus: {
+        const mainChapterReleased = data.releaseOriginalMainChapter !== undefined && data.releaseOriginalMainChapter <= JUMP_PLUS_RELEASE_MAIN_CHAPTER;
+        const spinoffChapterReleased = data.releaseOriginalSpinoffChapter !== undefined && data.releaseOriginalSpinoffChapter <= JUMP_PLUS_RELEASE_SPINOFF_CHAPTER;
+        return mainChapterReleased || spinoffChapterReleased;
+      }
+      case ReleasedLevel.youngJump: {
+        const mainChapterReleasedYoungJump = data.releaseOriginalMainChapter !== undefined;
+        const spinoffChapterReleasedYoungJump = data.releaseOriginalSpinoffChapter !== undefined;
+        return mainChapterReleasedYoungJump || spinoffChapterReleasedYoungJump;
+      }
+      default: {
         level satisfies never;
         return false;
+      }
     }
   });
 }
@@ -45,28 +54,36 @@ export function filterReleasedData<T extends string, U extends ReleasedInfo>(dat
   return Array.from(dataList).filter(([, data]) => checkReleasedData(data, releasedLevel));
 }
 
-export function getLatestReleasedData(dataList: ReleasedInfo[]): { animeSeason: number; animeEpisode: number; comicsVolume: number; jumpPlusChapter: number; youngJumpChapter: number; } {
+export function getLatestReleasedData(dataList: ReleasedInfo[]): { animeSeason: number; animeEpisode: number; comicsVolume: number; jumpPlusMainChapter: number; jumpPlusSpinoffChapter: number; youngJumpMainChapter: number; youngJumpSpinoffChapter: number; } {
   let animeSeason = 0;
   let animeEpisode = 0;
   let comicsVolume = 0;
-  let jumpPlusChapter = 0;
-  let youngJumpChapter = 0;
+  let jumpPlusMainChapter = 0;
+  let jumpPlusSpinoffChapter = 0;
+  let youngJumpMainChapter = 0;
+  let youngJumpSpinoffChapter = 0;
 
   for (const data of dataList) {
     if (data.releaseAnimeSeason !== undefined && data.releaseAnimeEpisode !== undefined && data.releaseAnimeEpisode > animeEpisode) {
       animeSeason = data.releaseAnimeSeason;
       animeEpisode = data.releaseAnimeEpisode;
     }
-    if (data.releaseOriginalComicsVolume !== undefined && data.releaseOriginalComicsVolume > comicsVolume) {
-      comicsVolume = data.releaseOriginalComicsVolume;
+    if (data.releaseOriginalMainComicsVolume !== undefined && data.releaseOriginalMainComicsVolume > comicsVolume) {
+      comicsVolume = data.releaseOriginalMainComicsVolume;
     }
-    if (data.releaseOriginalChapter !== undefined && data.releaseOriginalChapter > jumpPlusChapter && data.releaseOriginalChapter <= JUMP_PLUS_RELEASED_EPISODE) {
-      jumpPlusChapter = data.releaseOriginalChapter;
+    if (data.releaseOriginalMainChapter !== undefined && data.releaseOriginalMainChapter > jumpPlusMainChapter && data.releaseOriginalMainChapter <= JUMP_PLUS_RELEASE_MAIN_CHAPTER) {
+      jumpPlusMainChapter = data.releaseOriginalMainChapter;
     }
-    if (data.releaseOriginalChapter !== undefined && data.releaseOriginalChapter > youngJumpChapter) {
-      youngJumpChapter = data.releaseOriginalChapter;
+    if (data.releaseOriginalSpinoffChapter !== undefined && data.releaseOriginalSpinoffChapter > jumpPlusSpinoffChapter && data.releaseOriginalSpinoffChapter <= JUMP_PLUS_RELEASE_SPINOFF_CHAPTER) {
+      jumpPlusSpinoffChapter = data.releaseOriginalSpinoffChapter;
+    }
+    if (data.releaseOriginalMainChapter !== undefined && data.releaseOriginalMainChapter > youngJumpMainChapter) {
+      youngJumpMainChapter = data.releaseOriginalMainChapter;
+    }
+    if (data.releaseOriginalSpinoffChapter !== undefined && data.releaseOriginalSpinoffChapter > youngJumpSpinoffChapter) {
+      youngJumpSpinoffChapter = data.releaseOriginalSpinoffChapter;
     }
   }
 
-  return { animeSeason, animeEpisode, comicsVolume, jumpPlusChapter, youngJumpChapter } as const;
+  return { animeSeason, animeEpisode, comicsVolume, jumpPlusMainChapter, jumpPlusSpinoffChapter, youngJumpMainChapter, youngJumpSpinoffChapter } as const;
 }

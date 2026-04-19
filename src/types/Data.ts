@@ -27,8 +27,9 @@ export type CharacterBirthday = [
 ];
 
 export interface ReleasedInfo {
-  releaseOriginalChapter: number | undefined;
-  releaseOriginalComicsVolume: number | undefined;
+  releaseOriginalMainChapter: number | undefined;
+  releaseOriginalMainComicsVolume: number | undefined;
+  releaseOriginalSpinoffChapter: number | undefined;
   releaseAnimeSeason: number | undefined;
   releaseAnimeEpisode: number | undefined;
 }

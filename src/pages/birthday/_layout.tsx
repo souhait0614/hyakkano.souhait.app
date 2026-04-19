@@ -5,7 +5,7 @@ import type { Character, GirlfriendCharacter } from '@/types/Data';
 import { AUTHOR_CHARACTERS } from '@/data/characters/authors';
 import { GIRLFRIEND_CHARACTERS } from '@/data/characters/girlfriends';
 import { RENTARO_CHARACTERS } from '@/data/characters/rentaro';
-import { JUMP_PLUS_RELEASED_EPISODE } from '@/data/meta';
+import { JUMP_PLUS_RELEASE_MAIN_CHAPTER } from '@/data/meta';
 import CharactersProvider from '@/features/birthday/CharactersProvider';
 import { ReleasedLevel } from '@/types/ReleasedLevel';
 
@@ -17,22 +17,22 @@ function getReleasedLevel(character: Character) {
       releaseAnimeSeason: character.releaseAnimeSeason,
     };
   }
-  if (character.releaseOriginalComicsVolume !== undefined) {
+  if (character.releaseOriginalMainComicsVolume !== undefined) {
     return {
       releasedLevel: ReleasedLevel.comics,
-      releaseOriginalComicsVolume: character.releaseOriginalComicsVolume,
+      releaseOriginalComicsVolume: character.releaseOriginalMainComicsVolume,
     };
   }
-  if (character.releaseOriginalChapter !== undefined) {
-    if (character.releaseOriginalChapter <= JUMP_PLUS_RELEASED_EPISODE) {
+  if (character.releaseOriginalMainChapter !== undefined) {
+    if (character.releaseOriginalMainChapter <= JUMP_PLUS_RELEASE_MAIN_CHAPTER) {
       return {
         releasedLevel: ReleasedLevel.jumpPlus,
-        releaseOriginalChapter: character.releaseOriginalChapter,
+        releaseOriginalChapter: character.releaseOriginalMainChapter,
       };
     }
     return {
       releasedLevel: ReleasedLevel.youngJump,
-      releaseOriginalChapter: character.releaseOriginalChapter,
+      releaseOriginalChapter: character.releaseOriginalMainChapter,
     };
   }
   throw new Error(`Invalid character released level: ${character.name.kanji.join('')}`);

@@ -3,7 +3,7 @@ import { createTranslator } from 'schummar-translate';
 import type { SeiyuuAnimeId } from '@/data/seiyuus/anime';
 import type { Character, CommonName, Location, PersonName, Seiyuu } from '@/types/Data';
 import type { ImeDictItem } from '@/types/ImeDict';
-import { TITLE, TITLE_HIRAGANA, TITLE_SHORT, TITLE_SHORT_HIRAGANA1, TITLE_SHORT_HIRAGANA2 } from '@/data/meta';
+import { TITLE, TITLE_HIRAGANA, TITLE_SHORT, TITLE_SHORT_HIRAGANA1, TITLE_SHORT_HIRAGANA2, TITLE_SPINOFF, TITLE_SPINOFF_HIRAGANA, TITLE_SPINOFF_SHORT, TITLE_SPINOFF_SHORT_HIRAGANA } from '@/data/meta';
 import { ImeDictItemCategory } from '@/types/ImeDict';
 import { checkReleasedData, filterReleasedData, joinName, validateShortName } from '@/utils/data';
 
@@ -213,6 +213,8 @@ export async function generateImeDictItems(options?: ImeDictGenerateOptions): Pr
     items.push({ word: TITLE, reading: TITLE_HIRAGANA, category: ImeDictItemCategory.title, comment: undefined });
     items.push({ word: TITLE_SHORT, reading: TITLE_SHORT_HIRAGANA1, category: ImeDictItemCategory.title, comment: `「${TITLE}」の通称` });
     items.push({ word: TITLE_SHORT, reading: TITLE_SHORT_HIRAGANA2, category: ImeDictItemCategory.title, comment: `「${TITLE}」の通称` });
+    items.push({ word: TITLE_SPINOFF, reading: TITLE_SPINOFF_HIRAGANA, category: ImeDictItemCategory.title, comment: `「${TITLE}」のスピンオフ作品` });
+    items.push({ word: TITLE_SPINOFF_SHORT, reading: TITLE_SPINOFF_SHORT_HIRAGANA, category: ImeDictItemCategory.title, comment: `「${TITLE_SPINOFF}」の通称` });
   }
 
   // キャラ名: 恋太郎

@@ -3,6 +3,7 @@
 import type { SelectHTMLAttributes } from 'react';
 import { useCallback, useMemo } from 'react';
 
+import { TITLE_SPINOFF } from '@/data/meta';
 import { ReleasedLevel } from '@/types/ReleasedLevel';
 
 import type { ImeDictGenerateOptionsInput } from './schemas';
@@ -13,20 +14,22 @@ interface GenerateOptionsReleasedLevelSelectorProps extends Omit<SelectHTMLAttri
   latestAnimeSeason: number;
   latestAnimeEpisode: number;
   latestComicsVolume: number;
-  latestJumpPlusChapter: number;
-  latestYoungJumpChapter: number;
+  latestJumpPlusMainChapter: number;
+  latestJumpPlusSpinoffChapter: number;
+  latestYoungJumpMainChapter: number;
+  latestYoungJumpSpinoffChapter: number;
 }
-export function GenerateOptionsReleasedLevelSelector({ latestAnimeSeason, latestAnimeEpisode, latestComicsVolume, latestJumpPlusChapter, latestYoungJumpChapter, ...props }: GenerateOptionsReleasedLevelSelectorProps) {
+export function GenerateOptionsReleasedLevelSelector({ latestAnimeSeason, latestAnimeEpisode, latestComicsVolume, latestJumpPlusMainChapter, latestJumpPlusSpinoffChapter, latestYoungJumpMainChapter, latestYoungJumpSpinoffChapter, ...props }: GenerateOptionsReleasedLevelSelectorProps) {
   const { generateOptions, setGenerateOptions } = useGenerateOptions();
 
   const releasedLevelFilterOptions = useMemo(
     () => [
-      { label: `${releasedLevelLabels.anime} (~${latestAnimeSeason}期${latestAnimeEpisode}話)`, value: ReleasedLevel.anime },
-      { label: `${releasedLevelLabels.comics} (~${latestComicsVolume}巻)`, value: ReleasedLevel.comics },
-      { label: `${releasedLevelLabels.jumpPlus} (~${latestJumpPlusChapter}話)`, value: ReleasedLevel.jumpPlus },
-      { label: `${releasedLevelLabels.youngJump} (~${latestYoungJumpChapter}話)`, value: ReleasedLevel.youngJump },
+      { label: `${releasedLevelLabels.anime} (${latestAnimeSeason}期${latestAnimeEpisode}話まで)`, value: ReleasedLevel.anime },
+      { label: `${releasedLevelLabels.comics} (${latestComicsVolume}巻まで)`, value: ReleasedLevel.comics },
+      { label: `${releasedLevelLabels.jumpPlus} (本編${latestJumpPlusMainChapter}話, ${TITLE_SPINOFF} 第${latestJumpPlusSpinoffChapter}話まで)`, value: ReleasedLevel.jumpPlus },
+      { label: `${releasedLevelLabels.youngJump} (本編${latestYoungJumpMainChapter}話, ${TITLE_SPINOFF} 第${latestYoungJumpSpinoffChapter}話まで)`, value: ReleasedLevel.youngJump },
     ] as const satisfies { label: string; value: ReleasedLevel; }[],
-    [latestAnimeEpisode, latestAnimeSeason, latestComicsVolume, latestJumpPlusChapter, latestYoungJumpChapter],
+    [latestAnimeEpisode, latestAnimeSeason, latestComicsVolume, latestJumpPlusMainChapter, latestJumpPlusSpinoffChapter, latestYoungJumpMainChapter, latestYoungJumpSpinoffChapter],
   );
 
   return (

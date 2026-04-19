@@ -10,7 +10,7 @@ export const releasedLevelLabels = {
 } as const satisfies Record<ReleasedLevel, string>;
 
 export const generateOptionsKeyLabels = {
-  title: '作品タイトル',
+  title: '作品タイトル（スピンオフ作品を含む）',
   characterRentaro: '恋太郎',
   characterGirlfriends: '彼女',
   characterAuthors: '作者',

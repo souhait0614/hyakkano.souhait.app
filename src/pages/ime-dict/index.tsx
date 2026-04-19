@@ -20,6 +20,7 @@ import { PEPEPE_PENTAROU_CHARACTERS } from '@/data/characters/pepepe-pentarou';
 import { RENTARO_CHARACTERS } from '@/data/characters/rentaro';
 import { SCHOOLS } from '@/data/locations/schools';
 import { TOWNS } from '@/data/locations/towns';
+import { TITLE_SPINOFF } from '@/data/meta';
 import DownloadLinks from '@/features/ime-dict/DownloadLinks';
 import { GenerateOptionsAllSetButtons, GenerateOptionsCharacterTypeCheckBoxes, GenerateOptionsOtherTypeCheckBoxes, GenerateOptionsReleasedLevelSelector } from '@/features/ime-dict/GenerateOptionsForms';
 import GenerateOptionsTable from '@/features/ime-dict/GenerateOptionsTable';
@@ -110,7 +111,8 @@ const updateLogs: UpdateLog[] = [
   { date: [2026, 1, 8], description: '36人目の彼女に対応' },
   { date: [2026, 3, 24], description: 'キャラクター担当声優の読みに存在した誤字を修正\n(たかおかなね→たかおかのん)' },
   { date: [2026, 3, 28], description: '2026/03/28までに発表されたアニメ第3期に登場するキャラクターの担当声優を反映' },
-  { date: [2026, 4, 2], description: '恋太郎ファミリーのファミリーの日常 第1話に登場したキャラクターに対応\n(番外編に現状未対応のため、暫定的に本編245.5話として登録しています)' },
+  { date: [2026, 4, 2], description: `${TITLE_SPINOFF} 第1話に登場したキャラクターに対応` },
+  { date: [2026, 4, 19], description: `${TITLE_SPINOFF}に対応（現状スピンオフ作品として扱っています）` },
 ];
 
 export default function Page(pageProps: PageProps<'/ime-dict'>) {
@@ -213,7 +215,33 @@ export default function Page(pageProps: PageProps<'/ime-dict'>) {
             </DownloadLinkButtonContainer>
           </section>
           <section className='flex flex-col gap-2 card-outlined'>
-            <h3>週刊ヤングジャンプ{latestReleasedData.youngJumpChapter}話までのすべての用語</h3>
+            <h3>収録しているすべての用語</h3>
+            <table className='block text-sm'>
+              <tbody className='contents'>
+                <tr className='flex'>
+                  <th className={`
+                    block w-min whitespace-nowrap
+                    after:content-[":"]
+                  `}
+                  >本編
+                  </th>
+                  <td className='block'>
+                    {latestReleasedData.youngJumpMainChapter}話
+                  </td>
+                </tr>
+                <tr className='flex'>
+                  <th className={`
+                    block w-min whitespace-nowrap
+                    after:content-[":"]
+                  `}
+                  >{TITLE_SPINOFF}
+                  </th>
+                  <td className='block'>
+                    {latestReleasedData.youngJumpSpinoffChapter}話
+                  </td>
+                </tr>
+              </tbody>
+            </table>
             <GenerateOptionsTable generateOptions={generateOptionsYoungJumpAll} />
             <DownloadLinkButtonContainer>
               <MsImeDownloadLinkButton {...generateOptionsYoungJumpAll} />
@@ -234,8 +262,10 @@ export default function Page(pageProps: PageProps<'/ime-dict'>) {
               latestAnimeEpisode={latestReleasedData.animeEpisode}
               latestAnimeSeason={latestReleasedData.animeSeason}
               latestComicsVolume={latestReleasedData.comicsVolume}
-              latestJumpPlusChapter={latestReleasedData.jumpPlusChapter}
-              latestYoungJumpChapter={latestReleasedData.youngJumpChapter}
+              latestJumpPlusMainChapter={latestReleasedData.jumpPlusMainChapter}
+              latestJumpPlusSpinoffChapter={latestReleasedData.jumpPlusSpinoffChapter}
+              latestYoungJumpMainChapter={latestReleasedData.youngJumpMainChapter}
+              latestYoungJumpSpinoffChapter={latestReleasedData.youngJumpSpinoffChapter}
             />
           </section>
           <section>
@@ -261,7 +291,7 @@ export default function Page(pageProps: PageProps<'/ime-dict'>) {
           <h2>注意事項</h2>
           <section className='contents'>
             <h3>辞書に含まれる用語について</h3>
-            <p>漫画版およびTVアニメ版に登場するキャラクター名および一部の用語を収録しています。</p>
+            <p>漫画版（{TITLE_SPINOFF}含む）およびTVアニメ版に登場するキャラクター名および一部の用語を収録しています。</p>
             <p>キャラクター名は各種媒体で姿と名前の両方が描写されているもののみを収録しています。</p>
             <p>先行で姿のみが描写され、後に名前が描写されたキャラクターについては、姿が描写された話数を登場話数として登録しています。</p>
             <p>公式の情報をもとに作成していますが、誤りが含まれる可能性があります。</p>
