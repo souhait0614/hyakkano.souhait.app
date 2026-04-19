@@ -14,7 +14,7 @@ export const IME_DICT_DEFAULT_GENERATE_OPTIONS: ImeDictGenerateOptions = {
   characterJurassicHighSchoolBaseballTeam: false,
   characterPeppePentaro: false,
   characterOthers: false,
-  voiceActors: false,
+  seiyuusAnime: false,
   schools: false,
   towns: false,
 };

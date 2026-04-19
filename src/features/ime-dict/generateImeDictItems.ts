@@ -1,6 +1,7 @@
 import { createTranslator } from 'schummar-translate';
 
-import type { Character, CommonName, Location, PersonName } from '@/types/Data';
+import type { SeiyuuAnimeId } from '@/data/seiyuus/anime';
+import type { Character, CommonName, Location, PersonName, Seiyuu } from '@/types/Data';
 import type { ImeDictItem } from '@/types/ImeDict';
 import { TITLE, TITLE_HIRAGANA, TITLE_SHORT, TITLE_SHORT_HIRAGANA1, TITLE_SHORT_HIRAGANA2 } from '@/data/meta';
 import { ImeDictItemCategory } from '@/types/ImeDict';
@@ -12,14 +13,16 @@ import { IME_DICT_DEFAULT_GENERATE_OPTIONS } from './constants';
 const { getTranslator } = createTranslator({
   sourceLocale: 'ja',
   sourceDictionary: {
+    format: {
+      variantKanji: '{fullName}({variantFullName})',
+    },
     comment: {
       characterFullName: `「${TITLE}」に登場する{description}`,
       characterShortName: `「${TITLE}」に登場する{description}、{fullName}`,
       characterAnotherFullName: `「${TITLE}」に登場する{description}、{fullName}の別名`,
       characterAnotherShortName: `「${TITLE}」に登場する{description}、{fullName}の別名、{anotherFullName}`,
       characterNickname: `「${TITLE}」に登場する{description}、{fullName}の愛称`,
-      animeVoiceActor: `アニメ「${TITLE}」で{fullName}を担当した声優`,
-      variantAnimeVoiceActor: `アニメ「${TITLE}」で{fullName}({variantName})を担当した声優`,
+      seiyuuAnime: `アニメ「${TITLE}」で{nameStr}を担当した声優`,
     },
   },
 } as const);
@@ -29,9 +32,11 @@ export async function generateImeDictItems(options?: ImeDictGenerateOptions): Pr
   const opts = { ...IME_DICT_DEFAULT_GENERATE_OPTIONS, ...options };
 
   const items: ImeDictItem[] = [];
+  const targetCharacters: Partial<Record<string, Character>> = {};
+  const targetSeiyuusAnime: Partial<Record<SeiyuuAnimeId, { characterIds: ({ id: string; variantId: string | null; })[]; }>> = {};
 
-  function pushCharacterNameItems(
-    target: ImeDictItem[],
+  function pushCharacterItems(
+    characterId: string,
     character: Character,
     comments: {
       fullName: (props: { name: PersonName; }) => string;
@@ -39,14 +44,13 @@ export async function generateImeDictItems(options?: ImeDictGenerateOptions): Pr
       anotherFullName?: (props: { name: PersonName; anotherName: PersonName; }) => string;
       anotherShortName?: (props: { name: PersonName; anotherName: PersonName; }) => string;
       nickname?: (props: { name: PersonName; nickname: PersonName; }) => string;
-      animeVoiceActor?: (props: { name: PersonName; animeVoiceActor: PersonName; }) => string;
-      variantAnimeVoiceActor?: (props: { name: PersonName; variantName: PersonName; animeVoiceActor: PersonName; }) => string;
     },
   ) {
+    targetCharacters[characterId] = character;
     const { kanji: name, hiragana, shortNameIndex } = character.name;
     const nameStr = joinName(name);
     const hiraganaStr = joinName(hiragana);
-    target.push({
+    items.push({
       word: nameStr,
       reading: hiraganaStr,
       category: ImeDictItemCategory.characterNameFull,
@@ -60,7 +64,7 @@ export async function generateImeDictItems(options?: ImeDictGenerateOptions): Pr
         throw new Error(errorMsg);
       }
       const { shortName, shortNameHiragana } = validateShortName(name, hiragana, shortNameIndex);
-      target.push({
+      items.push({
         word: shortName,
         reading: shortNameHiragana,
         category: ImeDictItemCategory.characterNameShort,
@@ -78,7 +82,7 @@ export async function generateImeDictItems(options?: ImeDictGenerateOptions): Pr
         const { kanji: anotherNameNames, hiragana: anotherNameHiraganas, shortNameIndex: anotherNameShortNameIndex } = anotherName;
         const anotherNameStr = joinName(anotherNameNames);
         const anotherNameHiraganaStr = joinName(anotherNameHiraganas);
-        target.push({
+        items.push({
           word: anotherNameStr,
           reading: anotherNameHiraganaStr,
           category: ImeDictItemCategory.characterAnotherNameFull,
@@ -87,7 +91,7 @@ export async function generateImeDictItems(options?: ImeDictGenerateOptions): Pr
 
         if (anotherNameShortNameIndex !== undefined) {
           const { shortName, shortNameHiragana } = validateShortName(anotherNameNames, anotherNameHiraganas, anotherNameShortNameIndex);
-          target.push({
+          items.push({
             word: shortName,
             reading: shortNameHiragana,
             category: ImeDictItemCategory.characterAnotherNameShort,
@@ -107,7 +111,7 @@ export async function generateImeDictItems(options?: ImeDictGenerateOptions): Pr
         const { kanji: nicknameName, hiragana: nicknameHiragana } = nickname;
         const nicknameStr = joinName(nicknameName);
         const nicknameHiraganaStr = joinName(nicknameHiragana);
-        target.push({
+        items.push({
           word: nicknameStr,
           reading: nicknameHiraganaStr,
           category: ImeDictItemCategory.characterNickname,
@@ -116,51 +120,61 @@ export async function generateImeDictItems(options?: ImeDictGenerateOptions): Pr
       }
     }
 
-    if (options?.voiceActors && character.animeVoiceActors) {
-      if (comments.animeVoiceActor === undefined) {
-        const errorMsg = 'animeVoiceActorsが存在する場合、comments.animeVoiceActorは必須です';
-        console.error(errorMsg, character);
-        throw new Error(errorMsg);
-      }
-      for (const animeVoiceActor of character.animeVoiceActors) {
-        const { kanji: animeVoiceActorName, hiragana: animeVoiceActorHiragana } = animeVoiceActor;
-        const animeVoiceActorNameStr = joinName(animeVoiceActorName);
-        const animeVoiceActorHiraganaStr = joinName(animeVoiceActorHiragana);
-        target.push({
-          word: animeVoiceActorNameStr,
-          reading: animeVoiceActorHiraganaStr,
-          category: ImeDictItemCategory.characterAnimeVoiceActor,
-          comment: comments.animeVoiceActor({ name: character.name, animeVoiceActor }),
-        });
+    if (character.seiyuuAnimeIds) {
+      for (const seiyuuAnimeId of character.seiyuuAnimeIds) {
+        targetSeiyuusAnime[seiyuuAnimeId] ??= { characterIds: [] };
+        targetSeiyuusAnime[seiyuuAnimeId].characterIds.push({ id: characterId, variantId: null });
       }
     }
 
     if (character.variants) {
-      for (const variant of character.variants) {
-        if (options?.voiceActors && variant.animeVoiceActors) {
-          if (comments.variantAnimeVoiceActor === undefined) {
-            const errorMsg = 'variants[number].animeVoiceActorsが存在する場合、comments.variantAnimeVoiceActorは必須です';
-            console.error(errorMsg, character);
-            throw new Error(errorMsg);
-          }
-          for (const animeVoiceActor of variant.animeVoiceActors) {
-            const { kanji: animeVoiceActorName, hiragana: animeVoiceActorHiragana } = animeVoiceActor;
-            const animeVoiceActorNameStr = joinName(animeVoiceActorName);
-            const animeVoiceActorHiraganaStr = joinName(animeVoiceActorHiragana);
-            target.push({
-              word: animeVoiceActorNameStr,
-              reading: animeVoiceActorHiraganaStr,
-              category: ImeDictItemCategory.characterAnimeVoiceActor,
-              comment: comments.variantAnimeVoiceActor({ name: character.name, variantName: variant.variantName, animeVoiceActor }),
-            });
+      for (const [variantCharacterId, variantCharacter] of filterReleasedData(character.variants, opts.releasedLevel)) {
+        if (variantCharacter.seiyuuAnimeIds) {
+          for (const seiyuuAnimeId of variantCharacter.seiyuuAnimeIds) {
+            targetSeiyuusAnime[seiyuuAnimeId] ??= { characterIds: [] };
+            targetSeiyuusAnime[seiyuuAnimeId].characterIds.push({ id: characterId, variantId: variantCharacterId });
           }
         }
       }
     }
   }
 
+  function pushSeiyuuItems(
+    seiyuu: Seiyuu,
+    characterIds: { id: string; variantId: string | null; }[],
+    comments: {
+      name: (props: { nameStr: string; }) => string;
+    },
+  ) {
+    const { kanji: name, hiragana } = seiyuu.name;
+    const characterNames = characterIds.map(({ id, variantId }) => {
+      const character = targetCharacters[id];
+      if (!character) {
+        const errorMsg = `対象のキャラクターが見つかりませんでした: ${id}`;
+        console.error(errorMsg);
+        throw new Error(errorMsg);
+      }
+      if (variantId) {
+        const variantMap = new Map(character.variants);
+        const variantCharacter = variantMap.get(variantId);
+        if (!variantCharacter) {
+          const errorMsg = `対象のバリアントキャラクターが見つかりませんでした: ${variantId}`;
+          console.error(errorMsg);
+          throw new Error(errorMsg);
+        }
+        return t('format.variantKanji', { fullName: joinName(character.name.kanji), variantFullName: joinName(variantCharacter.variantName.kanji) });
+      }
+      return joinName(character.name.kanji);
+    });
+    items.push({
+      word: joinName(name),
+      reading: joinName(hiragana),
+      category: 'seiyuuAnimeName',
+      comment: comments.name({ nameStr: characterNames.join(',') }),
+    });
+  }
+
   function pushLocationNameItems(
-    target: ImeDictItem[],
     location: Location,
     comments: {
       name: (props: { name: CommonName; }) => string;
@@ -168,7 +182,7 @@ export async function generateImeDictItems(options?: ImeDictGenerateOptions): Pr
     },
   ) {
     const { kanji: name, hiragana } = location.name;
-    target.push({
+    items.push({
       word: name,
       reading: hiragana,
       category: 'locationName',
@@ -182,7 +196,7 @@ export async function generateImeDictItems(options?: ImeDictGenerateOptions): Pr
       }
       for (const anotherName of location.anotherNames) {
         const { kanji: anotherNameName, hiragana: anotherNameHiragana } = anotherName;
-        target.push({
+        items.push({
           word: anotherNameName,
           reading: anotherNameHiragana,
           category: 'locationNameAnother',
@@ -192,6 +206,8 @@ export async function generateImeDictItems(options?: ImeDictGenerateOptions): Pr
     }
   }
 
+  const rentaroCharacterId = 'character_rentaro_aijou_rentaro';
+
   // タイトル
   if (opts.title) {
     items.push({ word: TITLE, reading: TITLE_HIRAGANA, category: ImeDictItemCategory.title, comment: undefined });
@@ -199,119 +215,147 @@ export async function generateImeDictItems(options?: ImeDictGenerateOptions): Pr
     items.push({ word: TITLE_SHORT, reading: TITLE_SHORT_HIRAGANA2, category: ImeDictItemCategory.title, comment: `「${TITLE}」の略称` });
   }
 
-  // 人名: 恋太郎
+  // キャラ名: 恋太郎
   if (opts.characterRentaro) {
-    const { RENTARO_CHARACTER } = await import('@/data/characters/rentaro');
-    if (checkReleasedData(RENTARO_CHARACTER, opts.releasedLevel)) {
-      pushCharacterNameItems(items, RENTARO_CHARACTER, {
+    const { RENTARO_CHARACTERS } = await import('@/data/characters/rentaro');
+    const rentaroCharacter = RENTARO_CHARACTERS.get(rentaroCharacterId);
+    if (!rentaroCharacter) {
+      const errorMsg = '主人公のキャラクターデータが見つかりませんでした';
+      console.error(errorMsg);
+      throw new Error(errorMsg);
+    }
+    if (checkReleasedData(rentaroCharacter, opts.releasedLevel)) {
+      pushCharacterItems(rentaroCharacterId, rentaroCharacter, {
         fullName: () => `「${TITLE}」の主人公`,
         shortName: ({ name }) => `「${TITLE}」の主人公、${joinName(name.kanji)}`,
-        animeVoiceActor: ({ name }) => t('comment.animeVoiceActor', { fullName: joinName(name.kanji) }),
-        variantAnimeVoiceActor: ({ name, variantName }) => t('comment.variantAnimeVoiceActor', { fullName: joinName(name.kanji), variantName: joinName(variantName.kanji) }),
       });
     }
   }
 
-  // 人名: 彼女
+  // キャラ名: 彼女
   if (opts.characterGirlfriends) {
-    const { RENTARO_CHARACTER } = await import('@/data/characters/rentaro');
+    const { RENTARO_CHARACTERS } = await import('@/data/characters/rentaro');
+    const rentaroCharacter = RENTARO_CHARACTERS.get(rentaroCharacterId);
+    if (!rentaroCharacter) {
+      const errorMsg = '主人公のキャラクターデータが見つかりませんでした';
+      console.error(errorMsg);
+      throw new Error(errorMsg);
+    }
     const { GIRLFRIEND_CHARACTERS } = await import('@/data/characters/girlfriends');
-    const description = `${joinName(RENTARO_CHARACTER.name.kanji)}の彼女`;
-    for (const girlfriendCharacter of filterReleasedData(GIRLFRIEND_CHARACTERS, opts.releasedLevel)) {
-      pushCharacterNameItems(items, girlfriendCharacter, {
+    const description = `${joinName(rentaroCharacter.name.kanji)}の彼女`;
+    for (const [girlfriendCharacterId, girlfriendCharacter] of filterReleasedData(GIRLFRIEND_CHARACTERS, opts.releasedLevel)) {
+      pushCharacterItems(girlfriendCharacterId, girlfriendCharacter, {
         fullName: () => t('comment.characterFullName', { description }),
         shortName: ({ name }) => t('comment.characterShortName', { description, fullName: joinName(name.kanji) }),
         anotherFullName: ({ name }) => t('comment.characterAnotherFullName', { description, fullName: joinName(name.kanji) }),
         anotherShortName: ({ name, anotherName }) => t('comment.characterAnotherShortName', { description, fullName: joinName(name.kanji), anotherFullName: joinName(anotherName.kanji) }),
         nickname: ({ name }) => t('comment.characterNickname', { description, fullName: joinName(name.kanji) }),
-        animeVoiceActor: ({ name }) => t('comment.animeVoiceActor', { fullName: joinName(name.kanji) }),
-        variantAnimeVoiceActor: ({ name, variantName }) => t('comment.variantAnimeVoiceActor', { fullName: joinName(name.kanji), variantName: joinName(variantName.kanji) }),
       });
     }
   }
 
-  // 人名: 作者
+  // キャラ名: 作者
   if (opts.characterAuthors) {
     const { AUTHOR_CHARACTERS } = await import('@/data/characters/authors');
-    const [AUTHOR_CHARACTER_NAKAMURA, AUTHOR_CHARACTER_NOZAWA, ...AUTHOR_CHARACTER_OTHERS] = AUTHOR_CHARACTERS;
-    if (checkReleasedData(AUTHOR_CHARACTER_NAKAMURA, opts.releasedLevel)) {
-      pushCharacterNameItems(items, AUTHOR_CHARACTER_NAKAMURA, {
+    const nakamuraCharacterId = 'character_author_nakamura_rikito';
+    const authorCharacterNakamura = AUTHOR_CHARACTERS.get(nakamuraCharacterId);
+    if (!authorCharacterNakamura) {
+      const errorMsg = '原作者のキャラクターデータが見つかりませんでした';
+      console.error(errorMsg);
+      throw new Error(errorMsg);
+    }
+    if (checkReleasedData(authorCharacterNakamura, opts.releasedLevel)) {
+      pushCharacterItems(nakamuraCharacterId, authorCharacterNakamura, {
         fullName: () => `漫画「${TITLE}」の原作担当`,
-        nickname: () => `漫画「${TITLE}」の原作担当、${joinName(AUTHOR_CHARACTER_NAKAMURA.name.kanji)}の愛称`,
+        nickname: () => `漫画「${TITLE}」の原作担当、${joinName(authorCharacterNakamura.name.kanji)}の愛称`,
       });
     }
-    if (checkReleasedData(AUTHOR_CHARACTER_NOZAWA, opts.releasedLevel)) {
-      pushCharacterNameItems(items, AUTHOR_CHARACTER_NOZAWA, {
+    const nozawaCharacterId = 'character_author_nozawa_yukiko';
+    const authorCharacterNozawa = AUTHOR_CHARACTERS.get(nozawaCharacterId);
+    if (!authorCharacterNozawa) {
+      const errorMsg = '作画担当のキャラクターデータが見つかりませんでした';
+      console.error(errorMsg);
+      throw new Error(errorMsg);
+    }
+    if (checkReleasedData(authorCharacterNozawa, opts.releasedLevel)) {
+      pushCharacterItems(nozawaCharacterId, authorCharacterNozawa, {
         fullName: () => `漫画「${TITLE}」の作画担当`,
-        nickname: () => `漫画「${TITLE}」の作画担当、${joinName(AUTHOR_CHARACTER_NOZAWA.name.kanji)}の愛称`,
+        nickname: () => `漫画「${TITLE}」の作画担当、${joinName(authorCharacterNozawa.name.kanji)}の愛称`,
       });
     }
-    // NOTE: 作者網羅チェック
-    AUTHOR_CHARACTER_OTHERS satisfies never[];
   }
 
-  // 人名: 王冠恋物語登場人物
+  // キャラ名: 王冠恋物語登場人物
   if (opts.characterCircletLoveStory) {
     const { CIRCLET_LOVE_STORY_CHARACTERS } = await import('@/data/characters/circlet-love-story');
     const description = '小説「王冠恋物語」のキャラクター';
-    for (const circletLoveStoryCharacter of filterReleasedData(CIRCLET_LOVE_STORY_CHARACTERS, opts.releasedLevel)) {
-      pushCharacterNameItems(items, circletLoveStoryCharacter, {
+    for (const [circletLoveStoryCharacterId, circletLoveStoryCharacter] of filterReleasedData(CIRCLET_LOVE_STORY_CHARACTERS, opts.releasedLevel)) {
+      pushCharacterItems(circletLoveStoryCharacterId, circletLoveStoryCharacter, {
         fullName: () => t('comment.characterFullName', { description }),
-        animeVoiceActor: ({ name }) => t('comment.animeVoiceActor', { fullName: joinName(name.kanji) }),
       });
     }
   }
 
-  // 人名: ゴリラ連合所属者
+  // キャラ名: ゴリラ連合所属者
   if (opts.characterGoriraAlliance) {
     const { GORIRA_ALLIANCE_CHARACTERS } = await import('@/data/characters/gorira-alliance');
     const description = '暴走族「ゴリラ連合」に所属するキャラクター';
-    for (const goriraAllianceCharacter of filterReleasedData(GORIRA_ALLIANCE_CHARACTERS, opts.releasedLevel)) {
-      pushCharacterNameItems(items, goriraAllianceCharacter, {
+    for (const [goriraAllianceCharacterId, goriraAllianceCharacter] of filterReleasedData(GORIRA_ALLIANCE_CHARACTERS, opts.releasedLevel)) {
+      pushCharacterItems(goriraAllianceCharacterId, goriraAllianceCharacter, {
         fullName: () => t('comment.characterFullName', { description }),
         nickname: ({ name }) => t('comment.characterNickname', { description, fullName: joinName(name.kanji) }),
-        animeVoiceActor: ({ name }) => t('comment.animeVoiceActor', { fullName: joinName(name.kanji) }),
       });
     }
   }
 
-  // 人名: 寿裸漆区高校女子野球部
+  // キャラ名: 寿裸漆区高校女子野球部
   if (opts.characterJurassicHighSchoolBaseballTeam) {
     const { JURASSIC_HIGH_SCHOOL_BASEBALL_TEAM_CHARACTERS } = await import('@/data/characters/jurassic-high-school-baseball-team');
     const description = 'チーム「寿裸漆区高校女子野球部」のキャラクター';
-    for (const jurassicHighSchoolBaseballTeamCharacter of filterReleasedData(JURASSIC_HIGH_SCHOOL_BASEBALL_TEAM_CHARACTERS, opts.releasedLevel)) {
-      pushCharacterNameItems(items, jurassicHighSchoolBaseballTeamCharacter, {
+    for (const [jurassicHighSchoolBaseballTeamCharacterId, jurassicHighSchoolBaseballTeamCharacter] of filterReleasedData(JURASSIC_HIGH_SCHOOL_BASEBALL_TEAM_CHARACTERS, opts.releasedLevel)) {
+      pushCharacterItems(jurassicHighSchoolBaseballTeamCharacterId, jurassicHighSchoolBaseballTeamCharacter, {
         fullName: () => t('comment.characterFullName', { description }),
         nickname: ({ name }) => t('comment.characterNickname', { description, fullName: joinName(name.kanji) }),
-        animeVoiceActor: ({ name }) => t('comment.animeVoiceActor', { fullName: joinName(name.kanji) }),
       });
     }
   }
 
-  // 人名: ペペペのペン太郎
+  // キャラ名: ペペペのペン太郎
   if (opts.characterPeppePentaro) {
     const { PEPEPE_PENTAROU_CHARACTERS } = await import('@/data/characters/pepepe-pentarou');
     const description = 'アニメ「ペペペのペン太郎」のキャラクター';
-    for (const peppePentaroCharacter of filterReleasedData(PEPEPE_PENTAROU_CHARACTERS, opts.releasedLevel)) {
-      pushCharacterNameItems(items, peppePentaroCharacter, {
+    for (const [peppePentaroCharacterId, peppePentaroCharacter] of filterReleasedData(PEPEPE_PENTAROU_CHARACTERS, opts.releasedLevel)) {
+      pushCharacterItems(peppePentaroCharacterId, peppePentaroCharacter, {
         fullName: () => t('comment.characterFullName', { description }),
       });
     }
   }
 
-  // 人名: その他
+  // キャラ名: その他
   if (opts.characterOthers) {
     const { OTHER_CHARACTERS } = await import('@/data/characters/others');
     const description = 'キャラクター';
-    for (const otherCharacter of filterReleasedData(OTHER_CHARACTERS, opts.releasedLevel)) {
-      pushCharacterNameItems(items, otherCharacter, {
+    for (const [otherCharacterId, otherCharacter] of filterReleasedData(OTHER_CHARACTERS, opts.releasedLevel)) {
+      pushCharacterItems(otherCharacterId, otherCharacter, {
         fullName: () => t('comment.characterFullName', { description }),
         shortName: ({ name }) => t('comment.characterShortName', { description, fullName: joinName(name.kanji) }),
         anotherFullName: ({ name }) => t('comment.characterAnotherFullName', { description, fullName: joinName(name.kanji) }),
         anotherShortName: ({ name, anotherName }) => t('comment.characterAnotherShortName', { description, fullName: joinName(name.kanji), anotherFullName: joinName(anotherName.kanji) }),
         nickname: ({ name }) => t('comment.characterNickname', { description, fullName: joinName(name.kanji) }),
-        animeVoiceActor: ({ name }) => t('comment.animeVoiceActor', { fullName: joinName(name.kanji) }),
-        variantAnimeVoiceActor: ({ name, variantName }) => t('comment.variantAnimeVoiceActor', { fullName: joinName(name.kanji), variantName: joinName(variantName.kanji) }),
+      });
+    }
+  }
+
+  // 声優名: アニメ
+  if (opts.seiyuusAnime) {
+    const { SEIYUUS_ANIME } = await import('@/data/seiyuus/anime');
+    for (const [seiyuuId, seiyuu] of SEIYUUS_ANIME) {
+      const characterIds = targetSeiyuusAnime[seiyuuId]?.characterIds ?? [];
+      if (characterIds.length === 0) {
+        continue;
+      }
+      pushSeiyuuItems(seiyuu, characterIds, {
+        name: ({ nameStr }) => t('comment.seiyuuAnime', { nameStr }),
       });
     }
   }
@@ -319,8 +363,8 @@ export async function generateImeDictItems(options?: ImeDictGenerateOptions): Pr
   // 場所名: 学校
   if (opts.schools) {
     const { SCHOOLS } = await import('@/data/locations/schools');
-    for (const school of filterReleasedData(SCHOOLS, opts.releasedLevel)) {
-      pushLocationNameItems(items, school, {
+    for (const [,school] of filterReleasedData(SCHOOLS, opts.releasedLevel)) {
+      pushLocationNameItems(school, {
         name: () => `「${TITLE}」に登場する学校`,
         anotherName: ({ name }) => `「${TITLE}」に登場する学校、${name.kanji}`,
       });
@@ -330,8 +374,8 @@ export async function generateImeDictItems(options?: ImeDictGenerateOptions): Pr
   // 場所名: 町
   if (opts.towns) {
     const { TOWNS } = await import('@/data/locations/towns');
-    for (const town of filterReleasedData(TOWNS, opts.releasedLevel)) {
-      pushLocationNameItems(items, town, {
+    for (const [,town] of filterReleasedData(TOWNS, opts.releasedLevel)) {
+      pushLocationNameItems(town, {
         name: () => `「${TITLE}」に登場する地名`,
         anotherName: ({ name }) => `「${TITLE}」に登場する地名、${name.kanji}`,
       });

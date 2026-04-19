@@ -5,7 +5,7 @@ export const ImeDictItemCategory = {
   characterAnotherNameFull: 'characterAnotherNameFull',
   characterAnotherNameShort: 'characterAnotherNameShort',
   characterNickname: 'characterNickname',
-  characterAnimeVoiceActor: 'characterAnimeVoiceActor',
+  seiyuuAnimeName: 'seiyuuAnimeName',
   locationName: 'locationName',
   locationNameAnother: 'locationNameAnother',
 } as const;

@@ -33,7 +33,7 @@ export async function GET(req: Request): Promise<Response> {
       case ImeDictItemCategory.characterNameFull:
       case ImeDictItemCategory.characterAnotherNameFull:
       case ImeDictItemCategory.characterNickname:
-      case ImeDictItemCategory.characterAnimeVoiceActor:
+      case ImeDictItemCategory.seiyuuAnimeName:
         type = '人名';
         break;
       case ImeDictItemCategory.characterNameShort:

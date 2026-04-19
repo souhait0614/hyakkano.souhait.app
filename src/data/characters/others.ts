@@ -1,7 +1,7 @@
-import type { Character } from '@/types/Data';
+import type { Character, CharacterIdBase, DataEntries, DataId } from '@/types/Data';
 
-export const OTHER_CHARACTERS: Character[] = [
-  {
+const otherCharactersEntries = [
+  ['character_other_asakawasan', {
     name: { kanji: ['浅川さん'], hiragana: ['あさかわさん'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -11,9 +11,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 1,
     releaseAnimeSeason: 1,
     releaseAnimeEpisode: 1,
-    animeVoiceActors: [{ kanji: ['天野', '聡美'], hiragana: ['あまの', 'さとみ'] }],
-  },
-  {
+    seiyuuAnimeIds: ['seiyuu_anime_amano_satomi'],
+  }],
+  ['character_other_yuujin_a', {
     name: { kanji: ['友人A'], hiragana: ['ゆうじんえー'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -23,9 +23,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 1,
     releaseAnimeSeason: 1,
     releaseAnimeEpisode: 1,
-    animeVoiceActors: [{ kanji: ['山田', '美鈴'], hiragana: ['やまだ', 'みすず'] }],
-  },
-  {
+    seiyuuAnimeIds: ['seiyuu_anime_yamada_misuzu'],
+  }],
+  ['character_other_aatan', {
     name: { kanji: ['あーたん'], hiragana: ['あーたん'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -35,9 +35,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 1,
     releaseAnimeSeason: 1,
     releaseAnimeEpisode: 1,
-    animeVoiceActors: [{ kanji: ['首藤', '志奈'], hiragana: ['しゅとう', 'ゆきな'] }],
-  },
-  {
+    seiyuuAnimeIds: ['seiyuu_anime_shutou_yukina'],
+  }],
+  ['character_other_kamisama', {
     name: { kanji: ['神様'], hiragana: ['かみさま'], shortNameIndex: undefined },
     anotherNames: [{ kanji: ['恋愛の神'], hiragana: ['れんあいのかみ'], shortNameIndex: undefined }],
     nicknames: undefined,
@@ -47,9 +47,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 1,
     releaseAnimeSeason: 1,
     releaseAnimeEpisode: 1,
-    animeVoiceActors: [{ kanji: ['千葉', '繁'], hiragana: ['ちば', 'しげる'] }],
-  },
-  {
+    seiyuuAnimeIds: ['seiyuu_anime_chiba_shigeru'],
+  }],
+  ['character_other_baba_an', {
     name: { kanji: ['馬場', '杏'], hiragana: ['ばば', 'あん'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -59,9 +59,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 1,
     releaseAnimeSeason: 1,
     releaseAnimeEpisode: 2,
-    animeVoiceActors: [{ kanji: ['くじら'], hiragana: ['くじら'] }],
-  },
-  {
+    seiyuuAnimeIds: ['seiyuu_anime_kujira'],
+  }],
+  ['character_other_yuukun', {
     name: { kanji: ['ユウ君'], hiragana: ['ゆうくん'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -71,9 +71,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 2,
     releaseAnimeSeason: 1,
     releaseAnimeEpisode: 9,
-    animeVoiceActors: [{ kanji: ['榊原', '優希'], hiragana: ['さかきはら', 'ゆうき'] }],
-  },
-  {
+    seiyuuAnimeIds: ['seiyuu_anime_sakakibara_yuuki'],
+  }],
+  ['character_other_bucchi', {
     name: { kanji: ['ブッチ'], hiragana: ['ぶっち'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: [{ kanji: ['金持ちの家の猫'], hiragana: ['かねもちのいえのねこ'] }],
@@ -83,9 +83,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 3,
     releaseAnimeSeason: 1,
     releaseAnimeEpisode: 10,
-    animeVoiceActors: [{ kanji: ['河井', '晴菜'], hiragana: ['かわい', 'はるな'] }],
-  },
-  {
+    seiyuuAnimeIds: ['seiyuu_anime_kawai_haruna'],
+  }],
+  ['character_other_arusu', {
     name: { kanji: ['アルス'], hiragana: ['あるす'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: [{ kanji: ['金持ちの家の犬'], hiragana: ['かねもちのいえのいぬ'] }],
@@ -95,9 +95,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 3,
     releaseAnimeSeason: 1,
     releaseAnimeEpisode: 10,
-    animeVoiceActors: [{ kanji: ['山根', '雅史'], hiragana: ['やまね', 'まさし'] }],
-  },
-  {
+    seiyuuAnimeIds: ['seiyuu_anime_yamane_masashi'],
+  }],
+  ['character_other_kakedashiidoruchan', {
     name: { kanji: ['かけだしアイドルちゃん'], hiragana: ['かけだしいどるちゃん'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -107,21 +107,33 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 4,
     releaseAnimeSeason: 2,
     releaseAnimeEpisode: 14,
-    animeVoiceActors: [{ kanji: ['伊駒', 'ゆりえ'], hiragana: ['いごま', 'ゆりえ'] }],
-  },
-  {
+    seiyuuAnimeIds: ['seiyuu_anime_igoma_yurie'],
+  }],
+  ['character_other_takeko_superdeluxe', {
     name: { kanji: ['タケコ', '・', 'スーパーデラックス'], hiragana: ['たけこ', '', 'すーぱーでらっくす'], shortNameIndex: undefined },
-    anotherNames: [{ kanji: ['チャンコ', '爆錦'], hiragana: ['ちゃんこ', 'ばくにしき'], shortNameIndex: undefined }],
+    anotherNames: undefined,
     nicknames: undefined,
     birthday: undefined,
     age: undefined,
     releaseOriginalChapter: 25,
     releaseOriginalComicsVolume: 4,
+    releaseAnimeSeason: undefined,
+    releaseAnimeEpisode: undefined,
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_chanko_bakunishiki', {
+    name: { kanji: ['チャンコ', '爆錦'], hiragana: ['ちゃんこ', 'ばくにしき'], shortNameIndex: undefined },
+    anotherNames: undefined,
+    nicknames: undefined,
+    birthday: undefined,
+    age: undefined,
+    releaseOriginalChapter: undefined,
+    releaseOriginalComicsVolume: undefined,
     releaseAnimeSeason: 2,
     releaseAnimeEpisode: 14,
-    animeVoiceActors: [{ kanji: ['小西', '克幸'], hiragana: ['こにし', 'かつゆき'] }],
-  },
-  {
+    seiyuuAnimeIds: ['seiyuu_anime_konishi_katsuyuki'],
+  }],
+  ['character_other_pieeru_jerao', {
     name: { kanji: ['ピエール', '・', 'ジェラオ'], hiragana: ['ぴえーる', '', 'じぇらお'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -131,9 +143,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 4,
     releaseAnimeSeason: 2,
     releaseAnimeEpisode: 14,
-    animeVoiceActors: [{ kanji: ['田中', '文哉'], hiragana: ['たなか', 'ふみや'] }],
-  },
-  {
+    seiyuuAnimeIds: ['seiyuu_anime_tanaka_fumiya'],
+  }],
+  ['character_other_sutou_ikuya', {
     name: { kanji: ['須藤', '育也'], hiragana: ['すとう', 'いくや'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -144,9 +156,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 5,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_iin_hiro', {
     name: { kanji: ['伊院', 'ヒロ'], hiragana: ['いいん', 'ひろ'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: [{ kanji: ['ヒロ叔父さん'], hiragana: ['ひろおじさん'] }],
@@ -156,9 +168,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 7,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_kijineta_toruru', {
     name: { kanji: ['雉根田', '兎留々'], hiragana: ['きじねた', 'とるる'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -168,9 +180,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 7,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_iin_chiri', {
     name: { kanji: ['伊院', '知莉'], hiragana: ['いいん', 'ちり'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -180,9 +192,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 7,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_kuori_tiina', {
     name: { kanji: ['九織', 'ティーナ'], hiragana: ['くおり', 'てぃーな'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -192,9 +204,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 8,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_jiizasu_nakai', {
     name: { kanji: ['ジーザス', '中井'], hiragana: ['じーざす', 'なかい'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -204,9 +216,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 8,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_akogaresan', {
     name: { kanji: ['阿古枯さん'], hiragana: ['あこがれさん'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -216,9 +228,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 9,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_manesusan', {
     name: { kanji: ['真根須さん'], hiragana: ['まねすさん'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -228,9 +240,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 9,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_hono_kakuyo', {
     name: { kanji: ['本尾', '角夜'], hiragana: ['ほんお', 'かくよ'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -240,9 +252,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 10,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_shuppangyoukainooinarusonzai', {
     name: { kanji: ['出版業界の大いなる存在'], hiragana: ['しゅっぱんぎょうかいのおおいなるそんざい'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -252,9 +264,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 13,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_utsushiro_fumi', {
     name: { kanji: ['現代', '文'], hiragana: ['うつしろ', 'ふみ'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -264,9 +276,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 14,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_joushiki', {
     name: { kanji: ['常識'], hiragana: ['じょうしき'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -276,9 +288,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 15,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_youkaisan', {
     name: { kanji: ['葉飼さん'], hiragana: ['ようかいさん'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -288,9 +300,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 16,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_inda_karana', {
     name: { kanji: ['院田', '唐奈'], hiragana: ['いんだ', 'からな'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -300,9 +312,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 17,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_inda_karahiko', {
     name: { kanji: ['院田', '唐彦'], hiragana: ['いんだ', 'からひこ'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -312,9 +324,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 17,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_inda_karano', {
     name: { kanji: ['院田', '唐乃'], hiragana: ['いんだ', 'からの'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -324,9 +336,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 17,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_inda_karato', {
     name: { kanji: ['院田', '唐人'], hiragana: ['いんだ', 'からと'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -336,9 +348,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 17,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_inda_karayo', {
     name: { kanji: ['院田', '唐代'], hiragana: ['いんだ', 'からよ'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -348,9 +360,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 17,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_inda_karazou', {
     name: { kanji: ['院田', '唐蔵'], hiragana: ['いんだ', 'からぞう'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -360,9 +372,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 17,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_inda_karara', {
     name: { kanji: ['院田', '唐蘭'], hiragana: ['いんだ', 'からら'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -372,9 +384,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 17,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_inda_kararu', {
     name: { kanji: ['院田', '唐流'], hiragana: ['いんだ', 'からる'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -384,9 +396,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 17,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_karatarou', {
     name: { kanji: ['カラ太郎'], hiragana: ['からたろう'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -396,9 +408,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 17,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_mugennokami', {
     name: { kanji: ['無限の神'], hiragana: ['むげんのかみ'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -408,9 +420,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 19,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_shunya', {
     name: { kanji: ['春也'], hiragana: ['しゅんや'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -420,9 +432,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 19,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_otsuge', {
     name: { kanji: ['お告げ'], hiragana: ['おつげ'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -432,9 +444,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 22,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_wantarou', {
     name: { kanji: ['わん太郎'], hiragana: ['わんたろう'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -444,9 +456,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 23,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_sugoroku', {
     name: { kanji: ['すごろく'], hiragana: ['すごろく'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -456,9 +468,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 23,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_shuueisha', {
     name: { kanji: ['集英社'], hiragana: ['しゅうえいしゃ'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -468,9 +480,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 23,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_ni', {
     name: { kanji: ['2'], hiragana: ['に'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -480,9 +492,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 23,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_ike_mentarou', {
     name: { kanji: ['池', '面太郎'], hiragana: ['いけ', 'めんたろう'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -492,9 +504,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 24,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_utauuma_umaama', {
     name: { kanji: ['ウタウーマ', '・', 'ウマーマ'], hiragana: ['うたうーま', '', 'うまーま'], shortNameIndex: 2 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -504,9 +516,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: undefined,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_hyakupazu', {
     name: { kanji: ['100パズ'], hiragana: ['ひゃくぱず'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -516,9 +528,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: undefined,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_kaitou_hatto', {
     name: { kanji: ['怪盗', 'ハット'], hiragana: ['かいとう', 'はっと'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -528,9 +540,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: undefined,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_ayachan', {
     name: { kanji: ['綾ちゃん'], hiragana: ['あやちゃん'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -540,9 +552,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: undefined,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_yuuchan', {
     name: { kanji: ['勇ちゃん'], hiragana: ['ゆうちゃん'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -552,9 +564,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: undefined,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_kurabusshu', {
     name: { kanji: ['クラブッシュ'], hiragana: ['くらぶっしゅ'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -564,9 +576,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: undefined,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_iisutaashenron', {
     name: { kanji: ['イースター神龍'], hiragana: ['いーすたーしぇんろん'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -576,9 +588,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: undefined,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_jaian', {
     name: { kanji: ['ヂャイアン'], hiragana: ['ぢゃいあん'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -588,9 +600,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: undefined,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_honokachan', {
     name: { kanji: ['ほのかちゃん'], hiragana: ['ほのかちゃん'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -600,9 +612,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: undefined,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_rikachan', {
     name: { kanji: ['りかちゃん'], hiragana: ['りかちゃん'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -612,9 +624,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: undefined,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_seidasan', {
     name: { kanji: ['清田さん'], hiragana: ['せいださん'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -624,9 +636,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: undefined,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_gyarupoyo', {
     name: { kanji: ['ぎゃるぽよ'], hiragana: ['ぎゃるぽよ'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -636,9 +648,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: undefined,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_gyaruchami', {
     name: { kanji: ['ぎゃるちゃみ'], hiragana: ['ぎゃるちゃみ'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -648,9 +660,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: undefined,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_baarochi_kushiyo', {
     name: { kanji: ['婆呂池', '櫛代'], hiragana: ['ばあろち', 'くしよ'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -660,9 +672,9 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: undefined,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_dei_tenya', {
     name: { kanji: ['出井', '篆弥'], hiragana: ['でい', 'てんや'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -672,6 +684,10 @@ export const OTHER_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: undefined,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-];
+    seiyuuAnimeIds: undefined,
+  }],
+] as const satisfies DataEntries<CharacterIdBase<'other'>, Character>;
+
+export type OtherCharacterId = DataId<typeof otherCharactersEntries>;
+
+export const OTHER_CHARACTERS: ReadonlyMap<OtherCharacterId, Character> = new Map<OtherCharacterId, Character>(otherCharactersEntries);

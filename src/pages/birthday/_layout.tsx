@@ -4,7 +4,7 @@ import type { BirthdayCharacter, BirthdayCharacterType } from '@/features/birthd
 import type { Character, GirlfriendCharacter } from '@/types/Data';
 import { AUTHOR_CHARACTERS } from '@/data/characters/authors';
 import { GIRLFRIEND_CHARACTERS } from '@/data/characters/girlfriends';
-import { RENTARO_CHARACTER } from '@/data/characters/rentaro';
+import { RENTARO_CHARACTERS } from '@/data/characters/rentaro';
 import { JUMP_PLUS_RELEASED_EPISODE } from '@/data/meta';
 import CharactersProvider from '@/features/birthday/CharactersProvider';
 import { ReleasedLevel } from '@/types/ReleasedLevel';
@@ -59,9 +59,9 @@ function makeCharacter(type: BirthdayCharacterType, character: Character | Girlf
 
 export default function BirthdayLayout({ children }: { children: ReactNode; }) {
   const characters = [
-    makeCharacter('RENTARO', RENTARO_CHARACTER),
-    ...GIRLFRIEND_CHARACTERS.map((character) => makeCharacter('GIRLFRIEND', character)),
-    ...AUTHOR_CHARACTERS.map((character) => makeCharacter('AUTHOR', character)),
+    ...Array.from(RENTARO_CHARACTERS.values()).map((character) => makeCharacter('RENTARO', character)),
+    ...Array.from(GIRLFRIEND_CHARACTERS.values()).map((character) => makeCharacter('GIRLFRIEND', character)),
+    ...Array.from(AUTHOR_CHARACTERS.values()).map((character) => makeCharacter('AUTHOR', character)),
   ];
 
   return (

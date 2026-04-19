@@ -41,8 +41,8 @@ export function checkReleasedData(data: ReleasedInfo, releasedLevel: ReleasedLev
   });
 }
 
-export function filterReleasedData<T extends ReleasedInfo>(dataList: T[], releasedLevel: ReleasedLevel): T[] {
-  return dataList.filter((data) => checkReleasedData(data, releasedLevel));
+export function filterReleasedData<T extends string, U extends ReleasedInfo>(dataList: ReadonlyMap<T, U> | [T, U][], releasedLevel: ReleasedLevel): [T, U][] {
+  return Array.from(dataList).filter(([, data]) => checkReleasedData(data, releasedLevel));
 }
 
 export function getLatestReleasedData(dataList: ReleasedInfo[]): { animeSeason: number; animeEpisode: number; comicsVolume: number; jumpPlusChapter: number; youngJumpChapter: number; } {

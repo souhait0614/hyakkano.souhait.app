@@ -1,7 +1,7 @@
-import type { Character } from '@/types/Data';
+import type { Character, CharacterIdBase, DataEntries, DataId } from '@/types/Data';
 
-export const JURASSIC_HIGH_SCHOOL_BASEBALL_TEAM_CHARACTERS: Character[] = [
-  {
+const jurassicHighSchoolBaseballTeamCharactersEntries = [
+  ['character_jurassic_high_school_baseball_team_torikera_kantoku', {
     name: { kanji: ['鳥家羅', '監督'], hiragana: ['とりけら', 'かんとく'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -11,9 +11,9 @@ export const JURASSIC_HIGH_SCHOOL_BASEBALL_TEAM_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 5,
     releaseAnimeSeason: 2,
     releaseAnimeEpisode: 18,
-    animeVoiceActors: [{ kanji: ['神田', 'みか'], hiragana: ['かんだ', 'みか'] }],
-  },
-  {
+    seiyuuAnimeIds: ['seiyuu_anime_kanda_mika'],
+  }],
+  ['character_jurassic_high_school_baseball_team_terano_sauruko', {
     name: { kanji: ['寺野', 'サウル子'], hiragana: ['てらの', 'さうるこ'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -23,9 +23,9 @@ export const JURASSIC_HIGH_SCHOOL_BASEBALL_TEAM_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 5,
     releaseAnimeSeason: 2,
     releaseAnimeEpisode: 18,
-    animeVoiceActors: [{ kanji: ['ニケライ', '・', 'ファラナーゼ'], hiragana: ['にけらい', '', 'ふぁらなーぜ'] }],
-  },
-  {
+    seiyuuAnimeIds: ['seiyuu_anime_nikerei_faranaze'],
+  }],
+  ['character_jurassic_high_school_baseball_team_beroki_rapuko', {
     name: { kanji: ['辺路木', 'ラプ子'], hiragana: ['べろき', 'らぷこ'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -35,9 +35,9 @@ export const JURASSIC_HIGH_SCHOOL_BASEBALL_TEAM_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 5,
     releaseAnimeSeason: 2,
     releaseAnimeEpisode: 18,
-    animeVoiceActors: [{ kanji: ['河瀬', '茉希'], hiragana: ['かわせ', 'まき'] }],
-  },
-  {
+    seiyuuAnimeIds: ['seiyuu_anime_kawase_maki'],
+  }],
+  ['character_jurassic_high_school_baseball_team_sutera_kosauko', {
     name: { kanji: ['洲寺', 'コサウ子'], hiragana: ['すてら', 'こさうこ'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -47,9 +47,9 @@ export const JURASSIC_HIGH_SCHOOL_BASEBALL_TEAM_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 5,
     releaseAnimeSeason: 2,
     releaseAnimeEpisode: 18,
-    animeVoiceActors: [{ kanji: ['岡田', '幸子'], hiragana: ['おかだ', 'さちこ'] }],
-  },
-  {
+    seiyuuAnimeIds: ['seiyuu_anime_okada_sachiko'],
+  }],
+  ['character_jurassic_high_school_baseball_team_harasa_uroroko', {
     name: { kanji: ['原佐', 'ウロロ子'], hiragana: ['はらさ', 'うろろこ'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -59,9 +59,9 @@ export const JURASSIC_HIGH_SCHOOL_BASEBALL_TEAM_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 5,
     releaseAnimeSeason: 2,
     releaseAnimeEpisode: 18,
-    animeVoiceActors: [{ kanji: ['川村', '海乃'], hiragana: ['かわむら', 'うみの'] }],
-  },
-  {
+    seiyuuAnimeIds: ['seiyuu_anime_kawamura_umino'],
+  }],
+  ['character_jurassic_high_school_baseball_team_gasu_toniko', {
     name: { kanji: ['賀巣', 'トニ子'], hiragana: ['がす', 'とにこ'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -71,9 +71,9 @@ export const JURASSIC_HIGH_SCHOOL_BASEBALL_TEAM_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 5,
     releaseAnimeSeason: 2,
     releaseAnimeEpisode: 18,
-    animeVoiceActors: [{ kanji: ['伊澄', 'ちひろ'], hiragana: ['いすみ', 'ちひろ'] }],
-  },
-  {
+    seiyuuAnimeIds: ['seiyuu_anime_izumi_chihiro'],
+  }],
+  ['character_jurassic_high_school_baseball_team_supino_sauko', {
     name: { kanji: ['須日野', 'サウ子'], hiragana: ['すぴの', 'さうこ'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -83,9 +83,9 @@ export const JURASSIC_HIGH_SCHOOL_BASEBALL_TEAM_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 5,
     releaseAnimeSeason: 2,
     releaseAnimeEpisode: 18,
-    animeVoiceActors: [{ kanji: ['佐内', '瑠奈'], hiragana: ['さない', 'るな'] }],
-  },
-  {
+    seiyuuAnimeIds: ['seiyuu_anime_sanai_runa'],
+  }],
+  ['character_jurassic_high_school_baseball_team_kiganto_supiko', {
     name: { kanji: ['木岩都', 'スピ子'], hiragana: ['きがんと', 'すぴこ'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -95,9 +95,9 @@ export const JURASSIC_HIGH_SCHOOL_BASEBALL_TEAM_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 5,
     releaseAnimeSeason: 2,
     releaseAnimeEpisode: 18,
-    animeVoiceActors: [{ kanji: ['神本', '綾華'], hiragana: ['かみもと', 'あやか'] }],
-  },
-  {
+    seiyuuAnimeIds: ['seiyuu_anime_kamimoto_ayaka'],
+  }],
+  ['character_jurassic_high_school_baseball_team_suten_gosako', {
     name: { kanji: ['巣天', 'ゴサ子'], hiragana: ['すてん', 'ごさこ'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -107,9 +107,9 @@ export const JURASSIC_HIGH_SCHOOL_BASEBALL_TEAM_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 5,
     releaseAnimeSeason: 2,
     releaseAnimeEpisode: 18,
-    animeVoiceActors: [{ kanji: ['佐藤', '日向'], hiragana: ['さとう', 'ひなた'] }],
-  },
-  {
+    seiyuuAnimeIds: ['seiyuu_anime_satou_hinata'],
+  }],
+  ['character_jurassic_high_school_baseball_team_ankirosa_uruko', {
     name: { kanji: ['安木路佐', 'ウル子'], hiragana: ['あんきろさ', 'うるこ'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -119,9 +119,9 @@ export const JURASSIC_HIGH_SCHOOL_BASEBALL_TEAM_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 5,
     releaseAnimeSeason: 2,
     releaseAnimeEpisode: 18,
-    animeVoiceActors: [{ kanji: ['羽紫', 'さや花'], hiragana: ['はし', 'さやか'] }],
-  },
-  {
+    seiyuuAnimeIds: ['seiyuu_anime_hashi_sayaka'],
+  }],
+  ['character_jurassic_high_school_baseball_team_pute_ranoko', {
     name: { kanji: ['符手', 'ラノ子'], hiragana: ['ぷて', 'らのこ'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -131,9 +131,9 @@ export const JURASSIC_HIGH_SCHOOL_BASEBALL_TEAM_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 5,
     releaseAnimeSeason: 2,
     releaseAnimeEpisode: 18,
-    animeVoiceActors: [{ kanji: ['阿部', '菜摘子'], hiragana: ['あべ', 'なつこ'] }],
-  },
-  {
+    seiyuuAnimeIds: ['seiyuu_anime_abe_natsuko'],
+  }],
+  ['character_jurassic_high_school_baseball_team_buraki_oko', {
     name: { kanji: ['武羅木', 'オ子'], hiragana: ['ぶらき', 'おこ'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -143,6 +143,10 @@ export const JURASSIC_HIGH_SCHOOL_BASEBALL_TEAM_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 5,
     releaseAnimeSeason: 2,
     releaseAnimeEpisode: 18,
-    animeVoiceActors: [{ kanji: ['青木', '陽菜'], hiragana: ['あおき', 'ひな'] }],
-  },
-];
+    seiyuuAnimeIds: ['seiyuu_anime_aoki_hina'],
+  }],
+] as const satisfies DataEntries<CharacterIdBase<'jurassic_high_school_baseball_team'>, Character>;
+
+export type JurassicHighSchoolBaseballTeamCharacterId = DataId<typeof jurassicHighSchoolBaseballTeamCharactersEntries>;
+
+export const JURASSIC_HIGH_SCHOOL_BASEBALL_TEAM_CHARACTERS: ReadonlyMap<JurassicHighSchoolBaseballTeamCharacterId, Character> = new Map<JurassicHighSchoolBaseballTeamCharacterId, Character>(jurassicHighSchoolBaseballTeamCharactersEntries);

@@ -19,7 +19,7 @@ export const generateOptionsKeyLabels = {
   characterJurassicHighSchoolBaseballTeam: '寿裸漆区高校女子野球部関係者',
   characterPeppePentaro: 'ペペペのペン太郎登場キャラクター',
   characterOthers: 'その他キャラクター',
-  voiceActors: 'キャラクターの担当声優',
+  seiyuusAnime: 'キャラクターの担当声優',
   schools: '登場する学校',
   towns: '登場する町',
 } as const satisfies Record<keyof Omit<ImeDictGenerateOptionsInput, 'releasedLevel'>, string>;

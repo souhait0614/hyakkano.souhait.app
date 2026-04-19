@@ -17,7 +17,7 @@ export const imeDictGenerateOptionsSchema = v.object({
   characterJurassicHighSchoolBaseballTeam: v.fallback(stringBooleanSchema(), false),
   characterPeppePentaro: v.fallback(stringBooleanSchema(), false),
   characterOthers: v.fallback(stringBooleanSchema(), false),
-  voiceActors: v.fallback(stringBooleanSchema(), false),
+  seiyuusAnime: v.fallback(stringBooleanSchema(), false),
   schools: v.fallback(stringBooleanSchema(), false),
   towns: v.fallback(stringBooleanSchema(), false),
 });

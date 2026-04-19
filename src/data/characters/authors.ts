@@ -1,7 +1,7 @@
-import type { Character } from '@/types/Data';
+import type { Character, CharacterIdBase, DataEntries, DataId } from '@/types/Data';
 
-export const AUTHOR_CHARACTERS = [
-  {
+const authorCharactersEntries = [
+  ['character_author_nakamura_rikito', {
     name: { kanji: ['中村', '力斗'], hiragana: ['なかむら', 'りきと'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: [
@@ -14,9 +14,9 @@ export const AUTHOR_CHARACTERS = [
     releaseOriginalComicsVolume: undefined,
     releaseAnimeSeason: 2,
     releaseAnimeEpisode: 22,
-    animeVoiceActors: undefined,
-  },
-  {
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_author_nozawa_yukiko', {
     name: { kanji: ['野澤', 'ゆき子'], hiragana: ['のざわ', 'ゆきこ'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: [
@@ -29,6 +29,10 @@ export const AUTHOR_CHARACTERS = [
     releaseOriginalComicsVolume: 9,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
-  },
-] as const satisfies Character[];
+    seiyuuAnimeIds: undefined,
+  }],
+] as const satisfies DataEntries<CharacterIdBase<'author'>, Character>;
+
+export type AuthorCharacterId = DataId<typeof authorCharactersEntries>;
+
+export const AUTHOR_CHARACTERS: ReadonlyMap<AuthorCharacterId, Character> = new Map<AuthorCharacterId, Character>(authorCharactersEntries);

@@ -1,3 +1,9 @@
+import type { SeiyuuAnimeId } from '@/data/seiyuus/anime';
+
+export type CharacterIdBase<T extends string> = `character_${T}_${string}`;
+export type SeiyuuIdBase<T extends string> = `seiyuu_${T}_${string}`;
+export type LocationIdBase<T extends string> = `location_${T}_${string}`;
+
 export interface CommonName {
   kanji: string;
   hiragana: string;
@@ -32,7 +38,7 @@ export interface VariantCharacter extends ReleasedInfo {
   anotherNames: Array<PersonNameWithShortNameIndex> | undefined;
   nicknames: Array<PersonName> | undefined;
   age: number | undefined;
-  animeVoiceActors: Array<PersonName> | undefined;
+  seiyuuAnimeIds: Array<SeiyuuAnimeId> | undefined;
 }
 
 export interface Character extends ReleasedInfo {
@@ -41,8 +47,8 @@ export interface Character extends ReleasedInfo {
   nicknames: Array<PersonName> | undefined;
   birthday: CharacterBirthday | undefined;
   age: number | undefined;
-  animeVoiceActors: Array<PersonName> | undefined;
-  variants?: Array<VariantCharacter> | undefined;
+  seiyuuAnimeIds: Array<SeiyuuAnimeId> | undefined;
+  variants?: Array<[id: string, VariantCharacter]> | undefined;
 }
 
 export interface GirlfriendCharacter extends Character {
@@ -53,3 +59,9 @@ export interface Location extends ReleasedInfo {
   name: CommonName;
   anotherNames: CommonName[] | undefined;
 }
+export interface Seiyuu {
+  name: PersonName;
+}
+
+export type DataEntries<T extends string, U> = ReadonlyArray<[id: T, data: U]>;
+export type DataId<T extends DataEntries<string, unknown>> = T[number][0];

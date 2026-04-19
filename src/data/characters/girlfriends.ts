@@ -1,7 +1,7 @@
-import type { GirlfriendCharacter } from '@/types/Data';
+import type { CharacterIdBase, DataEntries, DataId, GirlfriendCharacter } from '@/types/Data';
 
-export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
-  {
+const girlfriendCharactersEntries = [
+  ['character_girlfriend_hanazono_hakari', {
     name: { kanji: ['花園', '羽香里'], hiragana: ['はなぞの', 'はかり'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -11,10 +11,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 1,
     releaseAnimeSeason: 1,
     releaseAnimeEpisode: 1,
-    animeVoiceActors: [{ kanji: ['本渡', '楓'], hiragana: ['ほんど', 'かえで'] }],
+    seiyuuAnimeIds: ['seiyuu_anime_hondo_kaede'],
     girlfriendNumber: 1,
-  },
-  {
+  }],
+  ['character_girlfriend_inda_karane', {
     name: { kanji: ['院田', '唐音'], hiragana: ['いんだ', 'からね'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -24,10 +24,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 1,
     releaseAnimeSeason: 1,
     releaseAnimeEpisode: 1,
-    animeVoiceActors: [{ kanji: ['富田', '美憂'], hiragana: ['とみた', 'みゆ'] }],
+    seiyuuAnimeIds: ['seiyuu_anime_tomita_miyu'],
     girlfriendNumber: 2,
-  },
-  {
+  }],
+  ['character_girlfriend_yoshimoto_shizuka', {
     name: { kanji: ['好本', '静'], hiragana: ['よしもと', 'しずか'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -37,10 +37,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 1,
     releaseAnimeSeason: 1,
     releaseAnimeEpisode: 3,
-    animeVoiceActors: [{ kanji: ['長縄', 'まりあ'], hiragana: ['ながなわ', 'まりあ'] }],
+    seiyuuAnimeIds: ['seiyuu_anime_naganawa_maria'],
     girlfriendNumber: 3,
-  },
-  {
+  }],
+  ['character_girlfriend_eiai_nano', {
     name: { kanji: ['栄逢', '凪乃'], hiragana: ['えいあい', 'なの'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -50,10 +50,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 2,
     releaseAnimeSeason: 1,
     releaseAnimeEpisode: 5,
-    animeVoiceActors: [{ kanji: ['瀬戸', '麻沙美'], hiragana: ['せと', 'あさみ'] }],
+    seiyuuAnimeIds: ['seiyuu_anime_seto_asami'],
     girlfriendNumber: 4,
-  },
-  {
+  }],
+  ['character_girlfriend_yakuzen_kusuri', {
     name: { kanji: ['薬膳', '楠莉'], hiragana: ['やくぜん', 'くすり'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -63,10 +63,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 2,
     releaseAnimeSeason: 1,
     releaseAnimeEpisode: 7,
-    animeVoiceActors: [{ kanji: ['朝井', '彩加'], hiragana: ['あさい', 'あやか'] }],
+    seiyuuAnimeIds: ['seiyuu_anime_asai_ayaka'],
     girlfriendNumber: 5,
-  },
-  {
+  }],
+  ['character_girlfriend_hanazono_hahari', {
     name: { kanji: ['花園', '羽々里'], hiragana: ['はなぞの', 'ははり'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -76,10 +76,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 3,
     releaseAnimeSeason: 1,
     releaseAnimeEpisode: 10,
-    animeVoiceActors: [{ kanji: ['上坂', 'すみれ'], hiragana: ['うえさか', 'すみれ'] }],
+    seiyuuAnimeIds: ['seiyuu_anime_uesaka_sumire'],
     girlfriendNumber: 6,
-  },
-  {
+  }],
+  ['character_girlfriend_haraga_kurumi', {
     name: { kanji: ['原賀', '胡桃'], hiragana: ['はらが', 'くるみ'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -89,10 +89,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 4,
     releaseAnimeSeason: 2,
     releaseAnimeEpisode: 13,
-    animeVoiceActors: [{ kanji: ['進藤', 'あまね'], hiragana: ['しんどう', 'あまね'] }],
+    seiyuuAnimeIds: ['seiyuu_anime_shindou_amane'],
     girlfriendNumber: 7,
-  },
-  {
+  }],
+  ['character_girlfriend_meido_mei', {
     name: { kanji: ['銘戸', '芽衣'], hiragana: ['めいど', 'めい'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -102,10 +102,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 4,
     releaseAnimeSeason: 2,
     releaseAnimeEpisode: 15,
-    animeVoiceActors: [{ kanji: ['三森', 'すずこ'], hiragana: ['みもり', 'すずこ'] }],
+    seiyuuAnimeIds: ['seiyuu_anime_mimori_suzuko'],
     girlfriendNumber: 8,
-  },
-  {
+  }],
+  ['character_girlfriend_sutou_iku', {
     name: { kanji: ['須藤', '育'], hiragana: ['すとう', 'いく'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -115,10 +115,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 5,
     releaseAnimeSeason: 2,
     releaseAnimeEpisode: 17,
-    animeVoiceActors: [{ kanji: ['高橋', '李依'], hiragana: ['たかはし', 'りえ'] }],
+    seiyuuAnimeIds: ['seiyuu_anime_takahashi_rie'],
     girlfriendNumber: 9,
-  },
-  {
+  }],
+  ['character_girlfriend_utsukushisugi_mimimi', {
     name: { kanji: ['美杉', '美々美'], hiragana: ['うつくしすぎ', 'みみみ'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -128,10 +128,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 5,
     releaseAnimeSeason: 2,
     releaseAnimeEpisode: 19,
-    animeVoiceActors: [{ kanji: ['Lynn'], hiragana: ['りん'] }],
+    seiyuuAnimeIds: ['seiyuu_anime_lynn'],
     girlfriendNumber: 10,
-  },
-  {
+  }],
+  ['character_girlfriend_kakure_meme', {
     name: { kanji: ['華暮', '愛々'], hiragana: ['かくれ', 'めめ'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -141,10 +141,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 6,
     releaseAnimeSeason: 2,
     releaseAnimeEpisode: 22,
-    animeVoiceActors: [{ kanji: ['高尾', '奏音'], hiragana: ['たかお', 'かのん'] }],
+    seiyuuAnimeIds: ['seiyuu_anime_takao_kanon'],
     girlfriendNumber: 11,
-  },
-  {
+  }],
+  ['character_girlfriend_iin_chiyo', {
     name: { kanji: ['伊院', '知与'], hiragana: ['いいん', 'ちよ'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -154,10 +154,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 7,
     releaseAnimeSeason: 3,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: [{ kanji: ['石原', '夏織'], hiragana: ['いしはら', 'かおり'] }],
+    seiyuuAnimeIds: ['seiyuu_anime_ishihara_kaori'],
     girlfriendNumber: 12,
-  },
-  {
+  }],
+  ['character_girlfriend_nadii', {
     name: { kanji: ['ナディー'], hiragana: ['なでぃー'], shortNameIndex: undefined },
     anotherNames: [{ kanji: ['大和', '撫子'], hiragana: ['やまと', 'なでしこ'], shortNameIndex: 1 }],
     nicknames: undefined,
@@ -167,10 +167,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 7,
     releaseAnimeSeason: 3,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: [{ kanji: ['竹達', '彩奈'], hiragana: ['たけたつ', 'あやな'] }],
+    seiyuuAnimeIds: ['seiyuu_anime_taketatsu_ayana'],
     girlfriendNumber: 13,
-  },
-  {
+  }],
+  ['character_girlfriend_yasashiki_yamame', {
     name: { kanji: ['優敷', '山女'], hiragana: ['やさしき', 'やまめ'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -180,10 +180,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 8,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
+    seiyuuAnimeIds: undefined,
     girlfriendNumber: 14,
-  },
-  {
+  }],
+  ['character_girlfriend_momi_momiji', {
     name: { kanji: ['茂見', '紅葉'], hiragana: ['もみ', 'もみじ'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -193,10 +193,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 9,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
+    seiyuuAnimeIds: undefined,
     girlfriendNumber: 15,
-  },
-  {
+  }],
+  ['character_girlfriend_yakuzen_yaku', {
     name: { kanji: ['薬膳', 'ヤク'], hiragana: ['やくぜん', 'やく'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -206,10 +206,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 9,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
+    seiyuuAnimeIds: undefined,
     girlfriendNumber: 16,
-  },
-  {
+  }],
+  ['character_girlfriend_torotoro_kishika', {
     name: { kanji: ['土呂瀞', '騎士華'], hiragana: ['とろとろ', 'きしか'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -219,10 +219,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 10,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
+    seiyuuAnimeIds: undefined,
     girlfriendNumber: 17,
-  },
-  {
+  }],
+  ['character_girlfriend_kedarui_aashii', {
     name: { kanji: ['毛樽井', '亜愛子衣'], hiragana: ['けだるい', 'あーしー'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: [{ kanji: ['あー子'], hiragana: ['あーこ'] }],
@@ -232,10 +232,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 11,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
+    seiyuuAnimeIds: undefined,
     girlfriendNumber: 18,
-  },
-  {
+  }],
+  ['character_girlfriend_nakaji_uto', {
     name: { kanji: ['中二', '詩人'], hiragana: ['なかじ', 'うと'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -245,10 +245,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 11,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
+    seiyuuAnimeIds: undefined,
     girlfriendNumber: 19,
-  },
-  {
+  }],
+  ['character_girlfriend_meido_mai', {
     name: { kanji: ['女井戸', '妹'], hiragana: ['めいど', 'まい'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -258,10 +258,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 12,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
+    seiyuuAnimeIds: undefined,
     girlfriendNumber: 20,
-  },
-  {
+  }],
+  ['character_girlfriend_bonnouji_momoha', {
     name: { kanji: ['盆能寺', '百八'], hiragana: ['ぼんのうじ', 'ももは'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -271,10 +271,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 13,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
+    seiyuuAnimeIds: undefined,
     girlfriendNumber: 21,
-  },
-  {
+  }],
+  ['character_girlfriend_baio_rin', {
     name: { kanji: ['灰尾', '凛'], hiragana: ['ばいお', 'りん'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -284,10 +284,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 14,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
+    seiyuuAnimeIds: undefined,
     girlfriendNumber: 22,
-  },
-  {
+  }],
+  ['character_girlfriend_hifumi_suu', {
     name: { kanji: ['一二三', '数'], hiragana: ['ひふみ', 'すう'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -297,10 +297,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 15,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
+    seiyuuAnimeIds: undefined,
     girlfriendNumber: 23,
-  },
-  {
+  }],
+  ['character_girlfriend_kaho_eira', {
     name: { kanji: ['火保', 'エイラ'], hiragana: ['かほ', 'えいら'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -310,10 +310,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 16,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
+    seiyuuAnimeIds: undefined,
     girlfriendNumber: 24,
-  },
-  {
+  }],
+  ['character_girlfriend_nekonari_tama', {
     name: { kanji: ['猫成', '珠'], hiragana: ['ねこなり', 'たま'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -323,10 +323,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 17,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
+    seiyuuAnimeIds: undefined,
     girlfriendNumber: 25,
-  },
-  {
+  }],
+  ['character_girlfriend_saiki_himeka', {
     name: { kanji: ['才奇', '姫歌'], hiragana: ['さいき', 'ひめか'], shortNameIndex: 1 },
     anotherNames: [{ kanji: ['奇姫'], hiragana: ['きき'], shortNameIndex: undefined }],
     nicknames: undefined,
@@ -336,10 +336,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 18,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
+    seiyuuAnimeIds: undefined,
     girlfriendNumber: 26,
-  },
-  {
+  }],
+  ['character_girlfriend_dei_matsuri', {
     name: { kanji: ['出井', '祭李'], hiragana: ['でい', 'まつり'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -349,10 +349,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 19,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
+    seiyuuAnimeIds: undefined,
     girlfriendNumber: 27,
-  },
-  {
+  }],
+  ['character_girlfriend_usami_shiina', {
     name: { kanji: ['宇佐美', '椎奈'], hiragana: ['うさみ', 'しいな'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: [{ kanji: ['うさちゃん'], hiragana: ['うさちゃん'] }],
@@ -362,10 +362,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 20,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
+    seiyuuAnimeIds: undefined,
     girlfriendNumber: 28,
-  },
-  {
+  }],
+  ['character_girlfriend_zetsubouda_meru', {
     name: { kanji: ['雪房田', '夢留'], hiragana: ['ぜつぼうだ', 'める'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -375,10 +375,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 21,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
+    seiyuuAnimeIds: undefined,
     girlfriendNumber: 29,
-  },
-  {
+  }],
+  ['character_girlfriend_tomogara_saki', {
     name: { kanji: ['輩', '先'], hiragana: ['ともがら', 'さき'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -388,10 +388,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 22,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
+    seiyuuAnimeIds: undefined,
     girlfriendNumber: 30,
-  },
-  {
+  }],
+  ['character_girlfriend_nemui_nemu', {
     name: { kanji: ['根向井', '寧夢'], hiragana: ['ねむい', 'ねむ'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -401,10 +401,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 23,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
+    seiyuuAnimeIds: undefined,
     girlfriendNumber: 31,
-  },
-  {
+  }],
+  ['character_girlfriend_hasu_hasuha', {
     name: { kanji: ['端須', '蓮葉'], hiragana: ['はす', 'はすは'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -414,10 +414,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 24,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
+    seiyuuAnimeIds: undefined,
     girlfriendNumber: 32,
-  },
-  {
+  }],
+  ['character_girlfriend_morikita_kimari', {
     name: { kanji: ['守北', '季鞠'], hiragana: ['もりきた', 'きまり'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -427,10 +427,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: 25,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
+    seiyuuAnimeIds: undefined,
     girlfriendNumber: 33,
-  },
-  {
+  }],
+  ['character_girlfriend_futate_eru', {
     name: { kanji: ['双天', '彗流'], hiragana: ['ふたて', 'える'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -440,10 +440,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: undefined,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
+    seiyuuAnimeIds: undefined,
     girlfriendNumber: 34,
-  },
-  {
+  }],
+  ['character_girlfriend_jiai_chiyu', {
     name: { kanji: ['慈相', '千優'], hiragana: ['じあい', 'ちゆ'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -453,10 +453,10 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: undefined,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
+    seiyuuAnimeIds: undefined,
     girlfriendNumber: 35,
-  },
-  {
+  }],
+  ['character_girlfriend_mishiro_kogoe', {
     name: { kanji: ['三白', '小々枝'], hiragana: ['みしろ', 'こごえ'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
@@ -466,7 +466,11 @@ export const GIRLFRIEND_CHARACTERS: GirlfriendCharacter[] = [
     releaseOriginalComicsVolume: undefined,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    animeVoiceActors: undefined,
+    seiyuuAnimeIds: undefined,
     girlfriendNumber: 36,
-  },
-] as const;
+  }],
+] as const satisfies DataEntries<CharacterIdBase<'girlfriend'>, GirlfriendCharacter>;
+
+export type GirlfriendCharacterId = DataId<typeof girlfriendCharactersEntries>;
+
+export const GIRLFRIEND_CHARACTERS: ReadonlyMap<GirlfriendCharacterId, GirlfriendCharacter> = new Map<GirlfriendCharacterId, GirlfriendCharacter>(girlfriendCharactersEntries);

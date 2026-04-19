@@ -17,7 +17,7 @@ import { GORIRA_ALLIANCE_CHARACTERS } from '@/data/characters/gorira-alliance';
 import { JURASSIC_HIGH_SCHOOL_BASEBALL_TEAM_CHARACTERS } from '@/data/characters/jurassic-high-school-baseball-team';
 import { OTHER_CHARACTERS } from '@/data/characters/others';
 import { PEPEPE_PENTAROU_CHARACTERS } from '@/data/characters/pepepe-pentarou';
-import { RENTARO_CHARACTER } from '@/data/characters/rentaro';
+import { RENTARO_CHARACTERS } from '@/data/characters/rentaro';
 import { SCHOOLS } from '@/data/locations/schools';
 import { TOWNS } from '@/data/locations/towns';
 import DownloadLinks from '@/features/ime-dict/DownloadLinks';
@@ -115,16 +115,16 @@ const updateLogs: UpdateLog[] = [
 
 export default function Page(pageProps: PageProps<'/ime-dict'>) {
   const latestReleasedData = getLatestReleasedData([
-    RENTARO_CHARACTER,
-    ...GIRLFRIEND_CHARACTERS,
-    ...AUTHOR_CHARACTERS,
-    ...CIRCLET_LOVE_STORY_CHARACTERS,
-    ...GORIRA_ALLIANCE_CHARACTERS,
-    ...JURASSIC_HIGH_SCHOOL_BASEBALL_TEAM_CHARACTERS,
-    ...PEPEPE_PENTAROU_CHARACTERS,
-    ...OTHER_CHARACTERS,
-    ...SCHOOLS,
-    ...TOWNS,
+    ...RENTARO_CHARACTERS.values(),
+    ...GIRLFRIEND_CHARACTERS.values(),
+    ...AUTHOR_CHARACTERS.values(),
+    ...CIRCLET_LOVE_STORY_CHARACTERS.values(),
+    ...GORIRA_ALLIANCE_CHARACTERS.values(),
+    ...JURASSIC_HIGH_SCHOOL_BASEBALL_TEAM_CHARACTERS.values(),
+    ...PEPEPE_PENTAROU_CHARACTERS.values(),
+    ...OTHER_CHARACTERS.values(),
+    ...SCHOOLS.values(),
+    ...TOWNS.values(),
   ]);
 
   const generateOptionsComicsCommons = {
@@ -138,7 +138,7 @@ export default function Page(pageProps: PageProps<'/ime-dict'>) {
     characterJurassicHighSchoolBaseballTeam: false,
     characterPeppePentaro: false,
     characterOthers: false,
-    voiceActors: false,
+    seiyuusAnime: false,
     schools: true,
     towns: true,
   } satisfies Required<ImeDictGenerateOptions>;
@@ -154,7 +154,7 @@ export default function Page(pageProps: PageProps<'/ime-dict'>) {
     characterJurassicHighSchoolBaseballTeam: true,
     characterPeppePentaro: true,
     characterOthers: true,
-    voiceActors: true,
+    seiyuusAnime: true,
     schools: true,
     towns: true,
   } satisfies Required<ImeDictGenerateOptions>;

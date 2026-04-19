@@ -1,7 +1,7 @@
-import type { Location } from '@/types/Data';
+import type { DataEntries, DataId, Location, LocationIdBase } from '@/types/Data';
 
-export const SCHOOLS: Location[] = [
-  {
+const schoolsEntries = [
+  ['location_school_ohananomitsu_high', {
     name: { kanji: 'お花の蜜大学附属高等学校', hiragana: 'おはなのみつだいがくふぞくこうとうがっこう' },
     anotherNames: [
       { kanji: 'お花の蜜高校', hiragana: 'おはなのみつこうこう' },
@@ -12,8 +12,8 @@ export const SCHOOLS: Location[] = [
     releaseOriginalComicsVolume: 1,
     releaseAnimeSeason: 1,
     releaseAnimeEpisode: 1,
-  },
-  {
+  }],
+  ['location_school_ohananomitsu_middle', {
     name: { kanji: 'お花の蜜大学附属中学校', hiragana: 'おはなのみつだいがくふぞくちゅうがっこう' },
     anotherNames: [
       { kanji: 'お花の蜜中学校', hiragana: 'おはなのみつちゅうがっこう' },
@@ -25,16 +25,16 @@ export const SCHOOLS: Location[] = [
     releaseOriginalComicsVolume: 4,
     releaseAnimeSeason: 2,
     releaseAnimeEpisode: 13,
-  },
-  {
+  }],
+  ['location_school_mirei_middle', {
     name: { kanji: '美玲中学校', hiragana: 'みれいちゅうがっこう' },
     anotherNames: undefined,
     releaseOriginalChapter: 40,
     releaseOriginalComicsVolume: 5,
     releaseAnimeSeason: 2,
     releaseAnimeEpisode: 19,
-  },
-  {
+  }],
+  ['location_school_ohananomitsu_university', {
     name: { kanji: 'お花の蜜大学', hiragana: 'おはなのみつだいがく' },
     anotherNames: [
       { kanji: 'お花大', hiragana: 'おはなだい' },
@@ -44,5 +44,9 @@ export const SCHOOLS: Location[] = [
     releaseOriginalComicsVolume: 16,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-  },
-];
+  }],
+] as const satisfies DataEntries<LocationIdBase<'school'>, Location>;
+
+export type SchoolLocationId = DataId<typeof schoolsEntries>;
+
+export const SCHOOLS: ReadonlyMap<SchoolLocationId, Location> = new Map<SchoolLocationId, Location>(schoolsEntries);

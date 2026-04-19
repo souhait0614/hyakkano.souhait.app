@@ -11,7 +11,7 @@ import HyakkanoBackGround from '@/features/HyakkanoBackGround';
 type RootLayoutProps = { children: ReactNode; };
 
 export default async function RootLayout({ children }: RootLayoutProps) {
-  const heartCount = GIRLFRIEND_CHARACTERS.length;
+  const heartCount = GIRLFRIEND_CHARACTERS.size;
   return (
     <>
       <div className={`

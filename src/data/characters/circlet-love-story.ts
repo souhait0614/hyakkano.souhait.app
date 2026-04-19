@@ -1,7 +1,7 @@
-import type { Character } from '@/types/Data';
+import type { Character, CharacterIdBase, DataEntries, DataId } from '@/types/Data';
 
-export const CIRCLET_LOVE_STORY_CHARACTERS: Character[] = [
-  {
+const circletLoveStoryCharactersEntries = [
+  ['character_circlet_love_story_iohime', {
     name: { kanji: ['イオ姫'], hiragana: ['いおひめ'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -11,9 +11,9 @@ export const CIRCLET_LOVE_STORY_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 1,
     releaseAnimeSeason: 1,
     releaseAnimeEpisode: 3,
-    animeVoiceActors: [{ kanji: ['長縄', 'まりあ'], hiragana: ['ながなわ', 'まりあ'] }],
-  },
-  {
+    seiyuuAnimeIds: ['seiyuu_anime_naganawa_maria'],
+  }],
+  ['character_circlet_love_story_kamakuru', {
     name: { kanji: ['カマクル'], hiragana: ['かまくる'], shortNameIndex: undefined },
     anotherNames: undefined,
     nicknames: undefined,
@@ -23,6 +23,10 @@ export const CIRCLET_LOVE_STORY_CHARACTERS: Character[] = [
     releaseOriginalComicsVolume: 1,
     releaseAnimeSeason: 1,
     releaseAnimeEpisode: 3,
-    animeVoiceActors: [{ kanji: ['加藤', '渉'], hiragana: ['かとう', 'わたる'] }],
-  },
-];
+    seiyuuAnimeIds: ['seiyuu_anime_kato_wataru'],
+  }],
+] as const satisfies DataEntries<CharacterIdBase<'circlet_love_story'>, Character>;
+
+export type CircletLoveStoryCharacterId = DataId<typeof circletLoveStoryCharactersEntries>;
+
+export const CIRCLET_LOVE_STORY_CHARACTERS: ReadonlyMap<CircletLoveStoryCharacterId, Character> = new Map<CircletLoveStoryCharacterId, Character>(circletLoveStoryCharactersEntries);
