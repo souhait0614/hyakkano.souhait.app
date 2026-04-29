@@ -810,6 +810,32 @@ const otherCharactersEntries = [
     releaseAnimeEpisode: undefined,
     seiyuuAnimeIds: undefined,
   }],
+  ['character_other_kiyahasan', {
+    name: { kanji: ['喜矢波さん'], hiragana: ['きやはさん'], shortNameIndex: undefined },
+    anotherNames: undefined,
+    nicknames: undefined,
+    birthday: undefined,
+    age: undefined,
+    releaseOriginalMainChapter: 247,
+    releaseOriginalMainComicsVolume: undefined,
+    releaseOriginalSpinoffChapter: undefined,
+    releaseAnimeSeason: undefined,
+    releaseAnimeEpisode: undefined,
+    seiyuuAnimeIds: undefined,
+  }],
+  ['character_other_buha', {
+    name: { kanji: ['二波さん'], hiragana: ['ぶはさん'], shortNameIndex: undefined },
+    anotherNames: undefined,
+    nicknames: undefined,
+    birthday: undefined,
+    age: undefined,
+    releaseOriginalMainChapter: 247,
+    releaseOriginalMainComicsVolume: undefined,
+    releaseOriginalSpinoffChapter: undefined,
+    releaseAnimeSeason: undefined,
+    releaseAnimeEpisode: undefined,
+    seiyuuAnimeIds: undefined,
+  }],
 ] as const satisfies DataEntries<CharacterIdBase<'other'>, Character>;
 
 export type OtherCharacterId = DataId<typeof otherCharactersEntries>;

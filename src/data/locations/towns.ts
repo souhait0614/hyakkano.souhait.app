@@ -37,6 +37,25 @@ export const townsEntries = [
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
   }],
+  ['location_town_hondarake', {
+    name: { kanji: '本鱈毛町', hiragana: 'ほんだらけちょう' },
+    anotherNames: undefined,
+    releaseOriginalMainChapter: 247,
+    releaseOriginalMainComicsVolume: undefined,
+    releaseOriginalSpinoffChapter: undefined,
+    releaseAnimeSeason: undefined,
+    releaseAnimeEpisode: undefined,
+  }],
+  // TODO: 駅名しか出てないので一旦コメントアウト
+  // ['location_town_utukari', {
+  //   name: { kanji: '宇津狩町', hiragana: 'うつかりちょう' },
+  //   anotherNames: undefined,
+  //   releaseOriginalMainChapter: 247,
+  //   releaseOriginalMainComicsVolume: undefined,
+  //   releaseOriginalSpinoffChapter: undefined,
+  //   releaseAnimeSeason: undefined,
+  //   releaseAnimeEpisode: undefined,
+  // }],
 ] as const satisfies DataEntries<LocationIdBase<'town'>, Location>;
 
 export type TownLocationId = DataId<typeof townsEntries>;
