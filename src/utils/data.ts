@@ -27,7 +27,7 @@ export function checkReleasedData(data: ReleasedInfo, releasedLevel: ReleasedLev
   return targetLevels.some((level) => {
     switch (level) {
       case ReleasedLevel.anime: {
-        return data.releaseAnimeSeason !== undefined && data.releaseAnimeEpisode !== undefined;
+        return data.releaseAnimeSeason !== undefined;
       }
       case ReleasedLevel.comics: {
         return data.releaseOriginalMainComicsVolume !== undefined;
@@ -54,9 +54,9 @@ export function filterReleasedData<T extends string, U extends ReleasedInfo>(dat
   return Array.from(dataList).filter(([, data]) => checkReleasedData(data, releasedLevel));
 }
 
-export function getLatestReleasedData(dataList: ReleasedInfo[]): { animeSeason: number; animeEpisode: number; comicsVolume: number; jumpPlusMainChapter: number; jumpPlusSpinoffChapter: number; youngJumpMainChapter: number; youngJumpSpinoffChapter: number; } {
+export function getLatestReleasedData(dataList: ReleasedInfo[]): { animeSeason: number; animeEpisode: number | null; comicsVolume: number; jumpPlusMainChapter: number; jumpPlusSpinoffChapter: number; youngJumpMainChapter: number; youngJumpSpinoffChapter: number; } {
   let animeSeason = 0;
-  let animeEpisode = 0;
+  let animeEpisode: number | null = 0;
   let comicsVolume = 0;
   let jumpPlusMainChapter = 0;
   let jumpPlusSpinoffChapter = 0;
@@ -64,8 +64,11 @@ export function getLatestReleasedData(dataList: ReleasedInfo[]): { animeSeason: 
   let youngJumpSpinoffChapter = 0;
 
   for (const data of dataList) {
-    if (data.releaseAnimeSeason !== undefined && data.releaseAnimeEpisode !== undefined && data.releaseAnimeEpisode > animeEpisode) {
+    if (data.releaseAnimeSeason !== undefined && data.releaseAnimeSeason > animeSeason) {
       animeSeason = data.releaseAnimeSeason;
+      animeEpisode = null;
+    }
+    if (data.releaseAnimeSeason !== undefined && data.releaseAnimeSeason === animeSeason && data.releaseAnimeEpisode !== undefined && data.releaseAnimeEpisode > (animeEpisode ?? 0)) {
       animeEpisode = data.releaseAnimeEpisode;
     }
     if (data.releaseOriginalMainComicsVolume !== undefined && data.releaseOriginalMainComicsVolume > comicsVolume) {

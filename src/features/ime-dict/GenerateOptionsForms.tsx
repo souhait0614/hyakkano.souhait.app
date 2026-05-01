@@ -12,7 +12,7 @@ import { generateOptionsKeyLabels, releasedLevelLabels } from './labels';
 
 interface GenerateOptionsReleasedLevelSelectorProps extends Omit<SelectHTMLAttributes<HTMLSelectElement>, 'onChange' | 'value'> {
   latestAnimeSeason: number;
-  latestAnimeEpisode: number;
+  latestAnimeEpisode: number | null;
   latestComicsVolume: number;
   latestJumpPlusMainChapter: number;
   latestJumpPlusSpinoffChapter: number;
@@ -24,7 +24,7 @@ export function GenerateOptionsReleasedLevelSelector({ latestAnimeSeason, latest
 
   const releasedLevelFilterOptions = useMemo(
     () => [
-      { label: `${releasedLevelLabels.anime} (${latestAnimeSeason}期${latestAnimeEpisode}話まで)`, value: ReleasedLevel.anime },
+      { label: latestAnimeEpisode !== null ? `${releasedLevelLabels.anime} (${latestAnimeSeason}期${latestAnimeEpisode}話および${latestAnimeSeason}期発表済み用語まで)` : `${releasedLevelLabels.anime} (${latestAnimeSeason}期発表済み用語まで)`, value: ReleasedLevel.anime },
       { label: `${releasedLevelLabels.comics} (${latestComicsVolume}巻まで)`, value: ReleasedLevel.comics },
       { label: `${releasedLevelLabels.jumpPlus} (本編${latestJumpPlusMainChapter}話, ${TITLE_SPINOFF} 第${latestJumpPlusSpinoffChapter}話まで)`, value: ReleasedLevel.jumpPlus },
       { label: `${releasedLevelLabels.youngJump} (本編${latestYoungJumpMainChapter}話, ${TITLE_SPINOFF} 第${latestYoungJumpSpinoffChapter}話まで)`, value: ReleasedLevel.youngJump },
