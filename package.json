@@ -19,14 +19,14 @@
     "@tanstack/react-table": "8.21.3",
     "canvas-confetti": "1.9.4",
     "clsx": "2.1.1",
-    "date-fns": "4.2.1",
+    "date-fns": "4.3.0",
     "react": "19.2.6",
     "react-dom": "19.2.6",
     "react-server-dom-webpack": "19.2.6",
     "schummar-translate": "1.26.1",
     "tailwind-merge": "3.6.0",
     "tailwind-variants": "3.2.2",
-    "valibot": "1.4.0",
+    "valibot": "1.4.1",
     "waku": "0.27.5"
   },
   "devDependencies": {
