@@ -112,7 +112,7 @@ const updateLogs: UpdateLog[] = [
   { date: [2026, 4, 19], description: `${TITLE_SPINOFF}に対応（現状スピンオフ作品として扱っています）` },
   { date: [2026, 4, 30], description: '本編 第247話に登場したキャラクター・町名（駅名を除く）に対応' },
   { date: [2026, 5, 1], description: '2026/05/01までに発表されたアニメ第3期に登場するキャラクターと担当声優に対応' },
-  { date: [2026, 5, 28], description: `${TITLE_SPINOFF} 第4話に登場したキャラクターに対応` },
+  { date: [2026, 6, 4], description: `${TITLE_SPINOFF} 第5話に登場したキャラクターに対応` },
 ];
 
 export default function Page(pageProps: PageProps<'/ime-dict'>) {
