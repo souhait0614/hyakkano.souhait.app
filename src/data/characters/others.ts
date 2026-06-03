@@ -185,7 +185,7 @@ const otherCharactersEntries = [
     releaseAnimeEpisode: undefined,
     seiyuuAnimeIds: undefined,
   }],
-  ['character_other_iin_hiro', {
+  ['character_other_iin_hirotsugu', {
     name: { kanji: ['伊院', '拾二'], hiragana: ['いいん', 'ひろつぐ'], shortNameIndex: 1 },
     anotherNames: [
       { kanji: ['伊院', 'ヒロ'], hiragana: ['いいん', 'ひろ'], shortNameIndex: 1 },
