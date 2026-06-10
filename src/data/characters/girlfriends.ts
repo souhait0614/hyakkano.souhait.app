@@ -505,6 +505,20 @@ const girlfriendCharactersEntries = [
     seiyuuAnimeIds: undefined,
     girlfriendNumber: 36,
   }],
+  ['character_girlfriend_fushida_rana', {
+    name: { kanji: ['伏田', '蘭那'], hiragana: ['ふしだ', 'らな'], shortNameIndex: 1 },
+    anotherNames: undefined,
+    nicknames: undefined,
+    birthday: undefined,
+    age: undefined,
+    releaseOriginalMainChapter: 249,
+    releaseOriginalMainComicsVolume: undefined,
+    releaseOriginalSpinoffChapter: undefined,
+    releaseAnimeSeason: undefined,
+    releaseAnimeEpisode: undefined,
+    seiyuuAnimeIds: undefined,
+    girlfriendNumber: 37,
+  }],
 ] as const satisfies DataEntries<CharacterIdBase<'girlfriend'>, GirlfriendCharacter>;
 
 export type GirlfriendCharacterId = DataId<typeof girlfriendCharactersEntries>;
