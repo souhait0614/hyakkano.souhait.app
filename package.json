@@ -55,7 +55,7 @@
     "terser": "5.48.0",
     "type-fest": "5.7.0",
     "typescript": "6.0.2",
-    "vite": "7.3.5",
+    "vite": "8.0.16",
     "vite-tsconfig-paths": "6.1.1"
   },
   "packageManager": "pnpm@10.34.1",
