@@ -49,6 +49,12 @@ const seiyuusAnimeArray = [
   ['seiyuu_anime_taketatsu_ayana', {
     name: { kanji: ['竹達', '彩奈'], hiragana: ['たけたつ', 'あやな'] },
   }],
+  ['seiyuu_anime_tamegai_hana', {
+    name: { kanji: ['集貝', 'はな'], hiragana: ['ためがい', 'はな'] },
+  }],
+  ['seiyuu_anime_koga_aoi', {
+    name: { kanji: ['古賀', '葵'], hiragana: ['こが', 'あおい'] },
+  }],
   //#endregion
   //#region gorira alliance
   ['seiyuu_anime_saitou_kimiko', {
@@ -142,6 +148,9 @@ const seiyuusAnimeArray = [
   }],
   ['seiyuu_anime_tanaka_fumiya', {
     name: { kanji: ['田中', '文哉'], hiragana: ['たなか', 'ふみや'] },
+  }],
+  ['seiyuu_anime_miki_shinichirou', {
+    name: { kanji: ['三木', '眞一郎'], hiragana: ['みき', 'しんいちろう'] },
   }],
   //#endregion
 ] as const satisfies DataEntries<SeiyuuIdBase<'anime'>, Seiyuu>;

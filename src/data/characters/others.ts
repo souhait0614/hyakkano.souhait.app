@@ -197,9 +197,9 @@ const otherCharactersEntries = [
     releaseOriginalMainChapter: 51,
     releaseOriginalMainComicsVolume: 7,
     releaseOriginalSpinoffChapter: 4,
-    releaseAnimeSeason: undefined,
-    releaseAnimeEpisode: undefined,
-    seiyuuAnimeIds: undefined,
+    releaseAnimeSeason: 3,
+    releaseAnimeEpisode: 1,
+    seiyuuAnimeIds: ['seiyuu_anime_miki_shinichirou'],
   }],
   ['character_other_kijineta_toruru', {
     name: { kanji: ['雉根田', '兎留々'], hiragana: ['きじねた', 'とるる'], shortNameIndex: 1 },
