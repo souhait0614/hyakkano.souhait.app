@@ -210,9 +210,9 @@ const otherCharactersEntries = [
     releaseOriginalMainChapter: 55,
     releaseOriginalMainComicsVolume: 7,
     releaseOriginalSpinoffChapter: undefined,
-    releaseAnimeSeason: undefined,
-    releaseAnimeEpisode: undefined,
-    seiyuuAnimeIds: undefined,
+    releaseAnimeSeason: 3,
+    releaseAnimeEpisode: 2,
+    seiyuuAnimeIds: ['seiyuu_anime_misaki_nako'],
   }],
   ['character_other_iin_chiri', {
     name: { kanji: ['伊院', '知莉'], hiragana: ['いいん', 'ちり'], shortNameIndex: 1 },
