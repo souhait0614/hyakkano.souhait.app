@@ -67,7 +67,7 @@ export default function GoogleCalendarLinks() {
           icon={IconCalendarPlus}
           href={link.url}
         >
-          {link.label}をGoogleカレンダーに追加
+          {link.label}を追加
         </LinkButton>
       ))}
     </div>

@@ -44,7 +44,9 @@ export default function Page(pageProps: PageProps<'/birthday'>) {
               <h2 className='inline text-lg'>Googleカレンダーに追加</h2>
             </summary>
             <div className='mt-2 flex flex-col gap-2'>
-              <p>現在の表示設定に対応したGoogleカレンダーを追加できます。</p>
+              <p>Googleカレンダーに登場キャラクターの誕生日を追加できます。</p>
+              <p>彼女の誕生日は表示設定に基づいて追加されるカレンダーの種類が変わります。</p>
+              <p>キャラクター誕生日一覧に情報が追加された場合、更新は自動で行われます。</p>
               <GoogleCalendarLinks />
             </div>
           </details>
