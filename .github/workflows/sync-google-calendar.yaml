@@ -51,7 +51,7 @@ jobs:
           pnpm install --frozen-lockfile
 
       - name: Sync Google Calendar
-        run: node --import jiti/register scripts/sync-google-calendar.ts
+        run: pnpm tsx scripts/sync-google-calendar.ts
         env:
           GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
           GOOGLE_CALENDAR_IDS: ${{ vars.GOOGLE_CALENDAR_IDS }}
