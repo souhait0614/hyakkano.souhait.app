@@ -1,4 +1,4 @@
-import type { SeiyuuAnimeId } from '@/data/seiyuus/anime';
+import type { SeiyuuAnimeId } from '@data/seiyuus/anime';
 
 export type CharacterIdBase<T extends string> = `character_${T}_${string}`;
 export type SeiyuuIdBase<T extends string> = `seiyuu_${T}_${string}`;

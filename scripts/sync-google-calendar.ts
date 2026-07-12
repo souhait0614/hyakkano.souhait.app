@@ -3,12 +3,11 @@
  * GIRLFRIEND は releasedLevel ごとに4カレンダー、RENTARO/AUTHOR は各1カレンダーの計6パターンを管理する
  */
 
+import { AUTHOR_CHARACTERS } from '@data/characters/authors';
+import { GIRLFRIEND_CHARACTERS } from '@data/characters/girlfriends';
+import { RENTARO_CHARACTERS } from '@data/characters/rentaro';
+import { JUMP_PLUS_RELEASE_MAIN_CHAPTER } from '@data/meta';
 import { google } from 'googleapis';
-
-import { AUTHOR_CHARACTERS } from '../src/data/characters/authors';
-import { GIRLFRIEND_CHARACTERS } from '../src/data/characters/girlfriends';
-import { RENTARO_CHARACTERS } from '../src/data/characters/rentaro';
-import { JUMP_PLUS_RELEASE_MAIN_CHAPTER } from '../src/data/meta';
 
 // --- Types ---
 

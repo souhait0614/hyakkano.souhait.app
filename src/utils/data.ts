@@ -1,6 +1,7 @@
+import { JUMP_PLUS_RELEASE_MAIN_CHAPTER, JUMP_PLUS_RELEASE_SPINOFF_CHAPTER } from '@data/meta';
+
 import type { ReleasedInfo } from '@/types/Data';
 import { RELEASED_LEVELS } from '@/constants/released-level';
-import { JUMP_PLUS_RELEASE_MAIN_CHAPTER, JUMP_PLUS_RELEASE_SPINOFF_CHAPTER } from '@/data/meta';
 import { ReleasedLevel } from '@/types/ReleasedLevel';
 
 export function validateShortName(name: string[], hiragana: string[], shortNameIndex: number) {

@@ -1,9 +1,9 @@
 'use client';
 
 import type { SelectHTMLAttributes } from 'react';
+import { TITLE_SPINOFF } from '@data/meta';
 import { useCallback, useMemo } from 'react';
 
-import { TITLE_SPINOFF } from '@/data/meta';
 import { ReleasedLevel } from '@/types/ReleasedLevel';
 
 import type { ImeDictGenerateOptionsInput } from './schemas';

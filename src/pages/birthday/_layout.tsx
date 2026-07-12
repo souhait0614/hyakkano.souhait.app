@@ -1,11 +1,11 @@
 import type { ReactNode } from 'react';
+import { AUTHOR_CHARACTERS } from '@data/characters/authors';
+import { GIRLFRIEND_CHARACTERS } from '@data/characters/girlfriends';
+import { RENTARO_CHARACTERS } from '@data/characters/rentaro';
+import { JUMP_PLUS_RELEASE_MAIN_CHAPTER } from '@data/meta';
 
 import type { BirthdayCharacter, BirthdayCharacterType } from '@/features/birthday/types';
 import type { Character, GirlfriendCharacter } from '@/types/Data';
-import { AUTHOR_CHARACTERS } from '@/data/characters/authors';
-import { GIRLFRIEND_CHARACTERS } from '@/data/characters/girlfriends';
-import { RENTARO_CHARACTERS } from '@/data/characters/rentaro';
-import { JUMP_PLUS_RELEASE_MAIN_CHAPTER } from '@/data/meta';
 import CharactersProvider from '@/features/birthday/CharactersProvider';
 import { ReleasedLevel } from '@/types/ReleasedLevel';
 
