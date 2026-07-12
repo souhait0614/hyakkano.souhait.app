@@ -5,6 +5,7 @@ import BirthdayCharactersCard from '@/features/birthday/BirthdayCharactersCard';
 import CurrentDateClock from '@/features/birthday/CurrentDateClock';
 import DateProvider from '@/features/birthday/DateProvider';
 import { ReleasedLevelFilterSelect, TypesFilterCheckboxes } from '@/features/birthday/Filters';
+import GoogleCalendarLinks from '@/features/birthday/GoogleCalendarLinks';
 import { ShowNameRubySetting } from '@/features/birthday/Settings';
 import Table from '@/features/birthday/Table';
 import PageHead from '@/features/PageHead';
@@ -36,6 +37,17 @@ export default function Page(pageProps: PageProps<'/birthday'>) {
           <div className='flex flex-wrap gap-2'>
             <ShowNameRubySetting />
           </div>
+        </section>
+        <section className='flex flex-col gap-2 card'>
+          <details>
+            <summary className='cursor-pointer'>
+              <h2 className='inline text-lg'>Googleカレンダーに追加</h2>
+            </summary>
+            <div className='mt-2 flex flex-col gap-2'>
+              <p>現在の表示設定に対応したGoogleカレンダーを追加できます。</p>
+              <GoogleCalendarLinks />
+            </div>
+          </details>
         </section>
         <BirthdayCharactersCard />
         <section className='card'>
