@@ -238,7 +238,7 @@ const otherCharactersEntries = [
     releaseOriginalSpinoffChapter: undefined,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    seiyuuAnimeIds: undefined,
+    seiyuuAnimeIds: ['seiyuu_anime_shouji_umeka'],
   }],
   ['character_other_jiizasu_nakai', {
     name: { kanji: ['ジーザス', '中井'], hiragana: ['じーざす', 'なかい'], shortNameIndex: undefined },
@@ -251,7 +251,7 @@ const otherCharactersEntries = [
     releaseOriginalSpinoffChapter: undefined,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
-    seiyuuAnimeIds: undefined,
+    seiyuuAnimeIds: ['seiyuu_anime_okamoto_nobuhiko'],
   }],
   ['character_other_akogaresan', {
     name: { kanji: ['阿古枯さん'], hiragana: ['あこがれさん'], shortNameIndex: undefined },

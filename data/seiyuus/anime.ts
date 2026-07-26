@@ -155,6 +155,13 @@ const seiyuusAnimeArray = [
   ['seiyuu_anime_miki_shinichirou', {
     name: { kanji: ['三木', '眞一郎'], hiragana: ['みき', 'しんいちろう'] },
   }],
+  ['seiyuu_anime_shouji_umeka', {
+    name: { kanji: ['庄司', '宇芽香'], hiragana: ['しょうじ', 'うめか'] },
+  }],
+  ['seiyuu_anime_okamoto_nobuhiko', {
+    name: { kanji: ['岡本', '信彦'], hiragana: ['おかもと', 'のぶひこ'] },
+  }],
+
   //#endregion
 ] as const satisfies DataEntries<SeiyuuIdBase<'anime'>, Seiyuu>;
 
