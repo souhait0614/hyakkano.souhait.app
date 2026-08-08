@@ -36,7 +36,7 @@
     "@taiyme/vite-plugin-jsx-prune-classname": "0.0.3",
     "@types/canvas-confetti": "1.9.0",
     "@types/node": "24.13.3",
-    "@types/react": "19.2.17",
+    "@types/react": "19.2.18",
     "@types/react-dom": "19.2.3",
     "@typescript-eslint/parser": "8.65.0",
     "concurrently": "10.0.4",
