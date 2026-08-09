@@ -8,9 +8,7 @@ overrides:
   vite: 7.3.6
 
 patchedDependencies:
-  waku:
-    hash: 1ec4ebb3a2bd888d636c07ed643ac8d9b898adde7ac093eab13a8488229fab96
-    path: patches/waku.patch
+  waku: 1ec4ebb3a2bd888d636c07ed643ac8d9b898adde7ac093eab13a8488229fab96
 
 importers:
 
