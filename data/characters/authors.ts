@@ -29,9 +29,9 @@ const authorCharactersEntries = [
     releaseOriginalMainChapter: 69,
     releaseOriginalMainComicsVolume: 9,
     releaseOriginalSpinoffChapter: undefined,
-    releaseAnimeSeason: undefined,
-    releaseAnimeEpisode: undefined,
-    seiyuuAnimeIds: undefined,
+    releaseAnimeSeason: 3,
+    releaseAnimeEpisode: 30,
+    seiyuuAnimeIds: ['seiyuu_anime_nozawa_masako'],
   }],
 ] as const satisfies DataEntries<CharacterIdBase<'author'>, Character>;
 

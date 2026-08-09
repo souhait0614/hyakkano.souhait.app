@@ -161,6 +161,9 @@ const seiyuusAnimeArray = [
   ['seiyuu_anime_okamoto_nobuhiko', {
     name: { kanji: ['岡本', '信彦'], hiragana: ['おかもと', 'のぶひこ'] },
   }],
+  ['seiyuu_anime_nozawa_masako', {
+    name: { kanji: ['野沢', '雅子'], hiragana: ['のざわ', 'まさこ'] },
+  }],
 
   //#endregion
 ] as const satisfies DataEntries<SeiyuuIdBase<'anime'>, Seiyuu>;
