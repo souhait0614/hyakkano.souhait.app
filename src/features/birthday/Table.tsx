@@ -1,8 +1,8 @@
 'use client';
 
-import type { ColumnDef, SortingState } from '@tanstack/react-table';
+import type { SortingState } from '@tanstack/react-table';
 import { TZDateMini } from '@date-fns/tz';
-import { flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
+import { createColumnHelper, createSortedRowModel, flexRender, rowSortingFeature, tableFeatures, useTable } from '@tanstack/react-table';
 import clsx from 'clsx';
 import { Fragment, useContext, useMemo } from 'react';
 
@@ -17,21 +17,26 @@ import { TodayDateContext } from './contexts';
 import { useFilteredCharacters, useShowNameRuby } from './hooks';
 import { getDaysUntilBirthday } from './utils';
 
+const features = tableFeatures({
+  rowSortingFeature,
+  sortedRowModel: createSortedRowModel(),
+});
+
+const columnHelper = createColumnHelper<typeof features, BirthdayCharacterTableRow>();
+
 function Table() {
   const todayDate = useContext(TodayDateContext);
   const { showNameRuby } = useShowNameRuby();
 
   const columns = useMemo(() => {
     const todayYear = todayDate.getFullYear();
-    return [
-      {
-        accessorKey: 'girlfriendNumber',
+    return columnHelper.columns([
+      columnHelper.accessor('girlfriendNumber', {
         header: '彼女No.',
         cell: (info) => <span>{info.getValue<number | undefined>() ?? '-'}</span>,
         meta: { align: 'right' },
-      },
-      {
-        accessorKey: 'name',
+      }),
+      columnHelper.accessor('name', {
         header: '名前',
         cell: (info) => {
           const { kanji: name, hiragana } = info.getValue<PersonName>();
@@ -52,12 +57,11 @@ function Table() {
           ));
           return <span>{name.join(' ') || '-'}</span>;
         },
-        sortingFn: (rowA, rowB) => rowA.original.name.hiragana.join(' ').localeCompare(rowB.original.name.hiragana.join(' '), 'ja'),
-      },
-      {
-        accessorKey: 'birthday',
+        sortFn: (rowA, rowB) => rowA.original.name.hiragana.join(' ').localeCompare(rowB.original.name.hiragana.join(' '), 'ja'),
+      }),
+      columnHelper.accessor('birthday', {
         header: '誕生日',
-        sortingFn: (rowA, rowB) => {
+        sortFn: (rowA, rowB) => {
           if (!rowA.original.birthday) return 1;
           if (!rowB.original.birthday) return -1;
           const [monthA, dayA, hourA = 0, minuteA = 0, secondA = 0] = rowA.original.birthday;
@@ -74,9 +78,8 @@ function Table() {
             : <span>{`${String(birthday[0]).padStart(2, '0')}/${String(birthday[1]).padStart(2, '0')} ${String(birthday[2]).padStart(2, '0')}:${String(birthday[3]).padStart(2, '0')}:${String(birthday[4]).padStart(2, '0')}`}</span>;
         },
         meta: { tdClassName: 'font-mono' },
-      },
-      {
-        accessorKey: 'daysUntilBirthday',
+      }),
+      columnHelper.accessor('daysUntilBirthday', {
         header: 'あと',
         cell: (info) => {
           const days = info.getValue<number | undefined>();
@@ -84,8 +87,8 @@ function Table() {
           return <span>{days === 0 ? '本日' : `${days}日`}</span>;
         },
         meta: { align: 'right' },
-      },
-    ] as const satisfies ColumnDef<BirthdayCharacterTableRow>[];
+      }),
+    ]);
   }, [showNameRuby, todayDate]);
 
   const filteredCharacters = useFilteredCharacters();
@@ -103,11 +106,10 @@ function Table() {
     { id: 'daysUntilBirthday', desc: false },
   ]);
 
-  const table = useReactTable({
+  const table = useTable({
+    features,
     data,
     columns,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
     state: { sorting },
     onSortingChange: setSorting,
     sortDescFirst: false,
@@ -173,7 +175,7 @@ function Table() {
         {table.getRowModel().rows.map((row) => {
           return (
             <tr key={row.id}>
-              {row.getVisibleCells().map((cell) => (
+              {row.getAllCells().map((cell) => (
                 <td
                   key={cell.id}
                   className={clsx(
