@@ -108,7 +108,7 @@ interface UpdateLog {
 }
 
 const updateLogs: UpdateLog[] = [
-  { date: [2026, 8, 9], description: '2026/08/09までに発表されたアニメ第3期に登場するキャラクターと担当声優に対応' },
+  { date: [2026, 8, 16], description: '2026/08/16までに発表されたアニメ第3期に登場するキャラクターと担当声優に対応' },
   { date: [2026, 3, 24], description: 'キャラクター担当声優の読みに存在した誤字を修正\n(たかおかなね→たかおかのん)' },
   { date: [2026, 4, 19], description: `${TITLE_SPINOFF}に対応（現状スピンオフ作品として扱っています）` },
   { date: [2026, 7, 23], description: `${TITLE_SPINOFF} 第6話に登場したキャラクターに対応` },

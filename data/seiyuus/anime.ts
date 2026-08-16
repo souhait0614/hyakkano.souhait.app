@@ -164,6 +164,15 @@ const seiyuusAnimeArray = [
   ['seiyuu_anime_nozawa_masako', {
     name: { kanji: ['野沢', '雅子'], hiragana: ['のざわ', 'まさこ'] },
   }],
+  ['seiyuu_anime_iguchi_yuka', {
+    name: { kanji: ['井口', '裕香'], hiragana: ['いぐち', 'ゆか'] },
+  }],
+  ['seiyuu_anime_tamura_mutsumi', {
+    name: { kanji: ['田村', '睦心'], hiragana: ['たむら', 'むつみ'] },
+  }],
+  ['seiyuu_anime_sugita_tomokazu', {
+    name: { kanji: ['杉田', '智和'], hiragana: ['すぎた', 'ともかず'] },
+  }],
 
   //#endregion
 ] as const satisfies DataEntries<SeiyuuIdBase<'anime'>, Seiyuu>;
