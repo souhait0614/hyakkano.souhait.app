@@ -220,9 +220,9 @@ const girlfriendCharactersEntries = [
     releaseOriginalMainChapter: 74,
     releaseOriginalMainComicsVolume: 9,
     releaseOriginalSpinoffChapter: 5,
-    releaseAnimeSeason: undefined,
-    releaseAnimeEpisode: undefined,
-    seiyuuAnimeIds: undefined,
+    releaseAnimeSeason: 3,
+    releaseAnimeEpisode: 32,
+    seiyuuAnimeIds: ['seiyuu_anime_kugimiya_rie'],
     girlfriendNumber: 16,
   }],
   ['character_girlfriend_torotoro_kishika', {

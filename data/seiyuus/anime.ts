@@ -55,6 +55,9 @@ const seiyuusAnimeArray = [
   ['seiyuu_anime_koga_aoi', {
     name: { kanji: ['古賀', '葵'], hiragana: ['こが', 'あおい'] },
   }],
+  ['seiyuu_anime_kugimiya_rie', {
+    name: { kanji: ['釘宮', '理恵'], hiragana: ['くぎみや', 'りえ'] },
+  }],
   //#endregion
   //#region gorira alliance
   ['seiyuu_anime_saitou_kimiko', {
