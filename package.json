@@ -44,7 +44,7 @@
     "eslint-config-flat-gitignore": "2.3.0",
     "eslint-plugin-better-tailwindcss": "4.7.0",
     "globals": "17.8.0",
-    "googleapis": "174.0.1",
+    "googleapis": "176.0.0",
     "jiti": "2.7.0",
     "kiso.css": "1.2.4",
     "lefthook": "2.1.10",
