@@ -58,6 +58,9 @@ const seiyuusAnimeArray = [
   ['seiyuu_anime_kugimiya_rie', {
     name: { kanji: ['釘宮', '理恵'], hiragana: ['くぎみや', 'りえ'] },
   }],
+  ['seiyuu_anime_yano_yumika', {
+    name: { kanji: ['矢野', '優美華'], hiragana: ['やの', 'ゆみか'] },
+  }],
   //#endregion
   //#region gorira alliance
   ['seiyuu_anime_saitou_kimiko', {
@@ -176,7 +179,6 @@ const seiyuusAnimeArray = [
   ['seiyuu_anime_sugita_tomokazu', {
     name: { kanji: ['杉田', '智和'], hiragana: ['すぎた', 'ともかず'] },
   }],
-
   //#endregion
 ] as const satisfies DataEntries<SeiyuuIdBase<'anime'>, Seiyuu>;
 

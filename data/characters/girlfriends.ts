@@ -235,8 +235,8 @@ const girlfriendCharactersEntries = [
     releaseOriginalMainComicsVolume: 10,
     releaseOriginalSpinoffChapter: undefined,
     releaseAnimeSeason: 3,
-    releaseAnimeEpisode: undefined,
-    seiyuuAnimeIds: undefined,
+    releaseAnimeEpisode: 33,
+    seiyuuAnimeIds: ['seiyuu_anime_yano_yumika'],
     girlfriendNumber: 17,
   }],
   ['character_girlfriend_kedarui_aashii', {
