@@ -145,10 +145,9 @@ const seiyuusAnimeArray = [
   ['seiyuu_anime_misaki_nako', {
     name: { kanji: ['岬', 'なこ'], hiragana: ['みさき', 'なこ'] },
   }],
-  // TODO: 羽香里の父の名前が判明したら追加
-  // ['seiyuu_anime_ishida_akira', {
-  //   name: { kanji: ['石田', '彰'], hiragana: ['いしだ', 'あきら'] },
-  // }],
+  ['seiyuu_anime_ishida_akira', {
+    name: { kanji: ['石田', '彰'], hiragana: ['いしだ', 'あきら'] },
+  }],
   ['seiyuu_anime_igoma_yurie', {
     name: { kanji: ['伊駒', 'ゆりえ'], hiragana: ['いごま', 'ゆりえ'] },
   }],
