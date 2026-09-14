@@ -35,7 +35,7 @@
     "@taiyme/eslint-config": "1.0.1",
     "@taiyme/vite-plugin-jsx-prune-classname": "0.0.3",
     "@types/canvas-confetti": "1.9.0",
-    "@types/node": "24.13.3",
+    "@types/node": "24.13.4",
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.4",
     "@typescript-eslint/parser": "8.67.0",
@@ -60,5 +60,5 @@
     "vite": "7.3.6",
     "vite-tsconfig-paths": "6.1.1"
   },
-  "packageManager": "pnpm@11.22.0"
+  "packageManager": "pnpm@11.26.0"
 }
