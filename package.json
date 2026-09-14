@@ -16,17 +16,17 @@
   },
   "dependencies": {
     "@date-fns/tz": "1.5.0",
-    "@tanstack/react-table": "9.1.2",
+    "@tanstack/react-table": "9.2.4",
     "canvas-confetti": "1.9.4",
     "clsx": "2.1.1",
     "date-fns": "4.4.0",
-    "react": "19.2.8",
-    "react-dom": "19.2.8",
-    "react-server-dom-webpack": "19.2.8",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-server-dom-webpack": "19.3.0",
     "schummar-translate": "1.26.1",
     "tailwind-merge": "3.6.0",
     "tailwind-variants": "3.3.1",
-    "valibot": "1.4.2",
+    "valibot": "1.5.0",
     "waku": "0.27.5"
   },
   "devDependencies": {
