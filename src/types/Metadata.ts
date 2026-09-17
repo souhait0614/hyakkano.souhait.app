@@ -11,7 +11,7 @@ type Base_Metadata = Readonly<{
 type Case_Indexed = Readonly<(
   & {
     noIndex?: false;
-    description: string;
+    description: string | string[];
   }
   & Base_Metadata
   & OpenGraph
@@ -20,7 +20,7 @@ type Case_Indexed = Readonly<(
 type Case_NoIndex = Readonly<(
   & {
     noIndex: true;
-    description?: string;
+    description?: string | string[];
   }
   & Base_Metadata
 )>;

@@ -23,7 +23,9 @@ export default function Page(pageProps: PageProps<'/'>) {
         <div className='page-container grow justify-center'>
           <article className='card'>
             <h2><LinkText to='/birthday'>{pageBirthdayMetadata.title}</LinkText></h2>
-            <p>{pageBirthdayMetadata.description}</p>
+            {pageBirthdayMetadata.description.map((desc, index) => (
+              <p key={index}>{desc}</p>
+            ))}
           </article>
           <article className='card'>
             <h2><LinkText to='/ime-dict'>{pageImeDictMetadata.title}</LinkText></h2>

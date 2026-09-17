@@ -20,13 +20,15 @@ export default function PageHead<T extends PageProps<string>>({ metadata, pagePr
     og,
   } = generateHeadData(metadata, pageProps);
 
+  const descriptionContent = Array.isArray(description) ? description.join(' ') : description;
+
   return (
     <>
       {noIndex && (<meta name='robots' content='noindex' />)}
-      {description && (<meta name='description' content={description} />)}
+      {descriptionContent && (<meta name='description' content={descriptionContent} />)}
       <title>{titleWithSiteName}</title>
       <meta property='og:title' content={title} />
-      {description && (<meta property='og:description' content={description} />)}
+      {descriptionContent && (<meta property='og:description' content={descriptionContent} />)}
       <meta property='og:url' content={og.url ?? undefined} />
       <meta property='og:site_name' content={og.siteName} />
       <meta property='og:locale' content={og.locale} />
