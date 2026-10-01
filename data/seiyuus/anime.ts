@@ -133,6 +133,9 @@ const seiyuusAnimeArray = [
   ['seiyuu_anime_kujira', {
     name: { kanji: ['くじら'], hiragana: ['くじら'] },
   }],
+  ['seiyuu_anime_yonezawa_madoka', {
+    name: { kanji: ['米澤', '円'], hiragana: ['よねざわ', 'まどか'] },
+  }],
   ['seiyuu_anime_sakakibara_yuuki', {
     name: { kanji: ['榊原', '優希'], hiragana: ['さかきはら', 'ゆうき'] },
   }],

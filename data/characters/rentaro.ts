@@ -9,7 +9,7 @@ const rentaroCharactersEntries = [
     age: 16,
     releaseOriginalMainChapter: 1,
     releaseOriginalMainComicsVolume: 1,
-    releaseOriginalSpinoffChapter: undefined,
+    releaseOriginalSpinoffChapter: 9,
     releaseAnimeSeason: 1,
     releaseAnimeEpisode: 1,
     seiyuuAnimeIds: ['seiyuu_anime_kato_wataru'],

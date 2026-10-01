@@ -401,7 +401,7 @@ const girlfriendCharactersEntries = [
     age: 15,
     releaseOriginalMainChapter: 177,
     releaseOriginalMainComicsVolume: 21,
-    releaseOriginalSpinoffChapter: undefined,
+    releaseOriginalSpinoffChapter: 9,
     releaseAnimeSeason: undefined,
     releaseAnimeEpisode: undefined,
     seiyuuAnimeIds: undefined,
