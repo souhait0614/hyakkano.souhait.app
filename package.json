@@ -57,7 +57,7 @@
     "tsx": "4.23.15",
     "type-fest": "5.10.0",
     "typescript": "6.0.3",
-    "vite": "7.3.6",
+    "vite": "8.3.4",
     "vite-tsconfig-paths": "6.1.1"
   },
   "packageManager": "pnpm@12.8.2"
