@@ -108,6 +108,7 @@ interface UpdateLog {
 }
 
 const updateLogs: UpdateLog[] = [
+  { date: [2026, 10, 15], description: '本編 第258話に登場したキャラクターの名前を正しいものに修正\n(夢→舞)' },
   { date: [2026, 9, 17], description: '単行本 27巻までに登場したキャラクターに対応' },
   { date: [2026, 8, 30], description: '2026/08/30までに発表されたアニメ第3期に登場するキャラクターと担当声優に対応' },
   { date: [2026, 3, 24], description: 'キャラクター担当声優の読みに存在した誤字を修正\n(たかおかなね→たかおかのん)' },

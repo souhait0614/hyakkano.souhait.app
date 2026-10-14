@@ -520,7 +520,7 @@ const girlfriendCharactersEntries = [
     girlfriendNumber: 37,
   }],
   ['character_girlfriend_nuremi_suimu', {
-    name: { kanji: ['濡海', '水夢'], hiragana: ['ぬれみ', 'すいむ'], shortNameIndex: 1 },
+    name: { kanji: ['濡海', '水舞'], hiragana: ['ぬれみ', 'すいむ'], shortNameIndex: 1 },
     anotherNames: undefined,
     nicknames: undefined,
     birthday: undefined,
