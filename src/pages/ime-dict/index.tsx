@@ -113,7 +113,7 @@ const updateLogs: UpdateLog[] = [
   { date: [2026, 3, 24], description: 'キャラクター担当声優の読みに存在した誤字を修正\n(たかおかなね→たかおかのん)' },
   { date: [2026, 4, 19], description: `${TITLE_SPINOFF}に対応（現状スピンオフ作品として扱っています）` },
   { date: [2026, 10, 1], description: `${TITLE_SPINOFF} 第9話までに登場したキャラクターに対応` },
-  { date: [2026, 6, 11], description: '本編 第249話までに登場したキャラクターに対応' },
+  { date: [2026, 10, 15], description: '本編 第258話までに登場したキャラクターに対応' },
 ];
 
 export default function Page(pageProps: PageProps<'/ime-dict'>) {

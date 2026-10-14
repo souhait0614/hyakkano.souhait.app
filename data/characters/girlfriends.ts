@@ -519,6 +519,20 @@ const girlfriendCharactersEntries = [
     seiyuuAnimeIds: undefined,
     girlfriendNumber: 37,
   }],
+  ['character_girlfriend_nuremi_suimu', {
+    name: { kanji: ['濡海', '水夢'], hiragana: ['ぬれみ', 'すいむ'], shortNameIndex: 1 },
+    anotherNames: undefined,
+    nicknames: undefined,
+    birthday: undefined,
+    age: undefined,
+    releaseOriginalMainChapter: 258,
+    releaseOriginalMainComicsVolume: undefined,
+    releaseOriginalSpinoffChapter: undefined,
+    releaseAnimeSeason: undefined,
+    releaseAnimeEpisode: undefined,
+    seiyuuAnimeIds: undefined,
+    girlfriendNumber: 38,
+  }],
 ] as const satisfies DataEntries<CharacterIdBase<'girlfriend'>, GirlfriendCharacter>;
 
 export type GirlfriendCharacterId = DataId<typeof girlfriendCharactersEntries>;
