@@ -10,5 +10,5 @@ export const TITLE_SPINOFF_HIRAGANA = 'れんたろうふぁみりーのふぁ�
 export const TITLE_SPINOFF_SHORT = '100カゾ';
 export const TITLE_SPINOFF_SHORT_HIRAGANA = 'ひゃくかぞ';
 
-export const JUMP_PLUS_RELEASE_MAIN_CHAPTER = 256;
+export const JUMP_PLUS_RELEASE_MAIN_CHAPTER = 258;
 export const JUMP_PLUS_RELEASE_SPINOFF_CHAPTER = 9;
