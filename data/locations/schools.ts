@@ -28,6 +28,15 @@ const schoolsEntries = [
     releaseAnimeSeason: 2,
     releaseAnimeEpisode: 13,
   }],
+  ['location_school_jurassic_high_shool', {
+    name: { kanji: '寿裸漆区高校', hiragana: 'じゅらしっくこうこう' },
+    anotherNames: undefined,
+    releaseOriginalMainChapter: 34,
+    releaseOriginalMainComicsVolume: 5,
+    releaseOriginalSpinoffChapter: undefined,
+    releaseAnimeSeason: 2,
+    releaseAnimeEpisode: 18,
+  }],
   ['location_school_mirei_middle', {
     name: { kanji: '美玲中学校', hiragana: 'みれいちゅうがっこう' },
     anotherNames: undefined,
