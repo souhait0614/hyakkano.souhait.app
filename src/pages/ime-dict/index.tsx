@@ -134,6 +134,7 @@ export default function Page(pageProps: PageProps<'/ime-dict'>) {
   const generateOptionsComicsCommons = {
     releasedLevel: ReleasedLevel.comics,
     title: true,
+    songs: false,
     characterRentaro: true,
     characterGirlfriends: true,
     characterAuthors: true,
@@ -150,6 +151,7 @@ export default function Page(pageProps: PageProps<'/ime-dict'>) {
   const generateOptionsYoungJumpAll = {
     releasedLevel: ReleasedLevel.youngJump,
     title: true,
+    songs: true,
     characterRentaro: true,
     characterGirlfriends: true,
     characterAuthors: true,

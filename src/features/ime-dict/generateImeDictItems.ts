@@ -1,9 +1,10 @@
 import type { SeiyuuAnimeId } from '@data/seiyuus/anime';
-import { TITLE, TITLE_HIRAGANA, TITLE_SHORT, TITLE_SHORT_HIRAGANA1, TITLE_SHORT_HIRAGANA2, TITLE_SPINOFF, TITLE_SPINOFF_HIRAGANA, TITLE_SPINOFF_SHORT, TITLE_SPINOFF_SHORT_HIRAGANA } from '@data/meta';
+import { TITLE } from '@data/meta';
 import { createTranslator } from 'schummar-translate';
 
-import type { Character, CommonName, Location, PersonName, Seiyuu } from '@/types/Data';
+import type { Character, CommonName, Location, PersonName, Seiyuu, Song, Work, WorkId } from '@/types/Data';
 import type { ImeDictItem } from '@/types/ImeDict';
+import { SongType } from '@/types/Data';
 import { ImeDictItemCategory } from '@/types/ImeDict';
 import { checkReleasedData, filterReleasedData, joinName, validateShortName } from '@/utils/data';
 
@@ -26,6 +27,45 @@ const { getTranslator } = createTranslator({
     },
   },
 } as const);
+
+function createSongComment(song: Song): string {
+  if (song.releaseAnimeSeason === undefined) {
+    const errorMsg = `楽曲のアニメシーズンが未設定です: ${song.name.kanji}`;
+    console.error(errorMsg, song);
+    throw new Error(errorMsg);
+  }
+  switch (song.type) {
+    case SongType.animeOpening: {
+      return `TVアニメ「${TITLE}」第${song.releaseAnimeSeason}期オープニングテーマ`;
+    }
+    case SongType.animeEnding: {
+      if (song.releaseAnimeEpisode === undefined) {
+        return `TVアニメ「${TITLE}」第${song.releaseAnimeSeason}期エンディングテーマ`;
+      }
+      return `TVアニメ「${TITLE}」第${song.releaseAnimeSeason}期第${song.releaseAnimeEpisode}話エンディングテーマ`;
+    }
+    case SongType.animeInsertSong: {
+      if (song.releaseAnimeEpisode === undefined) {
+        const errorMsg = `挿入歌の話数が未設定です: ${song.name.kanji}`;
+        console.error(errorMsg, song);
+        throw new Error(errorMsg);
+      }
+      return `TVアニメ「${TITLE}」第${song.releaseAnimeSeason}期第${song.releaseAnimeEpisode}話挿入歌`;
+    }
+    case SongType.imageSong: {
+      if (song.albumName === undefined) {
+        const errorMsg = `イメージソングのアルバム名が未設定です: ${song.name.kanji}`;
+        console.error(errorMsg, song);
+        throw new Error(errorMsg);
+      }
+      return `TVアニメ「${TITLE}」第${song.releaseAnimeSeason}期イメージソングアルバム「${song.albumName.kanji}」収録曲`;
+    }
+    default: {
+      song.type satisfies never;
+      throw new Error(`Unknown song type: ${song.type}`);
+    }
+  }
+}
 
 export async function generateImeDictItems(options?: ImeDictGenerateOptions): Promise<ImeDictItem[]> {
   const t = await getTranslator('ja');
@@ -208,13 +248,47 @@ export async function generateImeDictItems(options?: ImeDictGenerateOptions): Pr
 
   const rentaroCharacterId = 'character_rentaro_aijou_rentaro';
 
-  // タイトル
+  // 作品名
   if (opts.title) {
-    items.push({ word: TITLE, reading: TITLE_HIRAGANA, category: ImeDictItemCategory.title, comment: undefined });
-    items.push({ word: TITLE_SHORT, reading: TITLE_SHORT_HIRAGANA1, category: ImeDictItemCategory.title, comment: `「${TITLE}」の通称` });
-    items.push({ word: TITLE_SHORT, reading: TITLE_SHORT_HIRAGANA2, category: ImeDictItemCategory.title, comment: `「${TITLE}」の通称` });
-    items.push({ word: TITLE_SPINOFF, reading: TITLE_SPINOFF_HIRAGANA, category: ImeDictItemCategory.title, comment: `「${TITLE}」のスピンオフ作品` });
-    items.push({ word: TITLE_SPINOFF_SHORT, reading: TITLE_SPINOFF_SHORT_HIRAGANA, category: ImeDictItemCategory.title, comment: `「${TITLE_SPINOFF}」の通称` });
+    const { MAIN_WORKS } = await import('@data/works/main');
+    const { SPINOFF_WORKS } = await import('@data/works/spinoff');
+    const works: ReadonlyMap<WorkId, Work> = new Map([...MAIN_WORKS, ...SPINOFF_WORKS]);
+    for (const [, work] of works) {
+      const basedOnWork = work.basedOnWorkId === undefined ? undefined : works.get(work.basedOnWorkId);
+      if (work.basedOnWorkId !== undefined && basedOnWork === undefined) {
+        const errorMsg = `スピンオフ元の作品が見つかりませんでした: ${work.basedOnWorkId}`;
+        console.error(errorMsg);
+        throw new Error(errorMsg);
+      }
+      items.push({
+        word: work.name.kanji,
+        reading: work.name.hiragana,
+        category: ImeDictItemCategory.title,
+        comment: basedOnWork === undefined ? undefined : `「${basedOnWork.name.kanji}」のスピンオフ作品`,
+      });
+      for (const shortName of work.shortNames ?? []) {
+        items.push({
+          word: shortName.kanji,
+          reading: shortName.hiragana,
+          category: ImeDictItemCategory.title,
+          comment: `「${work.name.kanji}」の通称`,
+        });
+      }
+    }
+  }
+
+  // アニメ楽曲
+  if (opts.songs) {
+    const { ANIME_SONGS } = await import('@data/songs/anime');
+    const { IMAGE_SONGS } = await import('@data/songs/image-songs');
+    for (const [, song] of [...ANIME_SONGS, ...IMAGE_SONGS]) {
+      items.push({
+        word: song.name.kanji,
+        reading: song.name.hiragana,
+        category: ImeDictItemCategory.songTitle,
+        comment: createSongComment(song),
+      });
+    }
   }
 
   // キャラ名: 恋太郎

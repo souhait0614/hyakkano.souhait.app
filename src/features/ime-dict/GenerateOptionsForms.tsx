@@ -82,6 +82,7 @@ export function GenerateOptionsCharacterTypeCheckBoxes() {
 
 const otherTypeInputs = [
   'title',
+  'songs',
   'schools',
   'towns',
   'seiyuusAnime',

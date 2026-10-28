@@ -38,7 +38,7 @@ src/
 ├── constants/      # アプリ全体の定数
 ├── types/          # 共有型定義
 └── utils/          # ユーティリティ関数
-data/               # アプリケーションデータ (キャラクター、場所、声優)
+data/               # アプリケーションデータ (キャラクター、場所、声優、作品、楽曲)
 ```
 
 ## 規約
@@ -88,7 +88,7 @@ pre-commit で自動実行:
 - [waku.config.ts](waku.config.ts) – Viteプラグイン (tailwind, tsconfig-paths, jsx-prune-classname)
 - [wrangler.jsonc](wrangler.jsonc) – Cloudflare Workers設定
 - [src/style.css](src/style.css) – グローバルスタイル、カスタムユーティリティ、テーマ変数
-- [data/](data/) – 全アプリケーションデータ (キャラクター、場所、声優)
+- [data/](data/) – 全アプリケーションデータ (キャラクター、場所、声優、作品、楽曲)
 - [patches/waku.patch](patches/waku.patch) – wakuに適用されるパッチ
 
 ## 環境変数

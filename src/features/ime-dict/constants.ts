@@ -6,6 +6,7 @@ import type { ImeDictGenerateOptions } from './schemas';
 export const IME_DICT_DEFAULT_GENERATE_OPTIONS: ImeDictGenerateOptions = {
   releasedLevel: ReleasedLevel.anime,
   title: true,
+  songs: false,
   characterRentaro: true,
   characterGirlfriends: true,
   characterAuthors: false,

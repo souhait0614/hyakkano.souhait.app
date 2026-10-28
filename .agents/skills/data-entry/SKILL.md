@@ -1,7 +1,7 @@
 ---
 name: data-entry
-description: "data/ ディレクトリにデータを追加する。使用場面: 新しいキャラクター、彼女、声優、場所などのエンティティを追加するとき。"
-argument-hint: "エンティティの種類と名前 (例: 'girlfriend 百瀬百々', 'seiyuu 花澤香菜')"
+description: "data/ ディレクトリにデータを追加する。使用場面: 新しいキャラクター、彼女、声優、場所、作品、楽曲などのエンティティを追加するとき。"
+argument-hint: "エンティティの種類と名前 (例: 'girlfriend 百瀬百々', 'seiyuu 花澤香菜', 'song 大大大大大好きな君へ♡')"
 ---
 
 # データエントリ追加
@@ -14,6 +14,8 @@ argument-hint: "エンティティの種類と名前 (例: 'girlfriend 百瀬百
 - 新しい声優の追加
 - 新しい場所（学校、町）の追加
 - 新しいキャラクター（作者、その他、ゴリラ同盟 等）の追加
+- 新しい作品タイトル（本編、スピンオフ 等）の追加
+- 新しい楽曲（アニメ主題歌、イメージソング 等）の追加
 
 ## データカテゴリ
 
@@ -27,6 +29,10 @@ argument-hint: "エンティティの種類と名前 (例: 'girlfriend 百瀬百
 | 声優 (アニメ) | `data/seiyuus/anime.ts` | `seiyuu_anime_{姓}_{名}` | `Seiyuu` |
 | 学校 | `data/locations/schools.ts` | `location_school_{名前}` | `Location` |
 | 町 | `data/locations/towns.ts` | `location_town_{名前}` | `Location` |
+| 作品 (本編) | `data/works/main.ts` | `work_main_{slug}` | `Work` |
+| 作品 (スピンオフ) | `data/works/spinoff.ts` | `work_spinoff_{slug}` | `Work` |
+| 楽曲 (アニメ) | `data/songs/anime.ts` | `song_anime_{slug}` | `Song` |
+| 楽曲 (イメージソング) | `data/songs/image-songs.ts` | `song_image_{slug}` | `Song` |
 
 ## 手順
 
@@ -102,6 +108,40 @@ argument-hint: "エンティティの種類と名前 (例: 'girlfriend 百瀬百
   releaseAnimeEpisode: number | undefined,
 }],
 ```
+
+#### 作品テンプレート:
+
+```typescript
+['work_{main|spinoff}_{slug}', {
+  name: { kanji: '作品名', hiragana: 'さくひんめい' },
+  shortNames: [{ kanji: '通称', hiragana: 'つうしょう' }] | undefined,
+  basedOnWorkId: 'work_main_{slug}' | undefined,
+}],
+```
+
+#### 楽曲テンプレート:
+
+```typescript
+['song_{anime|image}_{slug}', {
+  name: { kanji: '曲名', hiragana: 'きょくめい' },
+  type: 'animeOpening' | 'animeEnding' | 'animeInsertSong' | 'imageSong',
+  releaseAnimeSeason: number | undefined,
+  releaseAnimeEpisode: number | undefined,
+  albumName: { kanji: 'アルバム名', hiragana: 'あるばむめい' } | undefined,
+  artistName: string | undefined,
+  artistCharacterIds: ['character_{...}'] | undefined,
+  credits: {
+    lyrics?: string,
+    lyricsCooperation?: string,
+    composition?: string,
+    arrangement?: string,
+  } | undefined,
+}],
+```
+
+クレジットは曲によって有無が異なるため、存在する項目のみ記載する。
+
+`artistName` は「恋太郎ファミリー」などのグループ名や、キャラクターデータを持たないアーティスト名（例: 岬なこ）に使用する。個別キャラクターが歌唱する場合は `undefined` にして `artistCharacterIds` のみを設定する。
 
 ### 4. 検証
 
