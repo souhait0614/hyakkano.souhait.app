@@ -5,6 +5,7 @@ import { parse } from 'valibot';
 import { SITE_BASE_URL, SITE_COPYRIGHT, SITE_NAME } from '@/constants/site';
 import { generateImeDictItems } from '@/features/ime-dict/generateImeDictItems';
 import { imeDictGenerateOptionsSchema } from '@/features/ime-dict/schemas';
+import { createImeDictFileName } from '@/features/ime-dict/utils';
 import { ImeDictItemCategory } from '@/types/ImeDict';
 
 const headerTexts = [
@@ -67,7 +68,7 @@ export async function GET(req: Request): Promise<Response> {
   return new Response(buffer, {
     headers: {
       'Content-Type': 'text/plain; charset=utf-16le',
-      'Content-Disposition': 'attachment; filename=ms-ime.txt',
+      'Content-Disposition': `attachment; filename=${createImeDictFileName('ms-ime', 'txt')}`,
     },
   });
 }

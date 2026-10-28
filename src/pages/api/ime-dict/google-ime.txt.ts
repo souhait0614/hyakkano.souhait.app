@@ -2,6 +2,7 @@ import { parse } from 'valibot';
 
 import { generateImeDictItems } from '@/features/ime-dict/generateImeDictItems';
 import { imeDictGenerateOptionsSchema } from '@/features/ime-dict/schemas';
+import { createImeDictFileName } from '@/features/ime-dict/utils';
 import { ImeDictItemCategory } from '@/types/ImeDict';
 
 export async function GET(req: Request): Promise<Response> {
@@ -50,7 +51,7 @@ export async function GET(req: Request): Promise<Response> {
   return new Response(buffer, {
     headers: {
       'Content-Type': 'text/plain; charset=utf-8',
-      'Content-Disposition': 'attachment; filename=google-ime.txt',
+      'Content-Disposition': `attachment; filename=${createImeDictFileName('google-ime', 'txt')}`,
     },
   });
 }

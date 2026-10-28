@@ -2,6 +2,7 @@ import { parse } from 'valibot';
 
 import { generateImeDictItems } from '@/features/ime-dict/generateImeDictItems';
 import { imeDictGenerateOptionsSchema } from '@/features/ime-dict/schemas';
+import { createImeDictFileName } from '@/features/ime-dict/utils';
 
 function escapeXml(str: string): string {
   return str
@@ -36,7 +37,7 @@ export async function GET(req: Request): Promise<Response> {
   return new Response(plistContent, {
     headers: {
       'Content-Type': 'application/xml; charset=utf-8',
-      'Content-Disposition': 'attachment; filename=apple-ime.plist',
+      'Content-Disposition': `attachment; filename=${createImeDictFileName('apple-ime', 'plist')}`,
     },
   });
 }
