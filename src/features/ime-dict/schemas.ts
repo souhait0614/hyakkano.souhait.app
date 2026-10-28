@@ -10,6 +10,7 @@ export const imeDictGenerateOptionsSchema = v.object({
   releasedLevel: v.fallback(v.enum(ReleasedLevel), ReleasedLevel.anime),
   title: v.fallback(stringBooleanSchema(), false),
   songs: v.fallback(stringBooleanSchema(), false),
+  terms: v.fallback(stringBooleanSchema(), false),
   characterRentaro: v.fallback(stringBooleanSchema(), false),
   characterGirlfriends: v.fallback(stringBooleanSchema(), false),
   characterAuthors: v.fallback(stringBooleanSchema(), false),

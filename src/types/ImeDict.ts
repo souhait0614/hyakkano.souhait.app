@@ -1,6 +1,7 @@
 export const ImeDictItemCategory = {
   title: 'title',
   songTitle: 'songTitle',
+  term: 'term',
   characterNameFull: 'characterNameFull',
   characterNameShort: 'characterNameShort',
   characterAnotherNameFull: 'characterAnotherNameFull',

@@ -24,6 +24,10 @@ function migrateGenerateOptions() {
       parsed.seiyuusVoiceDrama = IME_DICT_DEFAULT_GENERATE_OPTIONS.seiyuusVoiceDrama;
       migrated = true;
     }
+    if (!('terms' in parsed)) {
+      parsed.terms = IME_DICT_DEFAULT_GENERATE_OPTIONS.terms;
+      migrated = true;
+    }
     if (migrated) {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed));
     }

@@ -483,5 +483,26 @@ export async function generateImeDictItems(options?: ImeDictGenerateOptions): Pr
     }
   }
 
+  // 用語
+  if (opts.terms) {
+    const { OTHER_TERMS } = await import('@data/terms/others');
+    for (const [, term] of OTHER_TERMS) {
+      const hasReleaseInfo = term.releaseOriginalMainChapter !== undefined
+        || term.releaseOriginalMainComicsVolume !== undefined
+        || term.releaseOriginalSpinoffChapter !== undefined
+        || term.releaseAnimeSeason !== undefined
+        || term.releaseAnimeEpisode !== undefined;
+      if (hasReleaseInfo && !checkReleasedData(term, opts.releasedLevel)) {
+        continue;
+      }
+      items.push({
+        word: term.name.kanji,
+        reading: term.name.hiragana,
+        category: ImeDictItemCategory.term,
+        comment: term.description,
+      });
+    }
+  }
+
   return items;
 }

@@ -85,6 +85,7 @@ const otherTypeInputs = [
   'songs',
   'schools',
   'towns',
+  'terms',
   'seiyuusAnime',
   'seiyuusVoiceDrama',
 ] as const satisfies (keyof Omit<ImeDictGenerateOptionsInput, 'releasedLevel' | 'characterRentaro' | 'characterGirlfriends' | 'characterAuthors' | 'characterCircletLoveStory' | 'characterGoriraAlliance' | 'characterJurassicHighSchoolBaseballTeam' | 'characterPeppePentaro' | 'characterOthers'>)[];

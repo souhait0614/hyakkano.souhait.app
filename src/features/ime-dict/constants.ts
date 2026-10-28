@@ -7,6 +7,7 @@ export const IME_DICT_DEFAULT_GENERATE_OPTIONS: ImeDictGenerateOptions = {
   releasedLevel: ReleasedLevel.anime,
   title: true,
   songs: false,
+  terms: false,
   characterRentaro: true,
   characterGirlfriends: true,
   characterAuthors: false,

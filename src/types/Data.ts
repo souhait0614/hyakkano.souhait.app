@@ -5,6 +5,8 @@ export type CharacterIdBase<T extends string> = `character_${T}_${string}`;
 export type CharacterId = CharacterIdBase<string>;
 export type SeiyuuIdBase<T extends string> = `seiyuu_${T}_${string}`;
 export type LocationIdBase<T extends string> = `location_${T}_${string}`;
+export type TermIdBase<T extends string> = `term_${T}_${string}`;
+export type TermId = TermIdBase<string>;
 export type WorkIdBase<T extends string> = `work_${T}_${string}`;
 export type WorkId = WorkIdBase<string>;
 export type SongIdBase<T extends string> = `song_${T}_${string}`;
@@ -66,6 +68,12 @@ export interface Location extends ReleasedInfo {
   name: CommonName;
   anotherNames: CommonName[] | undefined;
 }
+
+export interface Term extends ReleasedInfo {
+  name: CommonName;
+  description: string;
+}
+
 export interface Seiyuu {
   name: PersonName;
 }

@@ -12,6 +12,7 @@ export const releasedLevelLabels = {
 export const generateOptionsKeyLabels = {
   title: '作品タイトル（スピンオフ作品を含む）',
   songs: 'アニメ楽曲（イメージソングを含む）',
+  terms: 'その他の用語',
   characterRentaro: '恋太郎',
   characterGirlfriends: '彼女',
   characterAuthors: '作者',

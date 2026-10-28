@@ -16,6 +16,7 @@ argument-hint: "エンティティの種類と名前 (例: 'girlfriend 百瀬百
 - 新しいキャラクター（作者、その他、ゴリラ同盟 等）の追加
 - 新しい作品タイトル（本編、スピンオフ 等）の追加
 - 新しい楽曲（アニメ主題歌、イメージソング 等）の追加
+- 新しい用語（運命の人、組織名 等）の追加
 
 ## データカテゴリ
 
@@ -34,6 +35,7 @@ argument-hint: "エンティティの種類と名前 (例: 'girlfriend 百瀬百
 | 作品 (スピンオフ) | `data/works/spinoff.ts` | `work_spinoff_{slug}` | `Work` |
 | 楽曲 (アニメ) | `data/songs/anime.ts` | `song_anime_{slug}` | `Song` |
 | 楽曲 (イメージソング) | `data/songs/image-songs.ts` | `song_image_{slug}` | `Song` |
+| 用語 | `data/terms/others.ts` | `term_other_{slug}` | `Term` |
 
 ## 手順
 
@@ -145,6 +147,22 @@ argument-hint: "エンティティの種類と名前 (例: 'girlfriend 百瀬百
 クレジットは曲によって有無が異なるため、存在する項目のみ記載する。
 
 `artistName` は「恋太郎ファミリー」などのグループ名や、キャラクターデータを持たないアーティスト名（例: 岬なこ）に使用する。個別キャラクターが歌唱する場合は `undefined` にして `artistCharacterIds` のみを設定する。
+
+#### 用語テンプレート:
+
+```typescript
+['term_other_{slug}', {
+  name: { kanji: '用語', hiragana: 'ようご' },
+  description: `「${TITLE}」に続く説明文`,
+  releaseOriginalMainChapter: number | undefined,
+  releaseOriginalMainComicsVolume: number | undefined,
+  releaseOriginalSpinoffChapter: number | undefined,
+  releaseAnimeSeason: number | undefined,
+  releaseAnimeEpisode: number | undefined,
+}],
+```
+
+`description` には `「${TITLE}」` から始まる説明文を設定する（`TITLE` は `@data/meta` からimportする）。発売情報が未設定の用語は、設定されるまで常に辞書に含める。
 
 ### 4. 検証
 

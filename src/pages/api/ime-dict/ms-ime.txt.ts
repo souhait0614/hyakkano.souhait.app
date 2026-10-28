@@ -29,6 +29,7 @@ export async function GET(req: Request): Promise<Response> {
     switch (category) {
       case ImeDictItemCategory.title:
       case ImeDictItemCategory.songTitle:
+      case ImeDictItemCategory.term:
         type = '固有名詞';
         break;
       case ImeDictItemCategory.characterNameFull:
