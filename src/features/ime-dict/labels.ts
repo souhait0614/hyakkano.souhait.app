@@ -17,7 +17,7 @@ export const generateOptionsKeyLabels = {
   characterGirlfriends: '彼女',
   characterAuthors: '作者',
   characterCircletLoveStory: '王冠恋物語登場キャラクター',
-  characterGoriraAlliance: 'ゴリラ連合関係者',
+  characterGoriraAlliance: '呉莉羅連合関係者',
   characterJurassicHighSchoolBaseballTeam: '寿裸漆区高校女子野球部関係者',
   characterPeppePentaro: 'ペペペのペン太郎登場キャラクター',
   characterOthers: 'その他キャラクター',

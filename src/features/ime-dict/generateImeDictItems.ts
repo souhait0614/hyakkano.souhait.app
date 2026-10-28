@@ -383,10 +383,10 @@ export async function generateImeDictItems(options?: ImeDictGenerateOptions): Pr
     }
   }
 
-  // キャラ名: ゴリラ連合所属者
+  // キャラ名: 呉莉羅連合所属者
   if (opts.characterGoriraAlliance) {
     const { GORIRA_ALLIANCE_CHARACTERS } = await import('@data/characters/gorira-alliance');
-    const description = '暴走族「ゴリラ連合」に所属するキャラクター';
+    const description = '暴走族「呉莉羅連合」に所属するキャラクター';
     for (const [goriraAllianceCharacterId, goriraAllianceCharacter] of filterReleasedData(GORIRA_ALLIANCE_CHARACTERS, opts.releasedLevel)) {
       pushCharacterItems(goriraAllianceCharacterId, goriraAllianceCharacter, {
         fullName: () => t('comment.characterFullName', { description }),
@@ -410,7 +410,7 @@ export async function generateImeDictItems(options?: ImeDictGenerateOptions): Pr
   // キャラ名: ペペペのペン太郎
   if (opts.characterPeppePentaro) {
     const { PEPEPE_PENTAROU_CHARACTERS } = await import('@data/characters/pepepe-pentarou');
-    const description = 'アニメ「ペペペのペン太郎」のキャラクター';
+    const description = 'TVアニメ「ペペペのペン太郎」のキャラクター';
     for (const [peppePentaroCharacterId, peppePentaroCharacter] of filterReleasedData(PEPEPE_PENTAROU_CHARACTERS, opts.releasedLevel)) {
       pushCharacterItems(peppePentaroCharacterId, peppePentaroCharacter, {
         fullName: () => t('comment.characterFullName', { description }),
