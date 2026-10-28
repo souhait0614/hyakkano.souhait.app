@@ -20,6 +20,10 @@ function migrateGenerateOptions() {
       parsed.songs = IME_DICT_DEFAULT_GENERATE_OPTIONS.songs;
       migrated = true;
     }
+    if (!('seiyuusVoiceDrama' in parsed)) {
+      parsed.seiyuusVoiceDrama = IME_DICT_DEFAULT_GENERATE_OPTIONS.seiyuusVoiceDrama;
+      migrated = true;
+    }
     if (migrated) {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed));
     }

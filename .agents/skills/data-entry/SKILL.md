@@ -27,6 +27,7 @@ argument-hint: "エンティティの種類と名前 (例: 'girlfriend 百瀬百
 | その他 | `data/characters/others.ts` | `character_other_{名前}` | `Character` |
 | ゴリラ同盟 | `data/characters/gorira-alliance.ts` | `character_gorira_{名前}` | `Character` |
 | 声優 (アニメ) | `data/seiyuus/anime.ts` | `seiyuu_anime_{姓}_{名}` | `Seiyuu` |
+| 声優 (ボイスドラマ) | `data/seiyuus/voice-drama.ts` | `seiyuu_voice_drama_{姓}_{名}` | `Seiyuu` |
 | 学校 | `data/locations/schools.ts` | `location_school_{名前}` | `Location` |
 | 町 | `data/locations/towns.ts` | `location_town_{名前}` | `Location` |
 | 作品 (本編) | `data/works/main.ts` | `work_main_{slug}` | `Work` |
@@ -46,7 +47,7 @@ argument-hint: "エンティティの種類と名前 (例: 'girlfriend 百瀬百
 
 ### 2. キャラクターが参照する声優がいる場合、先に声優を追加
 
-`data/seiyuus/anime.ts` の適切な `#region` セクションに追加:
+アニメ版は `data/seiyuus/anime.ts`、ボイスドラマ版は `data/seiyuus/voice-drama.ts` の適切な `#region` セクションに追加:
 
 ```typescript
 ['seiyuu_anime_{family}_{given}', {
@@ -73,6 +74,7 @@ argument-hint: "エンティティの種類と名前 (例: 'girlfriend 百瀬百
   releaseAnimeSeason: number | undefined,
   releaseAnimeEpisode: number | undefined,
   seiyuuAnimeIds: ['seiyuu_anime_...'],
+  seiyuuVoiceDramaIds: ['seiyuu_voice_drama_...'], // 該当する場合のみ
   girlfriendNumber: number,
 }],
 ```
@@ -92,6 +94,7 @@ argument-hint: "エンティティの種類と名前 (例: 'girlfriend 百瀬百
   releaseAnimeSeason: number | undefined,
   releaseAnimeEpisode: number | undefined,
   seiyuuAnimeIds: ['seiyuu_anime_...'] | undefined,
+  seiyuuVoiceDramaIds: ['seiyuu_voice_drama_...'] | undefined, // 該当する場合のみ
 }],
 ```
 
@@ -154,5 +157,5 @@ argument-hint: "エンティティの種類と名前 (例: 'girlfriend 百瀬百
 - **shortNameIndex**: 短縮表示名として使う名前配列のインデックス（通常 `1` で名前部分、短縮名がない場合は `undefined`）。
 - **省略ではなくundefined**: オプショナルなフィールドは省略せず明示的に `undefined` を設定する。
 - **順序**: 配列の末尾に追加。彼女の場合は girlfriendNumber 順を維持。
-- **声優参照**: `seiyuuAnimeIds` は `data/seiyuus/anime.ts` に存在するIDを参照すること。
+- **声優参照**: `seiyuuAnimeIds` は `data/seiyuus/anime.ts`、`seiyuuVoiceDramaIds` は `data/seiyuus/voice-drama.ts` に存在するIDを参照すること。ボイスドラマ声優は該当するキャラクターのみ設定する（省略可）。
 - **型安全性**: ファイル末尾の `as const satisfies DataEntries<...>` により、TypeScriptが構造エラーを検出する。

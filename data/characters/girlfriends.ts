@@ -13,6 +13,7 @@ const girlfriendCharactersEntries = [
     releaseAnimeSeason: 1,
     releaseAnimeEpisode: 1,
     seiyuuAnimeIds: ['seiyuu_anime_hondo_kaede'],
+    seiyuuVoiceDramaIds: ['seiyuu_voice_drama_ueda_reina'],
     girlfriendNumber: 1,
   }],
   ['character_girlfriend_inda_karane', {
@@ -27,6 +28,7 @@ const girlfriendCharactersEntries = [
     releaseAnimeSeason: 1,
     releaseAnimeEpisode: 1,
     seiyuuAnimeIds: ['seiyuu_anime_tomita_miyu'],
+    seiyuuVoiceDramaIds: ['seiyuu_voice_drama_shiraishi_haruka'],
     girlfriendNumber: 2,
   }],
   ['character_girlfriend_yoshimoto_shizuka', {
@@ -41,6 +43,7 @@ const girlfriendCharactersEntries = [
     releaseAnimeSeason: 1,
     releaseAnimeEpisode: 3,
     seiyuuAnimeIds: ['seiyuu_anime_naganawa_maria'],
+    seiyuuVoiceDramaIds: ['seiyuu_voice_drama_iwami_manaka'],
     girlfriendNumber: 3,
   }],
   ['character_girlfriend_eiai_nano', {
@@ -55,6 +58,7 @@ const girlfriendCharactersEntries = [
     releaseAnimeSeason: 1,
     releaseAnimeEpisode: 5,
     seiyuuAnimeIds: ['seiyuu_anime_seto_asami'],
+    seiyuuVoiceDramaIds: ['seiyuu_voice_drama_suyama_emiri'],
     girlfriendNumber: 4,
   }],
   ['character_girlfriend_yakuzen_kusuri', {
@@ -69,6 +73,7 @@ const girlfriendCharactersEntries = [
     releaseAnimeSeason: 1,
     releaseAnimeEpisode: 7,
     seiyuuAnimeIds: ['seiyuu_anime_asai_ayaka'],
+    seiyuuVoiceDramaIds: ['seiyuu_voice_drama_kanemoto_hisako'],
     girlfriendNumber: 5,
   }],
   ['character_girlfriend_hanazono_hahari', {

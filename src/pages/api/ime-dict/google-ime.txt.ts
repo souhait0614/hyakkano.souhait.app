@@ -21,6 +21,7 @@ export async function GET(req: Request): Promise<Response> {
       case ImeDictItemCategory.characterAnotherNameFull:
       case ImeDictItemCategory.characterNickname:
       case ImeDictItemCategory.seiyuuAnimeName:
+      case ImeDictItemCategory.seiyuuVoiceDramaName:
         type = '人名';
         break;
       case ImeDictItemCategory.characterNameShort:

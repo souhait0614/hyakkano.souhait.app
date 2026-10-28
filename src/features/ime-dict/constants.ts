@@ -16,6 +16,7 @@ export const IME_DICT_DEFAULT_GENERATE_OPTIONS: ImeDictGenerateOptions = {
   characterPeppePentaro: false,
   characterOthers: false,
   seiyuusAnime: false,
+  seiyuusVoiceDrama: false,
   schools: false,
   towns: false,
 };

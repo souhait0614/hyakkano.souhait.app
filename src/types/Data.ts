@@ -1,4 +1,5 @@
 import type { SeiyuuAnimeId } from '@data/seiyuus/anime';
+import type { SeiyuuVoiceDramaId } from '@data/seiyuus/voice-drama';
 
 export type CharacterIdBase<T extends string> = `character_${T}_${string}`;
 export type CharacterId = CharacterIdBase<string>;
@@ -53,6 +54,7 @@ export interface Character extends ReleasedInfo {
   birthday: CharacterBirthday | undefined;
   age: number | undefined;
   seiyuuAnimeIds: Array<SeiyuuAnimeId> | undefined;
+  seiyuuVoiceDramaIds?: Array<SeiyuuVoiceDramaId>;
   variants?: Array<[id: string, VariantCharacter]> | undefined;
 }
 

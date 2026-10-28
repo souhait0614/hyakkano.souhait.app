@@ -144,6 +144,7 @@ export default function Page(pageProps: PageProps<'/ime-dict'>) {
     characterPeppePentaro: false,
     characterOthers: false,
     seiyuusAnime: false,
+    seiyuusVoiceDrama: false,
     schools: true,
     towns: true,
   } satisfies Required<ImeDictGenerateOptions>;
@@ -161,6 +162,7 @@ export default function Page(pageProps: PageProps<'/ime-dict'>) {
     characterPeppePentaro: true,
     characterOthers: true,
     seiyuusAnime: true,
+    seiyuusVoiceDrama: true,
     schools: true,
     towns: true,
   } satisfies Required<ImeDictGenerateOptions>;

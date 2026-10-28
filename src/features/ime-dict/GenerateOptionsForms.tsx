@@ -86,6 +86,7 @@ const otherTypeInputs = [
   'schools',
   'towns',
   'seiyuusAnime',
+  'seiyuusVoiceDrama',
 ] as const satisfies (keyof Omit<ImeDictGenerateOptionsInput, 'releasedLevel' | 'characterRentaro' | 'characterGirlfriends' | 'characterAuthors' | 'characterCircletLoveStory' | 'characterGoriraAlliance' | 'characterJurassicHighSchoolBaseballTeam' | 'characterPeppePentaro' | 'characterOthers'>)[];
 
 export function GenerateOptionsOtherTypeCheckBoxes() {

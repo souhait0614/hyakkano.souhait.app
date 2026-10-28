@@ -1,4 +1,5 @@
 import type { SeiyuuAnimeId } from '@data/seiyuus/anime';
+import type { SeiyuuVoiceDramaId } from '@data/seiyuus/voice-drama';
 import { TITLE } from '@data/meta';
 import { createTranslator } from 'schummar-translate';
 
@@ -24,6 +25,7 @@ const { getTranslator } = createTranslator({
       characterAnotherShortName: `「${TITLE}」に登場する{description}、{fullName}の別名、{anotherFullName}`,
       characterNickname: `「${TITLE}」に登場する{description}、{fullName}の愛称`,
       seiyuuAnime: `アニメ「${TITLE}」で{nameStr}を担当した声優`,
+      seiyuuVoiceDrama: 'ボイスドラマで{nameStr}を担当した声優',
     },
   },
 } as const);
@@ -74,6 +76,7 @@ export async function generateImeDictItems(options?: ImeDictGenerateOptions): Pr
   const items: ImeDictItem[] = [];
   const targetCharacters: Partial<Record<string, Character>> = {};
   const targetSeiyuusAnime: Partial<Record<SeiyuuAnimeId, { characterIds: ({ id: string; variantId: string | null; })[]; }>> = {};
+  const targetSeiyuusVoiceDrama: Partial<Record<SeiyuuVoiceDramaId, { characterIds: ({ id: string; variantId: string | null; })[]; }>> = {};
 
   function pushCharacterItems(
     characterId: string,
@@ -167,6 +170,13 @@ export async function generateImeDictItems(options?: ImeDictGenerateOptions): Pr
       }
     }
 
+    if (character.seiyuuVoiceDramaIds) {
+      for (const seiyuuVoiceDramaId of character.seiyuuVoiceDramaIds) {
+        targetSeiyuusVoiceDrama[seiyuuVoiceDramaId] ??= { characterIds: [] };
+        targetSeiyuusVoiceDrama[seiyuuVoiceDramaId].characterIds.push({ id: characterId, variantId: null });
+      }
+    }
+
     if (character.variants) {
       for (const [variantCharacterId, variantCharacter] of filterReleasedData(character.variants, opts.releasedLevel)) {
         if (variantCharacter.seiyuuAnimeIds) {
@@ -185,6 +195,7 @@ export async function generateImeDictItems(options?: ImeDictGenerateOptions): Pr
     comments: {
       name: (props: { nameStr: string; }) => string;
     },
+    category: ImeDictItemCategory = ImeDictItemCategory.seiyuuAnimeName,
   ) {
     const { kanji: name, hiragana } = seiyuu.name;
     const characterNames = characterIds.map(({ id, variantId }) => {
@@ -209,7 +220,7 @@ export async function generateImeDictItems(options?: ImeDictGenerateOptions): Pr
     items.push({
       word: joinName(name),
       reading: joinName(hiragana),
-      category: 'seiyuuAnimeName',
+      category,
       comment: comments.name({ nameStr: characterNames.join(',') }),
     });
   }
@@ -433,6 +444,20 @@ export async function generateImeDictItems(options?: ImeDictGenerateOptions): Pr
       pushSeiyuuItems(seiyuu, characterIds, {
         name: ({ nameStr }) => t('comment.seiyuuAnime', { nameStr }),
       });
+    }
+  }
+
+  // 声優名: ボイスドラマ
+  if (opts.seiyuusVoiceDrama) {
+    const { SEIYUUS_VOICE_DRAMA } = await import('@data/seiyuus/voice-drama');
+    for (const [seiyuuId, seiyuu] of SEIYUUS_VOICE_DRAMA) {
+      const characterIds = targetSeiyuusVoiceDrama[seiyuuId]?.characterIds ?? [];
+      if (characterIds.length === 0) {
+        continue;
+      }
+      pushSeiyuuItems(seiyuu, characterIds, {
+        name: ({ nameStr }) => t('comment.seiyuuVoiceDrama', { nameStr }),
+      }, ImeDictItemCategory.seiyuuVoiceDramaName);
     }
   }
 
