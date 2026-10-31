@@ -3,7 +3,8 @@
     "Hyakkano",
     "RENTARO",
     "Seiyuu",
-    "SEIYUUS"
+    "SEIYUUS",
+    "yomutalk"
   ],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",

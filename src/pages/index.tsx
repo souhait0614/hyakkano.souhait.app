@@ -8,6 +8,7 @@ import PageHead from '@/features/PageHead';
 
 import { metadata as pageBirthdayMetadata } from './birthday';
 import { metadata as pageImeDictMetadata } from './ime-dict';
+import { metadata as pageYomutalkPlusMetadata } from './yomutalk-plus';
 
 const metadata = {
   title: SITE_NAME,
@@ -30,6 +31,10 @@ export default function Page(pageProps: PageProps<'/'>) {
           <article className='card'>
             <h2><LinkText to='/ime-dict'>{pageImeDictMetadata.title}</LinkText></h2>
             <p>{pageImeDictMetadata.description}</p>
+          </article>
+          <article className='card'>
+            <h2><LinkText to='/yomutalk-plus'>{pageYomutalkPlusMetadata.title}</LinkText></h2>
+            <p>{pageYomutalkPlusMetadata.description}</p>
           </article>
         </div>
         <section className='card'>

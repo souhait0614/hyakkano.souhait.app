@@ -15,6 +15,8 @@ import type { getConfig as File_ImeDictPreview_getConfig } from './pages/ime-dic
 import type { getConfig as File_Index_getConfig } from './pages/index';
 // prettier-ignore
 import type { getConfig as File_PrivacyIndex_getConfig } from './pages/privacy/index';
+// prettier-ignore
+import type { getConfig as File_YomutalkPlusIndex_getConfig } from './pages/yomutalk-plus/index';
 
 // prettier-ignore
 type Page =
@@ -23,7 +25,8 @@ type Page =
 | ({ path: '/ime-dict' } & GetConfigResponse<typeof File_ImeDictIndex_getConfig>)
 | ({ path: '/ime-dict/preview' } & GetConfigResponse<typeof File_ImeDictPreview_getConfig>)
 | ({ path: '/' } & GetConfigResponse<typeof File_Index_getConfig>)
-| ({ path: '/privacy' } & GetConfigResponse<typeof File_PrivacyIndex_getConfig>);
+| ({ path: '/privacy' } & GetConfigResponse<typeof File_PrivacyIndex_getConfig>)
+| ({ path: '/yomutalk-plus' } & GetConfigResponse<typeof File_YomutalkPlusIndex_getConfig>);
 
 // prettier-ignore
 declare module 'waku/router' {

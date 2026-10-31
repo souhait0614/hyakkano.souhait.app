@@ -43,6 +43,12 @@ const slots = tv({
         `,
       },
       active: { anchor: 'bg-primary/15 text-primary-text' },
+      contained: {
+        anchor: `
+          bg-primary text-white
+          hover-focus-active:bg-primary-dark
+        `,
+      },
     },
     align: {
       start: { textContainer: 'justify-start' },
