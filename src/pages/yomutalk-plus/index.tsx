@@ -92,6 +92,7 @@ export default function Page(pageProps: PageProps<'/yomutalk-plus'>) {
                     </li>
                   </ul>
                 </li>
+                <li>pixiv小説形式</li>
                 <li>通常のtxtファイル</li>
               </ul>
             </section>
