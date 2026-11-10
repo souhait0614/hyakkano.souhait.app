@@ -13,7 +13,7 @@
 - **言語**: TypeScript 6 (`strict`, `noUncheckedIndexedAccess`)
 - **スタイリング**: Tailwind CSS v4 + tailwind-variants + clsx
 - **パッケージマネージャー**: pnpm 12 ([mise](https://mise.jdx.dev/) で管理)
-- **Node.js**: 24 ([mise](https://mise.jdx.dev/) で管理)
+- **Node.js**: 26 ([mise](https://mise.jdx.dev/) で管理)
 
 ## コマンド
 
