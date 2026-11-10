@@ -6,8 +6,6 @@ minimumReleaseAgeExclude:
   - pnpm@11.8.0
 overrides:
   vite: $vite
-patchedDependencies:
-  waku: patches/waku.patch
 saveExact: true
 allowBuilds:
   '@swc/core': true

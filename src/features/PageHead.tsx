@@ -1,16 +1,16 @@
 // SPDX-FileCopyrightText: 2024 taiy https://github.com/taiyme
 // SPDX-License-Identifier: MIT
 
-import type { PageProps } from 'waku/router';
+import type { PageProps, RouteConfig } from 'waku/router';
 
 import type { Metadata } from '@/types/Metadata';
 import { generateHeadData } from '@/utils/generateHeadData';
 
-interface PageHeadProps<T extends PageProps<string>> {
+interface PageHeadProps<T extends PageProps<RouteConfig['paths']>> {
   metadata: Metadata;
   pageProps: T;
 }
-export default function PageHead<T extends PageProps<string>>({ metadata, pageProps }: PageHeadProps<T>) {
+export default function PageHead<T extends PageProps<RouteConfig['paths']>>({ metadata, pageProps }: PageHeadProps<T>) {
   const {
     noIndex,
     title,

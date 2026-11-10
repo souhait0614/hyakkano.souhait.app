@@ -2,13 +2,13 @@
 // SPDX-License-Identifier: MIT
 
 import type { AllUnionFields } from 'type-fest';
-import type { PageProps } from 'waku/router';
+import type { PageProps, RouteConfig } from 'waku/router';
 
 import type { Metadata } from '@/types/Metadata';
 import { OG_DEFAULT } from '@/constants/og';
 import { SITE_BASE_URL, SITE_NAME } from '@/constants/site';
 
-export function generateHeadData(metadata: AllUnionFields<Metadata>, pageProps: PageProps<string>) {
+export function generateHeadData(metadata: AllUnionFields<Metadata>, pageProps: PageProps<RouteConfig['paths']>) {
   const { noIndex = false } = metadata;
 
   const title = metadata.title || SITE_NAME;

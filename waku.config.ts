@@ -1,6 +1,5 @@
 import tailwindcss from '@tailwindcss/vite';
 import jsxPruneClassName from '@taiyme/vite-plugin-jsx-prune-classname';
-import tsconfigPaths from 'vite-tsconfig-paths';
 import { defineConfig } from 'waku/config';
 
 export default defineConfig({
@@ -9,8 +8,10 @@ export default defineConfig({
       emptyOutDir: true,
       minify: 'terser',
     },
+    resolve: {
+      tsconfigPaths: true,
+    },
     plugins: [
-      tsconfigPaths(),
       jsxPruneClassName(),
       tailwindcss(),
     ],

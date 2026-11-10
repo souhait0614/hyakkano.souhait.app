@@ -7,23 +7,24 @@
 
 ## 技術スタック
 
-- **フレームワーク**: [Waku](https://waku.gg/) 0.27 (React Server Components)
+- **フレームワーク**: [Waku](https://waku.gg/) 1.0 (RC, React Server Components)
 - **React**: 19 (RSC + クライアントコンポーネントは `'use client'`)
-- **ビルド**: Vite 7
+- **ビルド**: Vite 8
 - **言語**: TypeScript 6 (`strict`, `noUncheckedIndexedAccess`)
 - **スタイリング**: Tailwind CSS v4 + tailwind-variants + clsx
-- **パッケージマネージャー**: pnpm 10 ([mise](https://mise.jdx.dev/) で管理)
+- **パッケージマネージャー**: pnpm 12 ([mise](https://mise.jdx.dev/) で管理)
 - **Node.js**: 24 ([mise](https://mise.jdx.dev/) で管理)
 
 ## コマンド
 
-| コマンド      | 用途                                                 |
-| ------------- | ---------------------------------------------------- |
-| `pnpm dev`    | 開発サーバー起動                                     |
-| `pnpm build`  | プロダクションビルド (SSG)                           |
-| `pnpm lint`   | 全リンターを並列実行 (tsc, eslint, stylelint)        |
-| `pnpm format` | lint問題を自動修正                                   |
-| `pnpm deploy` | Cloudflare向けビルド + デプロイ                      |
+| コマンド       | 用途                                                 |
+| -------------- | ---------------------------------------------------- |
+| `pnpm dev`     | 開発サーバー起動                                     |
+| `pnpm build`   | プロダクションビルド (SSG)                           |
+| `pnpm typegen` | `src/pages.gen.ts` を再生成 (ルート型定義)           |
+| `pnpm lint`    | 全リンターを並列実行 (tsc, eslint, stylelint)        |
+| `pnpm format`  | lint問題を自動修正                                   |
+| `pnpm deploy`  | Cloudflare向けビルド + デプロイ                      |
 
 テストフレームワークは未導入。
 
@@ -31,7 +32,9 @@
 
 ```plaintext
 src/
+├── waku.server.ts  # サーバーエントリ (fsRouter + Cloudflareアダプタ)
 ├── pages/          # ファイルベースルーティング (Waku)。各ページは getConfig() で render:'static' を返す
+│   └── _api/       # APIルート。`_api` はURLから除かれるため、`/api/...` を保つには `_api/api/` に置く
 ├── features/       # ページ固有の機能コンポーネント (ページごとにグループ化)
 ├── components/     # 共有UIコンポーネント
 ├── hooks/          # カスタム React フック
@@ -85,11 +88,10 @@ pre-commit で自動実行:
 
 ## 主要ファイル
 
-- [waku.config.ts](waku.config.ts) – Viteプラグイン (tailwind, tsconfig-paths, jsx-prune-classname)
+- [waku.config.ts](waku.config.ts) – Vite設定 (tailwind, jsx-prune-classname, tsconfig paths)
 - [wrangler.jsonc](wrangler.jsonc) – Cloudflare Workers設定
 - [src/style.css](src/style.css) – グローバルスタイル、カスタムユーティリティ、テーマ変数
 - [data/](data/) – 全アプリケーションデータ (キャラクター、場所、声優、作品、楽曲)
-- [patches/waku.patch](patches/waku.patch) – wakuに適用されるパッチ
 
 ## 環境変数
 
