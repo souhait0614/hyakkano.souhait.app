@@ -31,7 +31,7 @@
     "waku": "1.0.0-rc.4"
   },
   "devDependencies": {
-    "@stylistic/stylelint-config": "5.0.0",
+    "@stylistic/stylelint-config": "6.0.0",
     "@tailwindcss/vite": "4.3.5",
     "@taiyme/eslint-config": "1.0.1",
     "@taiyme/vite-plugin-jsx-prune-classname": "0.0.3",
