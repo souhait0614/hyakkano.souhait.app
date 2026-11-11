@@ -108,11 +108,11 @@ interface UpdateLog {
 }
 
 const updateLogs: UpdateLog[] = [
+  { date: [2026, 11, 12], description: `${TITLE_SPINOFF} 第11話までに登場した用語に対応` },
   { date: [2026, 10, 28], description: 'コメントに存在した誤記、表記揺れを修正\n(暴走族「ゴリラ連合」→暴走族「呉莉羅連合」)\n(アニメ「ペペペのペン太郎」→TVアニメ「ペペペのペン太郎」)' },
   { date: [2026, 10, 28], description: 'アニメ楽曲・イメージソング、ボイスドラマ版の声優、その他のカテゴリ未分類の用語（恋太郎ファミリー、呉莉羅連合など）に対応' },
   { date: [2026, 10, 15], description: '本編 第258話に登場したキャラクターの名前を正しいものに修正\n(夢→舞)' },
   { date: [2026, 10, 15], description: '本編 第258話までに登場した用語に対応' },
-  { date: [2026, 10, 1], description: `${TITLE_SPINOFF} 第9話までに登場した用語に対応` },
   { date: [2026, 9, 17], description: '単行本 27巻までに登場した用語に対応' },
   { date: [2026, 8, 30], description: 'アニメ 第3期までに登場した用語に対応' },
   { date: [2026, 4, 19], description: `${TITLE_SPINOFF}に対応（現状スピンオフ作品として扱っています）` },
