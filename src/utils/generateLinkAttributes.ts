@@ -3,13 +3,14 @@
 
 import type { Link } from '@/types/Link';
 
-function omitUndefined<T extends Record<string, unknown>>(obj: T): Partial<T> {
-  return Object.fromEntries(
-    Object.entries(obj).filter(([_, value]) => value !== undefined),
-  ) as Partial<T>;
+interface LinkAttributes {
+  href: string;
+  target?: string;
+  rel?: string;
+  download?: true;
 }
 
-export function generateLinkAttributes<T extends Link>(
+export function generateLinkAttributes(
   {
     to: internalHref,
     href: externalHref,
@@ -17,26 +18,25 @@ export function generateLinkAttributes<T extends Link>(
     download = false,
     author = false,
     me = false,
-    ...rest
-  }: T,
-) {
-  const target = external ? '_blank' : undefined;
+    sponsored = false,
+    privacyPolicy = false,
+  }: Link,
+): { linkAttrs: LinkAttributes; isExternalLink: boolean; isDownloadLink: boolean; } {
   const rel = Object.entries({
     noopener: external,
     noreferrer: external,
     external,
     author,
     me,
+    sponsored,
+    privacyPolicy,
   }).flatMap(([k, v]) => (v ? [k] : [])).join(' ') || undefined;
+
+  const target = external ? '_blank' : undefined;
 
   if (download && externalHref) {
     return {
-      linkAttrs: {
-        ...rest,
-        ...omitUndefined({ rel, target }),
-        href: externalHref,
-        download: true,
-      },
+      linkAttrs: { href: externalHref, rel, target, download: true },
       isExternalLink: external,
       isDownloadLink: true,
     } as const;
@@ -44,11 +44,7 @@ export function generateLinkAttributes<T extends Link>(
 
   if (external && externalHref) {
     return {
-      linkAttrs: {
-        ...rest,
-        ...omitUndefined({ rel, target }),
-        href: externalHref,
-      },
+      linkAttrs: { href: externalHref, rel, target },
       isExternalLink: true,
       isDownloadLink: false,
     } as const;
@@ -56,11 +52,7 @@ export function generateLinkAttributes<T extends Link>(
 
   if (!external && internalHref) {
     return {
-      linkAttrs: {
-        ...rest,
-        ...omitUndefined({ rel, target }),
-        to: internalHref,
-      },
+      linkAttrs: { href: internalHref, rel },
       isExternalLink: false,
       isDownloadLink: false,
     } as const;

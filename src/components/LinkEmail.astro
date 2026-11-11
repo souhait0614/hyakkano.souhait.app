@@ -1,0 +1,43 @@
+---
+type Props = {
+  user: string;
+  domain: string;
+};
+
+const { user, domain } = Astro.props;
+const email = `${user}@${domain}`;
+---
+
+<span data-link-email>
+  <button
+    type='button'
+    class='
+      border-0 bg-transparent p-0 text-primary-text
+      hover-active-without-focus:underline
+    '
+    data-link-email-trigger
+  >
+    クリックで表示
+  </button>
+  <a
+    class='
+      text-primary-text
+      hover-active-without-focus:underline
+    '
+    href={`mailto:${email}`}
+    data-link-email-link
+    hidden
+  >{email}</a>
+</span>
+
+<script>
+  document.addEventListener('click', (event) => {
+    if (!(event.target instanceof Element)) return;
+    const trigger = event.target.closest('[data-link-email-trigger]');
+    if (!trigger) return;
+    const link = trigger.closest('[data-link-email]')?.querySelector('[data-link-email-link]');
+    if (!link) return;
+    trigger.remove();
+    link.removeAttribute('hidden');
+  });
+</script>

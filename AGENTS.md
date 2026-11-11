@@ -7,8 +7,8 @@
 
 ## 技術スタック
 
-- **フレームワーク**: [Waku](https://waku.gg/) 1.0 (RC, React Server Components)
-- **React**: 19 (RSC + クライアントコンポーネントは `'use client'`)
+- **フレームワーク**: [Astro](https://astro.build/) 7 (SSG + 必要箇所のみオンデマンドレンダリング)
+- **UI**: [Svelte 5](https://svelte.dev/) アイランド (`$state` / `$derived` / `$props` のルーンを使用)
 - **ビルド**: Vite 8
 - **言語**: TypeScript 6 (`strict`, `noUncheckedIndexedAccess`)
 - **スタイリング**: Tailwind CSS v4 + tailwind-variants + clsx
@@ -17,14 +17,14 @@
 
 ## コマンド
 
-| コマンド       | 用途                                                 |
-| -------------- | ---------------------------------------------------- |
-| `pnpm dev`     | 開発サーバー起動                                     |
-| `pnpm build`   | プロダクションビルド (SSG)                           |
-| `pnpm typegen` | `src/pages.gen.ts` を再生成 (ルート型定義)           |
-| `pnpm lint`    | 全リンターを並列実行 (tsc, eslint, stylelint)        |
-| `pnpm format`  | lint問題を自動修正                                   |
-| `pnpm deploy`  | Cloudflare向けビルド + デプロイ                      |
+| コマンド        | 用途                                                          |
+| --------------- | ------------------------------------------------------------- |
+| `pnpm dev`      | 開発サーバー起動                                              |
+| `pnpm build`    | プロダクションビルド (静的ページ + オンデマンドルート)        |
+| `pnpm preview`  | ビルド結果のプレビュー                                        |
+| `pnpm lint`     | 全リンターを並列実行 (tsc, astro check, svelte-check, eslint, stylelint) |
+| `pnpm format`   | lint問題を自動修正                                            |
+| `pnpm deploy`   | Cloudflare向けビルド + デプロイ                               |
 
 テストフレームワークは未導入。
 
@@ -32,13 +32,12 @@
 
 ```plaintext
 src/
-├── waku.server.ts  # サーバーエントリ (fsRouter + Cloudflareアダプタ)
-├── pages/          # ファイルベースルーティング (Waku)。各ページは getConfig() で render:'static' を返す
-│   └── _api/       # APIルート。`_api` はURLから除かれるため、`/api/...` を保つには `_api/api/` に置く
-├── features/       # ページ固有の機能コンポーネント (ページごとにグループ化)
-├── components/     # 共有UIコンポーネント
-├── hooks/          # カスタム React フック
-├── constants/      # アプリ全体の定数
+├── pages/          # ファイルベースルーティング (Astro)。既定は静的生成
+│   └── api/        # オンデマンドAPIルート (export const prerender = false)
+├── layouts/        # Layout.astro (head・背景・フッター)
+├── features/       # ページ固有の機能 (アイランドは *.svelte)
+├── components/     # 共有UI (Svelte。client:* を付けなければHTMLのみ出力)
+├── constants/      # アプリ全体の定数 (ページmetadataは page-metadata.ts)
 ├── types/          # 共有型定義
 └── utils/          # ユーティリティ関数
 data/               # アプリケーションデータ (キャラクター、場所、声優、作品、楽曲)
@@ -48,10 +47,15 @@ data/               # アプリケーションデータ (キャラクター、�
 
 ### コンポーネント
 
-- **名前付き関数宣言**で定義 (ESLint強制: `react/function-component-definition`)
-- Props: `type` (`interface`ではなく) を `Readonly<>` で囲む
-- クライアントコンポーネントはファイル先頭に `'use client'` を記述。サーバーコンポーネントは省略
-- 各ページは `metadata` オブジェクト (`satisfies Metadata`) と `getConfig()` (`{ render: 'static' }` を返す) をexport
+- 共有UIは Svelte コンポーネントとして実装する。`client:*` を付けずに `.astro` から使うと JS を出力しない
+- インタラクティブな部分だけをアイランドとして切り出し、`.astro` から `client:load` / `client:visible` で読み込む
+- ページ内で状態を共有する場合は Svelte の `createContext`（または `setContext` / `getContext`）を使う（アイランド間では共有されない）
+- アイランドはファーストビュー内なら `client:load`、それ以外は `client:visible` にする
+- 画像は `src/assets/` に置いて `astro:assets` の `<Image />` を使う（`public/` はOG画像など最適化不要なものだけ）
+- ブラウザに永続化する状態は [runed](https://runed.dev/) の `PersistedState` を使う（`$state` + localStorage の自前実装はしない）
+- `$props()` の型は `type Props = { ... }` で定義する
+- ページは既定で静的。リクエスト依存のページ・APIのみ `export const prerender = false` を記述する
+- ページの `<head>` は Layout に任せ、`src/constants/page-metadata.ts` の metadata を渡す
 
 ### インポート
 
@@ -73,26 +77,34 @@ data/               # アプリケーションデータ (キャラクター、�
 
 ### ファイル命名
 
-- コンポーネント: PascalCase (`LinkButton.tsx`)
-- ページ/ディレクトリ: kebab-case (`ime-dict/`)
-- ユーティリティ/フック: camelCase (`useLocalStorageState.ts`)
+- Svelteコンポーネント: PascalCase (`LinkButton.svelte`)
+- Astroコンポーネント: PascalCase (`Layout.astro`)、ページは kebab-case (`ime-dict/index.astro`)
+- ユーティリティ/フック: camelCase (`localStorageState.svelte.ts`)
 - データファイル: kebab-case (`circlet-love-story.ts`)
 
 ## Git Hooks (Lefthook)
 
 pre-commit で自動実行:
 
-- ESLint: ステージされた `*.{js,mjs,ts,tsx}`
+- ESLint: ステージされた `*.{js,mjs,ts,tsx,astro,svelte}`
 - Stylelint: ステージされた `*.{css,scss}`
 - `tsc --noEmit`: ステージされた `*.{ts,tsx}`
+- `astro check`: ステージされた `*.astro`
+- `svelte-check`: ステージされた `*.svelte`
 
 ## 主要ファイル
 
-- [waku.config.ts](waku.config.ts) – Vite設定 (tailwind, jsx-prune-classname, tsconfig paths)
+- [astro.config.ts](astro.config.ts) – Astro設定 (Svelte・Cloudflareアダプタ・Tailwind・tsconfig paths)
+- [svelte.config.js](svelte.config.js) – Svelteのプリプロセス設定
 - [wrangler.jsonc](wrangler.jsonc) – Cloudflare Workers設定
+- [eslint.config.ts](eslint.config.ts) – ESLint設定 (Astro / Svelte対応)
 - [src/style.css](src/style.css) – グローバルスタイル、カスタムユーティリティ、テーマ変数
 - [data/](data/) – 全アプリケーションデータ (キャラクター、場所、声優、作品、楽曲)
 
 ## 環境変数
 
-必要な `.env` 変数は [README.md](README.md) を参照 (`VITE_SITE_URL`, `VITE_GOOGLE_CALENDAR_IDS`)。
+必要な `.env` 変数は [README.md](README.md) を参照 (`SITE_URL`, `GOOGLE_CALENDAR_IDS`)。
+
+- `SITE_URL` は `astro.config.ts` の `site` として読み込む（canonical / OG URL の基準）
+- `GOOGLE_CALENDAR_IDS` は `astro:env` のスキーマで型付けし、`astro:env/server` から読み取ってアイランドへpropsとして渡す
+- クライアントへ公開したくない値は `astro:env` の `context: 'server'` で宣言する（`VITE_` prefixは使わない）

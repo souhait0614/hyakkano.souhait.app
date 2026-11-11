@@ -1,0 +1,56 @@
+---
+import type { ImeDictGenerateOptions } from '@/features/ime-dict/schemas';
+import { generateOptionsKeyLabels, releasedLevelLabels } from '@/features/ime-dict/labels';
+
+type Props = {
+  generateOptions: Partial<ImeDictGenerateOptions>;
+  showReleasedLevel?: boolean;
+};
+
+const { generateOptions: { releasedLevel, ...generateOptions }, showReleasedLevel = false } = Astro.props;
+
+const labels: string[] = Object.entries(generateOptions).flatMap(([key, value]) => {
+  if (value === true) {
+    return [generateOptionsKeyLabels[key as keyof Omit<ImeDictGenerateOptions, 'releasedLevel'>]];
+  }
+  return [];
+});
+---
+
+<table class='block text-sm'>
+  <tbody class='contents'>
+    {showReleasedLevel && releasedLevel && (
+      <tr class='flex'>
+        <th class={`
+          block w-min whitespace-nowrap
+          after:content-[":"]
+        `}
+        >範囲
+        </th>
+        <td class='block'>
+          {releasedLevelLabels[releasedLevel]}
+        </td>
+      </tr>
+    )}
+    <tr class='flex'>
+      <th class={`
+        block w-min whitespace-nowrap
+        after:content-[":"]
+      `}
+      >内容
+      </th>
+      <td class='block'>
+        <ul class={`
+          flex flex-row flex-wrap gap-x-0.5
+          *:block
+          *:not-last:after:content-[","]
+        `}
+        >
+          {labels.map((label) => (
+            <li>{label}</li>
+          ))}
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,70 @@
+---
+import IconHeart from '@/components/icons/IconHeart.svelte';
+
+type Props = {
+  heartCount: number;
+};
+
+const { heartCount } = Astro.props;
+const hearts = Array.from({ length: heartCount }, (_, index) => index);
+---
+
+<div
+  class={`
+    absolute top-0 left-0 h-lvh w-lvw overflow-hidden text-primary/20
+    *:absolute *:hidden *:size-20 *:-translate-x-1/2
+  `}
+>
+  {hearts.map((index) => (
+    <IconHeart filled data-heart={index} />
+  ))}
+</div>
+
+<script>
+  const BASE_ANIMATION_DURATION = 20;
+  const SKIP_DELTA_TIME = 1000;
+
+  function getRandomDuration() {
+    const randomVariation = (Math.random() * 4) - 2;
+    return Math.round((BASE_ANIMATION_DURATION + randomVariation) * 1000);
+  }
+
+  function setupHeart(element: Element) {
+    element.setAttribute('style', `left: ${Math.random() * 100}%; top: ${Math.random() * 100}%; display: block;`);
+
+    let duration = getRandomDuration();
+    let previousTimestamp: number | null = null;
+
+    const animate = (timestamp: number) => {
+      if (previousTimestamp === null) {
+        previousTimestamp = timestamp;
+      }
+
+      let deltaTime = timestamp - previousTimestamp;
+      if (deltaTime > SKIP_DELTA_TIME) deltaTime = 0;
+      previousTimestamp = timestamp;
+
+      const currentTop = Number.parseFloat((element as SVGElement).style.top);
+      const newTop = currentTop - ((deltaTime / duration) * 100);
+      (element as SVGElement).style.top = `${newTop}%`;
+
+      const rect = element.getBoundingClientRect();
+      if (rect.top + rect.height < 0) {
+        (element as SVGElement).style.top = '100%';
+        (element as SVGElement).style.left = `${Math.random() * 100}%`;
+        duration = getRandomDuration();
+      }
+
+      requestAnimationFrame(animate);
+    };
+
+    requestAnimationFrame(animate);
+  }
+
+  const hearts = document.querySelectorAll('[data-heart]');
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    for (const heart of hearts) {
+      setupHeart(heart);
+    }
+  }
+</script>

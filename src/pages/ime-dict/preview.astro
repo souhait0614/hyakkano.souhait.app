@@ -1,0 +1,25 @@
+---
+export const prerender = false;
+
+import { parse } from 'valibot';
+
+import { IME_DICT_PREVIEW_METADATA } from '@/constants/page-metadata';
+import GenerateOptionsTable from '@/features/ime-dict/GenerateOptionsTable.astro';
+import { generateImeDictItems } from '@/features/ime-dict/generateImeDictItems';
+import ImeDictItemTable from '@/features/ime-dict/ImeDictItemTable.astro';
+import { imeDictGenerateOptionsSchema } from '@/features/ime-dict/schemas';
+import Layout from '@/layouts/Layout.astro';
+
+const generateOptions = parse(imeDictGenerateOptionsSchema, Object.fromEntries(Astro.url.searchParams));
+const imeDictItems = await generateImeDictItems(generateOptions);
+---
+
+<Layout metadata={IME_DICT_PREVIEW_METADATA}>
+  <div class='page-container'>
+    <h1 class='page-title'>IMEユーザー辞書 プレビュー</h1>
+    <GenerateOptionsTable generateOptions={generateOptions} showReleasedLevel />
+    <div class='card'>
+      <ImeDictItemTable items={imeDictItems} />
+    </div>
+  </div>
+</Layout>

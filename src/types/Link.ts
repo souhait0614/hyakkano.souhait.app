@@ -1,13 +1,10 @@
 // SPDX-FileCopyrightText: 2024 taiy https://github.com/taiyme
 // SPDX-License-Identifier: MIT
 
-import type { PropsWithChildren } from 'react';
-import type { LinkProps } from 'waku/router/client';
-
 type Case_InternalLink = Readonly<{
   external?: false;
   download?: false;
-  to: LinkProps['to'];
+  to: string;
   href?: never;
 }>;
 
@@ -37,8 +34,4 @@ export type Link = Readonly<
     sponsored?: boolean;
     privacyPolicy?: boolean;
   }
->;
-
-export type LinkWithChildren = Readonly<
-  PropsWithChildren<Link>
 >;

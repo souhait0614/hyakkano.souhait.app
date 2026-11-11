@@ -19,7 +19,9 @@
     "javascript",
     "javascriptreact",
     "typescript",
-    "typescriptreact"
+    "typescriptreact",
+    "svelte",
+    "astro"
   ],
   "files.associations": {
     "*.css": "tailwindcss"

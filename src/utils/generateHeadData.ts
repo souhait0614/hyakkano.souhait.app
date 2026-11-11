@@ -2,13 +2,12 @@
 // SPDX-License-Identifier: MIT
 
 import type { AllUnionFields } from 'type-fest';
-import type { PageProps, RouteConfig } from 'waku/router';
 
 import type { Metadata } from '@/types/Metadata';
-import { OG_DEFAULT } from '@/constants/og';
-import { SITE_BASE_URL, SITE_NAME } from '@/constants/site';
+import { getOgDefault } from '@/constants/og';
+import { SITE_NAME } from '@/constants/site';
 
-export function generateHeadData(metadata: AllUnionFields<Metadata>, pageProps: PageProps<RouteConfig['paths']>) {
+export function generateHeadData(metadata: AllUnionFields<Metadata>, pathname: string, site: URL) {
   const { noIndex = false } = metadata;
 
   const title = metadata.title || SITE_NAME;
@@ -21,52 +20,48 @@ export function generateHeadData(metadata: AllUnionFields<Metadata>, pageProps: 
       : `${title} - ${SITE_NAME}`
   );
 
+  // 静的ページの `Astro.url.pathname` は末尾スラッシュ付きになるが、
+  // Cloudflare の html_handling (drop-trailing-slash) ではリダイレクトされるURLになるため正規化する
+  const normalizedPathname = pathname === '/' ? '/' : pathname.replace(/\/+$/, '');
+
   const canonicalUrl = (
     noIndex
       ? null
-      : new URL(pageProps.path, SITE_BASE_URL).href
+      : new URL(normalizedPathname, site).href
   );
 
+  const ogDefault = getOgDefault(site);
+
   const og = (() => {
-    const headPrefix = 'og: https://ogp.me/ns#';
     const url = canonicalUrl;
     const siteName = SITE_NAME;
     const locale = 'ja_JP';
 
-    let {
-      ogType: type,
-      ogCardType: cardType,
-      ogImageUrl: imageUrl,
-      ogImageAlt: imageAlt,
-      ogImageType: imageType,
-      ogImageWidth: imageWidth,
-      ogImageHeight: imageHeight,
-    } = metadata;
+    const type = metadata.ogType ?? ogDefault.ogType;
+    const cardType = metadata.ogCardType ?? ogDefault.ogCardType;
 
-    if (type == null) {
-      type = OG_DEFAULT.ogType;
-    }
+    const hasCustomImage = (
+      metadata.ogImageUrl != null
+      && metadata.ogImageAlt != null
+      && metadata.ogImageType != null
+      && metadata.ogImageWidth != null
+      && metadata.ogImageHeight != null
+    );
 
-    if (cardType == null) {
-      cardType = OG_DEFAULT.ogCardType;
-    }
-
-    if (imageUrl == null || imageAlt == null || imageType == null || imageWidth == null || imageHeight == null) {
-      imageUrl = OG_DEFAULT.ogImageUrl;
-      imageAlt = OG_DEFAULT.ogImageAlt;
-      imageType = OG_DEFAULT.ogImageType;
-      imageWidth = OG_DEFAULT.ogImageWidth;
-      imageHeight = OG_DEFAULT.ogImageHeight;
-    }
+    const imageUrl = hasCustomImage ? metadata.ogImageUrl : ogDefault.ogImageUrl;
+    const imageAlt = hasCustomImage ? metadata.ogImageAlt : ogDefault.ogImageAlt;
+    const imageType = hasCustomImage ? metadata.ogImageType : ogDefault.ogImageType;
+    const imageWidth = hasCustomImage ? metadata.ogImageWidth : ogDefault.ogImageWidth;
+    const imageHeight = hasCustomImage ? metadata.ogImageHeight : ogDefault.ogImageHeight;
 
     return {
-      headPrefix,
       type,
       cardType,
       url,
       siteName,
       locale,
-      imageUrl,
+      // サイト内の相対パスも指定できるように site を基準に解決する
+      imageUrl: new URL(imageUrl, site).href,
       imageAlt,
       imageType,
       imageWidth,

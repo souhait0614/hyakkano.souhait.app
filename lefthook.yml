@@ -2,8 +2,12 @@ pre-commit:
   parallel: true
   jobs:
     - run: pnpm exec eslint {staged_files}
-      glob: "*.{js,mjs,ts,tsx}"
+      glob: "*.{js,mjs,ts,tsx,astro,svelte}"
     - run: pnpm exec stylelint {staged_files}
       glob: "*.{css,scss}"
     - run: pnpm exec tsc --noEmit
       glob: "*.{ts,tsx}"
+    - run: pnpm exec astro check
+      glob: "*.astro"
+    - run: pnpm exec svelte-check --tsconfig ./tsconfig.json --threshold error
+      glob: "*.svelte"
