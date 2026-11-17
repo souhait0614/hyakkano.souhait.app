@@ -7,3 +7,9 @@ dist
 .DS_Store
 *.pem
 .wrangler
+
+.astro
+
+# NOTE: グローバル gitignore の `Icon?` が core.ignoreCase により
+# `src/components/icons/` にも一致してしまうため、明示的に解除する
+!src/components/icons/

@@ -1,0 +1,39 @@
+---
+import LinkEmail from '@/components/LinkEmail.astro';
+import LinkText from '@/components/LinkText.svelte';
+import { HOME_METADATA, BIRTHDAY_METADATA, IME_DICT_METADATA, YOMUTALK_PLUS_METADATA } from '@/constants/page-metadata';
+import { SITE_CREATOR_SITE_URL, SITE_REPO_URL } from '@/constants/site';
+import Layout from '@/layouts/Layout.astro';
+---
+
+<Layout metadata={HOME_METADATA}>
+  <div class='page-container h-full'>
+    <h1 class='page-title'>{HOME_METADATA.title}</h1>
+    <div class='page-container grow justify-center'>
+      <article class='card'>
+        <h2><LinkText to='/birthday' label={BIRTHDAY_METADATA.title} /></h2>
+        {BIRTHDAY_METADATA.description.map((desc) => (
+          <p>{desc}</p>
+        ))}
+      </article>
+      <article class='card'>
+        <h2><LinkText to='/ime-dict' label={IME_DICT_METADATA.title} /></h2>
+        <p>{IME_DICT_METADATA.description}</p>
+      </article>
+      <article class='card'>
+        <h2><LinkText to='/yomutalk-plus' label={YOMUTALK_PLUS_METADATA.title} /></h2>
+        <p>{YOMUTALK_PLUS_METADATA.description}</p>
+      </article>
+    </div>
+    <section class='card'>
+      <h2 class='text-lg'>このサイトについて</h2>
+      <p>管理人が趣味で制作した100カノに関連した細々としたアプリを置く非公式のサイトです。</p>
+      <p><strong>公式とは一切関係ありません。</strong></p>
+      <p>
+        サイトに関するお問い合わせは、メール（<LinkEmail user='me' domain='souhait.me' />）または
+        <LinkText external href={SITE_CREATOR_SITE_URL} label='管理人の各種SNSアカウント' />までお願いします。
+      </p>
+      <p>このサイトのソースコードは<LinkText external href={SITE_REPO_URL} label='GitHub' />で公開されています。</p>
+    </section>
+  </div>
+</Layout>

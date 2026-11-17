@@ -1,10 +1,7 @@
-import type { ComponentPropsWithRef } from 'react';
-import type { AllUnionFields } from 'type-fest';
+import type { SVGAttributes } from 'svelte/elements';
 
-export type NormalIconProps = ComponentPropsWithRef<'svg'>;
+export type NormalIconProps = SVGAttributes<SVGSVGElement>;
 
-export interface FillableIconProps extends ComponentPropsWithRef<'svg'> {
+export interface FillableIconProps extends NormalIconProps {
   filled?: boolean;
 }
-
-export type IconProps = AllUnionFields<NormalIconProps | FillableIconProps>;

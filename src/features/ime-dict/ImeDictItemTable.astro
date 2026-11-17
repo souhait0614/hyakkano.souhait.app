@@ -1,0 +1,28 @@
+---
+import type { ImeDictItem } from '@/types/ImeDict';
+
+type Props = {
+  items: ImeDictItem[];
+};
+
+const { items } = Astro.props;
+---
+
+<table class='common-table grid-cols-[1fr_1fr_2fr] text-sm'>
+  <thead>
+    <tr>
+      <th>読み</th>
+      <th>語句</th>
+      <th>コメント</th>
+    </tr>
+  </thead>
+  <tbody>
+    {items.map((item) => (
+      <tr>
+        <td class='select-all'>{item.reading}</td>
+        <td class='select-all'>{item.word}</td>
+        <td class='select-all'>{item.comment}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>

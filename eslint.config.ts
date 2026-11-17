@@ -1,7 +1,9 @@
 import taiymeConfig from '@taiyme/eslint-config';
 import tsEslintParser from '@typescript-eslint/parser';
 import gitignore from 'eslint-config-flat-gitignore';
+import astro from 'eslint-plugin-astro';
 import betterTailwindcss from 'eslint-plugin-better-tailwindcss';
+import svelte from 'eslint-plugin-svelte';
 import { defineConfig } from 'eslint/config';
 import globals from 'globals';
 
@@ -9,26 +11,31 @@ const files = [
   '**/*.{js,mjs,ts,tsx}',
 ];
 
+const svelteFiles = [
+  '**/*.svelte',
+  '**/*.svelte.ts',
+];
+
 export default defineConfig(
   gitignore(),
   {
     ignores: [
-      // NOTE: waku auto-generated files
-      'src/pages.gen.ts',
+      // NOTE: build outputs and generated files
+      '.astro/',
+      '.wrangler/',
+      'dist/',
     ],
   },
   {
     files,
     extends: [
       taiymeConfig.configs.typescript,
-      taiymeConfig.configs.react,
       taiymeConfig.configs.stylistic,
     ],
     languageOptions: {
       globals: {
         ...globals.node,
         ...globals.browser,
-        React: 'readonly',
       },
       parser: tsEslintParser,
       parserOptions: {
@@ -36,23 +43,42 @@ export default defineConfig(
         tsconfigRootDir: import.meta.dirname,
       },
     },
-    settings: {
-      react: {
-        version: '19',
+  },
+  // Astro
+  ...astro.configs['flat/recommended'],
+  {
+    files: ['**/*.astro'],
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+      },
+      parserOptions: {
+        parser: tsEslintParser,
+        extraFileExtensions: ['.astro'],
       },
     },
-    rules: {
-      'react/function-component-definition': [
-        'warn',
-        {
-          namedComponents: 'function-declaration',
-          unnamedComponents: 'arrow-function',
-        },
-      ],
+  },
+  // Svelte
+  ...svelte.configs['flat/recommended'],
+  {
+    files: svelteFiles,
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+      },
+      parserOptions: {
+        parser: tsEslintParser,
+        extraFileExtensions: ['.svelte'],
+      },
     },
   },
+  // Tailwind
   {
-    files,
+    files: [
+      ...files,
+      '**/*.astro',
+      ...svelteFiles,
+    ],
     extends: [betterTailwindcss.configs.recommended],
     settings: {
       'better-tailwindcss': {

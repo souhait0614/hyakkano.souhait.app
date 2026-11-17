@@ -6,10 +6,10 @@
 
 `.env.example` を参考に `.env` ファイルを作成してください。
 
-| 変数名                     | 説明                                           |
-| -------------------------- | ---------------------------------------------- |
-| `VITE_SITE_URL`            | サイトのベースURL                              |
-| `VITE_GOOGLE_CALENDAR_IDS` | Google Calendar の公開カレンダーID（JSON形式） |
+| 変数名                | 説明                                                  |
+| --------------------- | ----------------------------------------------------- |
+| `SITE_URL`            | サイトのベースURL (`astro.config.ts` の `site` に使用) |
+| `GOOGLE_CALENDAR_IDS` | Google Calendar の公開カレンダーID（JSON形式）        |
 
 ## GitHub Secrets
 
@@ -28,7 +28,7 @@ Google Calendar 同期ワークフローで使用するVariables:
 | `SITE_HOSTNAME`       | サイトのホスト名                                                |
 | `GOOGLE_CALENDAR_IDS` | `releasedLevel_type` をキーとしたカレンダーIDのJSONオブジェクト |
 
-### VITE_GOOGLE_CALENDAR_IDS, GOOGLE_CALENDAR_IDS の例
+### GOOGLE_CALENDAR_IDS の例
 
 ```json
 {

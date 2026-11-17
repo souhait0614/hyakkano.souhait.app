@@ -1,0 +1,26 @@
+---
+export const prerender = false;
+
+import { GOOGLE_CALENDAR_IDS } from 'astro:env/server';
+
+import { BIRTHDAY_METADATA } from '@/constants/page-metadata';
+import BirthdayApp from '@/features/birthday/BirthdayApp.svelte';
+import { parseCalendarIds } from '@/features/birthday/googleCalendar';
+import { getBirthdayCharacters } from '@/features/birthday/pageData';
+import Layout from '@/layouts/Layout.astro';
+
+const characters = getBirthdayCharacters();
+const calendarIds = parseCalendarIds(GOOGLE_CALENDAR_IDS);
+---
+
+<Layout metadata={BIRTHDAY_METADATA}>
+  <div class='page-container'>
+    <BirthdayApp client:load title={BIRTHDAY_METADATA.title} {characters} {calendarIds} />
+    <section class='flex flex-col gap-2 card'>
+      <h2 class='text-lg'>このページについて</h2>
+      <p>原作133話やコミックスカバー下などの情報をもとに、登場キャラクターの誕生日を一覧で表示しています。</p>
+      <p>誕生日までの残り日数は端末の日時設定に基づき日本標準時(JST)で計算され、このページを表示したまま午前0時(JST)を迎えると自動的に再計算されます。</p>
+      <p>表示設定やテーブルの並び替えはブラウザに保存され、次回表示時にも反映されます。</p>
+    </section>
+  </div>
+</Layout>

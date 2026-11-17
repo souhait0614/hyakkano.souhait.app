@@ -1,4 +1,4 @@
-import type { SortDirection } from '@tanstack/react-table';
+import type { SortDirection } from '@tanstack/svelte-table';
 
 export const getTableSortingTitle = (sorting: SortDirection | false) => {
   if (sorting === 'asc') {

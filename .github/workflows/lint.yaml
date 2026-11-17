@@ -36,6 +36,8 @@ jobs:
           - eslint
           - stylelint
           - typescript
+          - astro
+          - svelte
         include:
           - linter: eslint
             linter-command-name: lint:eslint
@@ -45,6 +47,10 @@ jobs:
             linter-cache-version: v1
           - linter: typescript
             linter-command-name: lint:typescript
+          - linter: astro
+            linter-command-name: lint:astro
+          - linter: svelte
+            linter-command-name: lint:svelte
     env:
       linter-cache-path: ${{ github.workspace }}/node_modules/.cache/${{ matrix.linter }}
     steps:
