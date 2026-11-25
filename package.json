@@ -60,7 +60,7 @@
     "tailwindcss": "4.3.5",
     "terser": "5.51.2",
     "tsx": "4.23.15",
-    "type-fest": "5.10.0",
+    "type-fest": "6.0.3",
     "typescript": "6.0.3",
     "vite": "8.3.8",
     "wrangler": "4.160.0"
