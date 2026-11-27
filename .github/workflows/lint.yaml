@@ -53,6 +53,8 @@ jobs:
             linter-command-name: lint:svelte
     env:
       linter-cache-path: ${{ github.workspace }}/node_modules/.cache/${{ matrix.linter }}
+      # ESLint (type-aware linting over Astro/Svelte files) consumes close to Node's default ~4GB heap limit.
+      NODE_OPTIONS: --max-old-space-size=6144
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
